@@ -26,13 +26,13 @@ a:hover{color:#A9C4F0}
 </helmet>
 <div style="background:#08090C;color:#F5F5F5;min-height:100vh">
 
-<header style="position:sticky;top:0;z-index:50;background:rgba(8,9,12,0.94);border-bottom:1px solid rgba(255,255,255,0.07)">
+<header style="position:sticky;top:0;z-index:50;background:#08090C;border-bottom:1px solid rgba(255,255,255,0.07)">
   <div style="max-width:1280px;margin:0 auto;padding:14px clamp(18px,5vw,32px);min-height:64px;box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px">
     <a href="TaxSignal Landing.dc.html" style="display:flex;align-items:center;gap:12px;color:#F5F5F5">
       <span style="display:grid;grid-template-columns:repeat(3,4px);align-items:end;gap:3px;height:18px"><span style="width:4px;height:7px;background:#0C4DA2"></span><span style="width:4px;height:12px;background:#1A5FBB"></span><span style="width:4px;height:18px;background:#7FA6E8"></span></span>
       <span style="font-family:var(--font-display);font-size:19px;letter-spacing:-0.01em">{{ brand }}</span>
     </a>
-    <nav style="display:flex;flex-wrap:wrap;align-items:center;gap:8px clamp(16px,2.4vw,28px);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600">
+    <nav style="display:flex;flex-wrap:wrap;align-items:center;row-gap:6px;column-gap:clamp(10px,2.4vw,28px);font-size:clamp(10.5px,2.8vw,12px);letter-spacing:clamp(0.03em,0.4vw,0.08em);text-transform:uppercase;font-weight:600;max-width:100%;overflow-x:auto;white-space:nowrap;scrollbar-width:none">
       <a href="Knowledge.dc.html" style="color:#9298A5" style-hover="color:#FFFFFF">Knowledge</a>
       <a href="Updates.dc.html" style="color:#9298A5" style-hover="color:#FFFFFF">Updates</a>
       <a href="Calculators.dc.html" style="color:#9298A5" style-hover="color:#FFFFFF">Calculators</a>
@@ -89,7 +89,7 @@ a:hover{color:#A9C4F0}
       <div style="display:flex;flex-direction:column;border-top:1px solid rgba(255,255,255,0.12)">
         <sc-for list="{{ contacts }}" as="c" hint-placeholder-count="2">
           <a href="{{ c.href }}" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;border-bottom:1px solid rgba(255,255,255,0.08);color:#F5F5F5" style-hover="color:#FFFFFF;padding-left:8px">
-            <span><span style="display:block;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6B7180">{{ c.k }}</span><span style="display:block;font-family:var(--font-display);font-size:22px;margin-top:6px">{{ c.v }}</span></span>
+            <span style="min-width:0"><span style="display:block;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6B7180">{{ c.k }}</span><span style="display:block;font-family:var(--font-display);font-size:clamp(17px,5vw,22px);margin-top:6px;overflow-wrap:anywhere">{{ c.v }}</span></span>
             <span style="color:#7FA6E8">→</span>
           </a>
         </sc-for>

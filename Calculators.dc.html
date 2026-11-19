@@ -27,13 +27,13 @@ input{font-family:inherit}
 </helmet>
 <div style="background:#08090C;color:#F5F5F5;min-height:100vh">
 
-<header style="position:sticky;top:0;z-index:50;background:rgba(8,9,12,0.94);border-bottom:1px solid rgba(255,255,255,0.07)">
+<header style="position:sticky;top:0;z-index:50;background:#08090C;border-bottom:1px solid rgba(255,255,255,0.07)">
   <div style="max-width:1280px;margin:0 auto;padding:14px clamp(18px,5vw,32px);min-height:64px;box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px">
     <a href="TaxSignal Landing.dc.html" style="display:flex;align-items:center;gap:12px;color:#F5F5F5">
       <span style="display:grid;grid-template-columns:repeat(3,4px);align-items:end;gap:3px;height:18px"><span style="width:4px;height:7px;background:#0C4DA2"></span><span style="width:4px;height:12px;background:#1A5FBB"></span><span style="width:4px;height:18px;background:#7FA6E8"></span></span>
       <span style="font-family:var(--font-display);font-size:19px;letter-spacing:-0.01em">{{ brand }}</span>
     </a>
-    <nav style="display:flex;flex-wrap:wrap;align-items:center;gap:8px clamp(16px,2.4vw,28px);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600">
+    <nav style="display:flex;flex-wrap:wrap;align-items:center;row-gap:6px;column-gap:clamp(10px,2.4vw,28px);font-size:clamp(10.5px,2.8vw,12px);letter-spacing:clamp(0.03em,0.4vw,0.08em);text-transform:uppercase;font-weight:600;max-width:100%;overflow-x:auto;white-space:nowrap;scrollbar-width:none">
       <a href="Knowledge.dc.html" style="color:#9298A5" style-hover="color:#FFFFFF">Knowledge</a>
       <a href="Updates.dc.html" style="color:#9298A5" style-hover="color:#FFFFFF">Updates</a>
       <a href="Calculators.dc.html" style="color:#F5F5F5;border-bottom:2px solid #0C4DA2;padding-bottom:3px">Calculators</a>
@@ -65,7 +65,7 @@ input{font-family:inherit}
           <span style="font-size:13px;line-height:1.6;color:#9298A5">More calculators are on the way — FBT car, Division 7A, PAYG withholding, payroll tax and more.</span>
         </div>
       </div>
-      <div style="flex:3 1 min(100%,520px);min-width:0;background:#171A22;border:1px solid rgba(255,255,255,0.08)">
+      <div style="flex:3 1 min(100%,520px);min-width:0;max-width:100%;box-sizing:border-box;background:#171A22;border:1px solid rgba(255,255,255,0.08)">
         <div style="padding:24px clamp(18px,4vw,36px);border-bottom:1px solid rgba(255,255,255,0.08);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px">
           <h2 style="font-family:var(--font-display);font-weight:400;font-size:30px;margin:0">{{ calc.title }}</h2>
           <sc-if value="{{ calc.hasYear }}" hint-placeholder-val="{{ true }}">
@@ -77,20 +77,20 @@ input{font-family:inherit}
           </sc-if>
         </div>
         <div style="display:flex;flex-wrap:wrap">
-          <div style="flex:1 1 220px;min-width:0;padding:28px clamp(18px,4vw,36px);display:flex;flex-direction:column;gap:20px;border-right:1px solid rgba(255,255,255,0.08)">
+          <div style="flex:1 1 220px;min-width:0;box-sizing:border-box;padding:28px clamp(18px,4vw,36px);display:flex;flex-direction:column;gap:20px;border-right:1px solid rgba(255,255,255,0.08)">
             <sc-for list="{{ calc.inputs }}" as="i" hint-placeholder-count="1">
-              <label style="display:flex;flex-direction:column;gap:8px">
+              <label style="display:flex;flex-direction:column;gap:8px;min-width:0">
                 <span style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#9298A5">{{ i.label }}</span>
-                <span style="display:flex;align-items:center;background:#08090C;border:1px solid rgba(255,255,255,0.14)">
+                <span style="display:flex;align-items:center;width:100%;min-width:0;box-sizing:border-box;background:#08090C;border:1px solid rgba(255,255,255,0.14)">
                   <span style="padding-left:14px;color:#6B7180;font-family:var(--font-display);font-size:20px">{{ i.prefix }}</span>
-                  <input type="number" min="0" value="{{ i.value }}" onChange="{{ i.set }}" aria-label="{{ i.label }}" style="flex:1;min-width:0;background:transparent;border:0;color:#F5F5F5;font-size:22px;padding:12px 14px 12px 6px;outline:none;font-family:var(--font-display)">
+                  <input type="number" min="0" value="{{ i.value }}" onChange="{{ i.set }}" aria-label="{{ i.label }}" style="flex:1 1 auto;width:0;min-width:0;max-width:100%;box-sizing:border-box;background:transparent;border:0;border-radius:0;-webkit-appearance:none;appearance:none;color:#F5F5F5;font-size:22px;padding:12px 14px 12px 6px;outline:none;font-family:var(--font-display)">
                 </span>
               </label>
             </sc-for>
             <sc-for list="{{ calc.toggles }}" as="g" hint-placeholder-count="0">
-              <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
                 <span style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#9298A5">{{ g.label }}</span>
-                <div style="display:flex;border:1px solid rgba(255,255,255,0.14)">
+                <div style="display:flex;width:100%;box-sizing:border-box;border:1px solid rgba(255,255,255,0.14)">
                   <sc-for list="{{ g.opts }}" as="m" hint-placeholder-count="2">
                     <button onClick="{{ m.pick }}" aria-pressed="{{ m.on }}" style="flex:1;background:{{ m.bg }};color:{{ m.fg }};border:0;padding:11px 6px;font-size:11px;min-width:0;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer">{{ m.label }}</button>
                   </sc-for>
@@ -98,7 +98,7 @@ input{font-family:inherit}
               </div>
             </sc-for>
           </div>
-          <div style="flex:1 1 220px;min-width:0;padding:28px clamp(18px,4vw,36px)">
+          <div style="flex:1 1 220px;min-width:0;box-sizing:border-box;padding:28px clamp(18px,4vw,36px)">
             <sc-for list="{{ calc.rows }}" as="r" hint-placeholder-count="4">
               <div style="display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:14px;color:#B4B9C4"><span>{{ r.label }}</span><span style="color:#F5F5F5;font-variant-numeric:tabular-nums;text-align:right">{{ r.value }}</span></div>
             </sc-for>
