@@ -50,6 +50,11 @@ a{color:#7FA6E8;text-decoration:none}
 a:hover{color:#A9C4F0}
 ::selection{background:#0C4DA2;color:#fff}
 @keyframes tsNudge{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+@keyframes tsRise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+.ts-intro-logo{animation:tsRise 1.2s cubic-bezier(0.22,1,0.36,1) 0.15s both}
+.ts-intro-tag{animation:tsRise 1.5s cubic-bezier(0.22,1,0.36,1) 1.75s both}
+.ts-bounce{animation:bounce 1.8s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </helmet>
@@ -152,6 +157,13 @@ a:hover{color:#A9C4F0}
       </div>
     </div>
 
+    <div data-ts="intro" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(16px,3vh,24px);padding:64px 16px 0;box-sizing:border-box;text-align:center;pointer-events:none">
+      <div class="ts-intro-logo" style="display:flex;align-items:center;gap:clamp(12px,1.6vw,18px)">
+        <span aria-hidden="true" style="display:grid;grid-template-columns:repeat(3,clamp(7px,0.9vw,10px));align-items:end;gap:clamp(5px,0.6vw,7px);height:clamp(34px,4.4vw,50px)"><span style="height:38%;background:#0C4DA2"></span><span style="height:67%;background:#1A5FBB"></span><span style="height:100%;background:#7FA6E8"></span></span>
+        <span style="font-family:var(--font-display);font-size:clamp(40px,6vw,72px);letter-spacing:-0.02em;color:#F5F5F5;line-height:1">{{ brand }}</span>
+      </div>
+      <p class="ts-intro-tag" style="margin:0;font-size:clamp(15px,1.5vw,19px);line-height:1.5;color:#B4B9C4;letter-spacing:0.01em">Cutting through the tax noise.</p>
+    </div>
     <div data-ts="shade" aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(5,6,8,0.92) 0%,rgba(5,6,8,0.6) 34%,rgba(5,6,8,0) 58%);opacity:0"></div>
     <div data-ts="copy" style="position:absolute;inset:0;display:flex;align-items:center;padding:64px max(18px,6vw) 0;box-sizing:border-box;pointer-events:none">
       <div data-ts="copyInner" style="max-width:max(min(540px,44vw),min(100%,420px))">
@@ -173,9 +185,8 @@ a:hover{color:#A9C4F0}
       </div>
     </div>
 
-    <div data-ts="hint" style="position:absolute;bottom:5vh;left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:10px;color:#6B7180;font-size:10px;letter-spacing:0.24em;text-transform:uppercase">
-      <span>Scroll</span>
-      <span style="animation:tsNudge 2s ease-in-out infinite;font-size:14px">↓</span>
+    <div data-ts="hint" style="position:absolute;bottom:5vh;left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:10px;color:#9298A5;font-size:10px;letter-spacing:0.24em;text-transform:uppercase">
+      <span class="ts-bounce" style="display:flex;flex-direction:column;align-items:center;gap:10px"><span>Scroll</span><span style="font-size:14px">↓</span></span>
     </div>
     <div data-ts="caption" style="position:absolute;left:6vw;bottom:5vh;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#6B7180;opacity:0">—</div>
   </div>
@@ -320,7 +331,7 @@ class Component extends DCLogic {
     docs.forEach(d => { const p = d.querySelector('[data-paper]'); if (p) p.style.backgroundImage = NOISE; });
     return {
       hero: q('hero'), world: q('world'), group: q('group'), detach: q('detach'), diagram: q('diagram'), scan: q('scan'), light: q('light'),
-      shade: q('shade'), copy: q('copy'), copyInner: q('copyInner'), ctas: q('ctas'), hint: q('hint'), caption: q('caption'),
+      shade: q('shade'), copy: q('copy'), copyInner: q('copyInner'), ctas: q('ctas'), hint: q('hint'), intro: q('intro'), caption: q('caption'),
       docs: docs.map(el => ({ el, hl: [...el.querySelectorAll('[data-hl="1"]')], tag: el.querySelector('[data-tag]'), sheen: el.querySelector('[data-sheen]') })),
       steps: [...q('diagram').querySelectorAll('[data-step]')].map(el => ({ el, s: +el.getAttribute('data-step'), axis: el.getAttribute('data-axis') })),
       layers: [...document.querySelectorAll('[data-layer]')],
@@ -410,6 +421,7 @@ class Component extends DCLogic {
     E.ctas.style.pointerEvents = seg(0.93, 0.97) > 0.5 ? 'auto' : 'none';
 
     E.hint.style.opacity = 1 - clamp(p / 0.04);
+    if (E.intro) E.intro.style.opacity = 1 - clamp(p / 0.05);
     let cap = ''; CAPTIONS.forEach(([at, txt]) => { if (p >= at) cap = txt; });
     const capOn = p > 0.02 && p < 0.82 && !mobile;
     if (E.caption.textContent !== cap) E.caption.textContent = cap;
