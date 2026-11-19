@@ -106,10 +106,10 @@ a:hover{color:#A9C4F0}
 </footer>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;TaxSignal&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;contactEmail&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;contact@taxsignal.au&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;founderName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;founderBio&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;TaxSignal&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;contactEmail&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;hello@taxsignal.com.au&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;founderName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;founderBio&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   renderVals() {
-    const p = this.props, email = p.contactEmail || 'contact@taxsignal.au';
+    const p = this.props, email = p.contactEmail || 'hello@taxsignal.com.au';
     return {
       brand: p.brandName || 'TaxSignal',
       founderName: p.founderName || 'Built quietly. Sourced loudly.',
