@@ -1,0 +1,48 @@
+/* ============================================================
+   LegalWorks — Color tokens
+   Royal-blue authority on near-black navy. No decorative
+   gradients on surfaces; blue is reserved as the single accent.
+   ============================================================ */
+:root {
+  /* --- Brand --- */
+  --lw-royal: #0C4DA2;        /* Primary / Royal Blue (from logo) */
+  --lw-royal-hover: #1A5FBB;  /* Accent / hover — slightly lighter */
+  --lw-royal-press: #093C80;  /* Pressed — slightly darker */
+  --lw-royal-tint: #E8EFF8;   /* Faint blue wash for subtle fills */
+
+  /* --- Neutrals --- */
+  --lw-navy: #0A0F1E;         /* Dark background — near-black navy */
+  --lw-ink: #1A1A1A;          /* Body text — off-black */
+  --lw-gray: #555555;         /* Secondary text — medium gray */
+  --lw-rule: #E0E0E0;         /* Dividers / hairline rules — light gray */
+  --lw-surface-alt: #F7F8FA;  /* Section background (alt) — near-white */
+  --lw-white: #FFFFFF;
+
+  /* Tints for use on the dark navy band */
+  --lw-on-navy: #FFFFFF;
+  --lw-on-navy-dim: rgba(255, 255, 255, 0.66);
+  --lw-on-navy-rule: rgba(255, 255, 255, 0.14);
+
+  /* --- Semantic aliases --- */
+  --text-heading: var(--lw-ink);
+  --text-body: var(--lw-ink);
+  --text-muted: var(--lw-gray);
+  --text-on-dark: var(--lw-white);
+  --text-on-dark-muted: var(--lw-on-navy-dim);
+  --text-accent: var(--lw-royal);
+
+  --surface-page: var(--lw-white);
+  --surface-alt: var(--lw-surface-alt);
+  --surface-dark: var(--lw-navy);
+  --surface-accent: var(--lw-royal);
+
+  --border-rule: var(--lw-rule);
+  --border-accent: var(--lw-royal);
+
+  --accent: var(--lw-royal);
+  --accent-hover: var(--lw-royal-hover);
+  --accent-press: var(--lw-royal-press);
+
+  /* Dark navy overlay used on all photography (60–70%) */
+  --img-overlay: rgba(10, 15, 30, 0.66);
+}
