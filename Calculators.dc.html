@@ -62,7 +62,7 @@ input{font-family:inherit}
         </sc-for>
         <div style="padding:20px 0 0;display:flex;flex-direction:column;gap:10px">
           <span style="display:flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#7FA6E8"><span style="width:6px;height:6px;background:#7FA6E8"></span>In active development</span>
-          <span style="font-size:13px;line-height:1.6;color:#9298A5">More calculators are on the way — FBT car, Division 7A, PAYG withholding, payroll tax and more.</span>
+          <span style="font-size:13px;line-height:1.6;color:#9298A5">More calculators are on the way — FBT car, Division 7A, payroll tax, HELP repayments and more.</span>
         </div>
       </div>
       <div style="flex:3 1 min(100%,520px);min-width:0;max-width:100%;box-sizing:border-box;background:#171A22;border:1px solid rgba(255,255,255,0.08)">
@@ -92,7 +92,7 @@ input{font-family:inherit}
                 <span style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#9298A5">{{ g.label }}</span>
                 <div style="display:flex;width:100%;box-sizing:border-box;border:1px solid rgba(255,255,255,0.14)">
                   <sc-for list="{{ g.opts }}" as="m" hint-placeholder-count="2">
-                    <button onClick="{{ m.pick }}" aria-pressed="{{ m.on }}" style="flex:1;background:{{ m.bg }};color:{{ m.fg }};border:0;padding:11px 6px;font-size:11px;min-width:0;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer">{{ m.label }}</button>
+                    <button onClick="{{ m.pick }}" aria-pressed="{{ m.on }}" style="flex:1;background:{{ m.bg }};color:{{ m.fg }};border:0;padding:11px 2px;font-size:clamp(10px,2.9vw,11px);min-width:0;line-height:1.2;white-space:nowrap;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;cursor:pointer">{{ m.label }}</button>
                   </sc-for>
                 </div>
               </div>
@@ -149,15 +149,35 @@ function mlsTier(income, yr, family, kids) {
   if (income <= t[2]) return { rate: 0.0125, tier: 'Tier 2', t };
   return { rate: 0.015, tier: 'Tier 3', t };
 }
+// PAYG withholding — Schedule 1 (NAT 1004) coefficients, payments from 1 July 2026 (Taxation Administration (Withholding Schedules) Instrument 2026, F2026L00716)
+const PAYG_SC = {
+  1: [[188,0.15,0.15],[371,0.2084,11.0185],[515,0.179,0.1066],[932,0.3227,74.1674],[2246,0.32,71.6508],[3303,0.39,228.8816],[Infinity,0.47,493.1893]],
+  2: [[362,0,0],[538,0.15,54.3462],[673,0.25,108.2135],[721,0.17,54.3473],[865,0.179,60.8377],[1282,0.3227,185.1935],[2596,0.32,181.7319],[3653,0.39,363.4627],[Infinity,0.47,655.7704]],
+  3: [[2596,0.3,0.3],[3653,0.37,181.7308],[Infinity,0.45,474.0385]],
+  5: [[362,0,0],[721,0.15,54.3462],[865,0.159,60.8365],[1282,0.3027,185.1923],[2596,0.3,181.7308],[3653,0.37,363.4615],[Infinity,0.45,655.7692]],
+  6: [[362,0,0],[721,0.15,54.3462],[865,0.159,60.8365],[908,0.3027,185.1923],[1135,0.3527,230.6135],[1282,0.3127,185.1923],[2596,0.31,181.7308],[3653,0.38,363.4615],[Infinity,0.46,655.7692]],
+};
+const rHalfUp = v => Math.floor(v + 0.5 + 1e-9);
+function paygWithhold(E, freq, scale, resident) {
+  if (scale === 4) return Math.floor(Math.floor(E) * (resident ? 0.47 : 0.45));
+  let x;
+  if (freq === 'w') x = Math.floor(E) + 0.99;
+  else if (freq === 'f') x = Math.floor(E / 2) + 0.99;
+  else { let e = E; if (Math.round((e % 1) * 100) === 33) e = Math.round((e + 0.01) * 100) / 100; x = Math.floor(e * 3 / 13 + 1e-9) + 0.99; }
+  const band = PAYG_SC[scale].find(b => x < b[0]);
+  const y = Math.max(0, rHalfUp(band[1] * x - band[2]));
+  return { y, x, a: band[1], b: band[2], amt: freq === 'w' ? y : freq === 'f' ? y * 2 : rHalfUp(y * 13 / 3) };
+}
 const TOOLS = [
   ['income', 'Income tax', 'Medicare levy and surcharge'],
   ['gst', 'GST', 'Add or extract 10%'],
   ['super', 'Super guarantee', 'Per payday, Payday Super'],
+  ['payg', 'PAYG withholding', 'Tax withheld from pay, 2026–27'],
   ['cgt', 'Capital gains tax', 'Resident individuals'],
 ];
 
 class Component extends DCLogic {
-  state = { route: typeof window !== 'undefined' ? window.location.hash.slice(1) : '', year: '2026–27', income: 95000, gstAmt: 1100, gstMode: 'incl', medicare: 1, cover: 0, family: 0, famIncome: 180000, kids: 0, qe: 3000, proceeds: 650000, cost: 420000, held: 1, other: 90000 };
+  state = { route: typeof window !== 'undefined' ? window.location.hash.slice(1) : '', year: '2026–27', income: 95000, gstAmt: 1100, gstMode: 'incl', pay: 2000, freq: 'f', res: 1, tfn: 1, tft: 1, medx: 0, medicare: 1, cover: 0, family: 0, famIncome: 180000, kids: 0, qe: 3000, proceeds: 650000, cost: 420000, held: 1, other: 90000 };
   componentDidMount() { this.onHash = () => this.setState({ route: window.location.hash.slice(1) }); window.addEventListener('hashchange', this.onHash); }
   componentWillUnmount() { window.removeEventListener('hashchange', this.onHash); }
 
@@ -173,6 +193,26 @@ class Component extends DCLogic {
         totalLabel: excl ? 'Price including GST' : 'GST included', total: AUD(excl ? ex + gst : gst, 2),
         assumptions: ['Standard 10% rate on a taxable supply — not GST-free or input-taxed.', 'GST in a GST-inclusive price is one-eleventh of the price.'],
         src: 'ATO — GST', srcUrl: 'https://www.ato.gov.au/businesses-and-organisations/gst-excise-and-indirect-taxes/gst' };
+    }
+    if (tool === 'payg') {
+      const E = n(s.pay), res = !!s.res, tfn = !!s.tfn, tft = !!s.tft;
+      const scale = !tfn ? 4 : !res ? 3 : !tft ? 1 : s.medx === 2 ? 5 : s.medx === 1 ? 6 : 2;
+      const per = { w: 'week', f: 'fortnight', m: 'month' }[s.freq];
+      const r = paygWithhold(E, s.freq, scale, res);
+      const amt = scale === 4 ? r : r.amt;
+      const toggles = [tg('freq', 'Pay period', [['w', 'Weekly'], ['f', '2-weekly'], ['m', 'Monthly']]), tg('res', 'Residency', [[1, 'Australian'], [0, 'Foreign']]), tg('tfn', 'TFN provided', [[1, 'Yes'], [0, 'No']])];
+      if (tfn && res) toggles.push(tg('tft', 'Tax-free threshold claimed', [[1, 'Yes'], [0, 'No']]));
+      if (tfn && res && tft) toggles.push(tg('medx', 'Medicare levy exemption', [[0, 'None'], [1, 'Half'], [2, 'Full']]));
+      const scaleName = { 1: 'Scale 1 — no tax-free threshold', 2: 'Scale 2 — tax-free threshold claimed', 3: 'Scale 3 — foreign resident', 4: 'Scale 4 — no TFN provided', 5: 'Scale 5 — full Medicare exemption', 6: 'Scale 6 — half Medicare exemption' }[scale];
+      const rows = [{ label: 'Withholding scale', value: scaleName }];
+      if (scale !== 4) rows.push({ label: 'Weekly equivalent earnings (x)', value: AUD(r.x, 2) }, { label: 'Formula y = a × x − b', value: r.a ? `${r.a} × x − ${r.b}` : 'Nil band' }, { label: 'Weekly withholding (rounded)', value: AUD(r.y) });
+      else rows.push({ label: 'Rate (no TFN)', value: res ? '47%' : '45%' });
+      rows.push({ label: 'Net pay this ' + per, value: AUD(Math.max(0, E - amt), 2) }, { label: 'Annual equivalent withheld', value: AUD(amt * (s.freq === 'w' ? 52 : s.freq === 'f' ? 26 : 12)) });
+      return { title: 'PAYG withholding', toggles,
+        inputs: [{ label: `Gross pay per ${per} (incl. taxable allowances)`, value: s.pay, set: num('pay'), prefix: '$' }],
+        rows, totalLabel: `Tax to withhold per ${per}`, total: AUD(amt),
+        assumptions: ['Uses the ATO Schedule 1 statement of formulas (NAT 1004) for payments made from 1 July 2026, with the ATO’s rounding rules — checked against the ATO’s published sample data.', 'Regular salary or wages only. Excludes study and training support loan (HELP) amounts, tax offsets claimed on a withholding declaration, Medicare levy adjustments, bonuses and back pay (Schedule 5), and working holiday makers (Schedule 15).', 'Foreign residents and payees without a TFN can’t claim the tax-free threshold or offsets.', 'Withholding is a prepayment — the actual tax is worked out in the annual tax return.'],
+        src: 'Taxation Administration (Withholding Schedules) Instrument 2026, Schedule 1 — compare with the ATO Tax withheld calculator', srcUrl: 'https://www.legislation.gov.au/F2026L00716' };
     }
     if (tool === 'super') {
       const qe = n(s.qe), sg = qe * 0.12;
