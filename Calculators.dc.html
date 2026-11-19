@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/legalworks-design-system-fbaf450e-9389-49a8-8ec8-5a87d6620b96/tokens/colors.css">
+<link rel="stylesheet" href="_ds/legalworks-design-system-fbaf450e-9389-49a8-8ec8-5a87d6620b96/tokens/typography.css">
+<link rel="stylesheet" href="_ds/legalworks-design-system-fbaf450e-9389-49a8-8ec8-5a87d6620b96/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/legalworks-design-system-fbaf450e-9389-49a8-8ec8-5a87d6620b96/tokens/base.css">
+<link rel="stylesheet" href="_ds/legalworks-design-system-fbaf450e-9389-49a8-8ec8-5a87d6620b96/styles.css">
+<script src="_ds/legalworks-design-system-fbaf450e-9389-49a8-8ec8-5a87d6620b96/_ds_bundle.js"></script>
+<style>
+html{background:#08090C}
+:root{--text-heading:#F5F5F5;--text-body:#F5F5F5}
+body{margin:0;background:#08090C;color:#F5F5F5;font-family:var(--font-ui),Inter,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{color:#F5F5F5}
+a{color:#7FA6E8;text-decoration:none}
+a:hover{color:#A9C4F0}
+::selection{background:#0C4DA2;color:#fff}
+input{font-family:inherit}
+</style>
+</helmet>
+<div style="background:#08090C;color:#F5F5F5;min-height:100vh">
+
+<header style="position:sticky;top:0;z-index:50;background:rgba(8,9,12,0.94);border-bottom:1px solid rgba(255,255,255,0.07)">
+  <div style="max-width:1280px;margin:0 auto;padding:14px 32px;min-height:64px;box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px">
+    <a href="TaxSignal Landing.dc.html" style="display:flex;align-items:center;gap:12px;color:#F5F5F5">
+      <span style="display:grid;grid-template-columns:repeat(3,4px);align-items:end;gap:3px;height:18px"><span style="width:4px;height:7px;background:#0C4DA2"></span><span style="width:4px;height:12px;background:#1A5FBB"></span><span style="width:4px;height:18px;background:#7FA6E8"></span></span>
+      <span style="font-family:var(--font-display);font-size:19px;letter-spacing:-0.01em">{{ brand }}</span>
+    </a>
+    <nav style="display:flex;flex-wrap:wrap;align-items:center;gap:8px clamp(16px,2.4vw,28px);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600">
+      <a href="Knowledge.dc.html" style="color:#9298A5" style-hover="color:#FFFFFF">Knowledge</a>
+      <a href="Updates.dc.html" style="color:#9298A5" style-hover="color:#FFFFFF">Updates</a>
+      <a href="Calculators.dc.html" style="color:#F5F5F5;border-bottom:2px solid #0C4DA2;padding-bottom:3px">Calculators</a>
+      <a href="About.dc.html" style="color:#9298A5" style-hover="color:#FFFFFF">About</a>
+    </nav>
+  </div>
+</header>
+
+<main data-screen-label="Calculators">
+  <section style="padding:112px 0 56px">
+    <div style="max-width:1200px;margin:0 auto;padding:0 32px">
+      <x-import component-from-global-scope="LegalWorksDesignSystem_fbaf45.Tag" variant="eyebrow" on-dark="{{ true }}" hint-size="200px,14px">Calculators</x-import>
+      <h1 style="font-family:var(--font-display);font-weight:400;font-size:clamp(44px,6vw,84px);line-height:1.04;letter-spacing:-0.03em;margin:24px 0 0;max-width:900px">Estimates, with the assumptions shown.</h1>
+      <p style="font-size:18px;line-height:1.7;color:#B4B9C4;margin:28px 0 0;max-width:640px">Every calculator states its tax year, its rates and what it leaves out. Results are estimates — not official ATO calculations or advice.</p>
+      <p style="display:flex;align-items:center;gap:10px;margin:24px 0 0;font-size:13px;color:#C9CDD6"><span style="font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#08090C;background:#7FA6E8;padding:4px 8px">Coming soon</span>This area is under active development — new calculators are added regularly.</p>
+    </div>
+  </section>
+  <section style="padding:0 0 120px">
+    <div style="max-width:1200px;margin:0 auto;padding:0 32px;display:flex;flex-wrap:wrap;gap:40px">
+      <div style="flex:1 1 240px;border-top:1px solid rgba(255,255,255,0.12);align-self:flex-start">
+        <sc-for list="{{ tools }}" as="tl" hint-placeholder-count="4">
+          <a href="{{ tl.href }}" style="display:flex;flex-direction:column;gap:6px;padding:18px 0 18px {{ tl.pad }};border-bottom:1px solid rgba(255,255,255,0.08);border-left:2px solid {{ tl.bar }};color:{{ tl.fg }};transition:padding 200ms">
+            <span style="font-size:16px">{{ tl.name }}</span>
+            <span style="font-size:12px;color:#6B7180">{{ tl.sub }}</span>
+          </a>
+        </sc-for>
+        <div style="padding:20px 0 0;display:flex;flex-direction:column;gap:10px">
+          <span style="display:flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#7FA6E8"><span style="width:6px;height:6px;background:#7FA6E8"></span>In active development</span>
+          <span style="font-size:13px;line-height:1.6;color:#9298A5">More calculators are on the way — FBT car, Division 7A, PAYG withholding, payroll tax and more.</span>
+        </div>
+      </div>
+      <div style="flex:3 1 520px;min-width:0;background:#171A22;border:1px solid rgba(255,255,255,0.08)">
+        <div style="padding:28px 36px;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px">
+          <h2 style="font-family:var(--font-display);font-weight:400;font-size:30px;margin:0">{{ calc.title }}</h2>
+          <sc-if value="{{ calc.hasYear }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;border:1px solid rgba(255,255,255,0.14)">
+              <sc-for list="{{ years }}" as="y" hint-placeholder-count="2">
+                <button onClick="{{ y.pick }}" style="background:{{ y.bg }};color:{{ y.fg }};border:0;padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer">{{ y.label }}</button>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+        <div style="display:flex;flex-wrap:wrap">
+          <div style="flex:1 1 260px;padding:32px 36px;display:flex;flex-direction:column;gap:20px;border-right:1px solid rgba(255,255,255,0.08)">
+            <sc-for list="{{ calc.inputs }}" as="i" hint-placeholder-count="1">
+              <label style="display:flex;flex-direction:column;gap:8px">
+                <span style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#9298A5">{{ i.label }}</span>
+                <span style="display:flex;align-items:center;background:#08090C;border:1px solid rgba(255,255,255,0.14)">
+                  <span style="padding-left:14px;color:#6B7180;font-family:var(--font-display);font-size:20px">{{ i.prefix }}</span>
+                  <input type="number" min="0" value="{{ i.value }}" onChange="{{ i.set }}" aria-label="{{ i.label }}" style="flex:1;min-width:0;background:transparent;border:0;color:#F5F5F5;font-size:22px;padding:12px 14px 12px 6px;outline:none;font-family:var(--font-display)">
+                </span>
+              </label>
+            </sc-for>
+            <sc-for list="{{ calc.toggles }}" as="g" hint-placeholder-count="0">
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <span style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#9298A5">{{ g.label }}</span>
+                <div style="display:flex;border:1px solid rgba(255,255,255,0.14)">
+                  <sc-for list="{{ g.opts }}" as="m" hint-placeholder-count="2">
+                    <button onClick="{{ m.pick }}" aria-pressed="{{ m.on }}" style="flex:1;background:{{ m.bg }};color:{{ m.fg }};border:0;padding:11px 8px;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer">{{ m.label }}</button>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="flex:1 1 260px;padding:32px 36px">
+            <sc-for list="{{ calc.rows }}" as="r" hint-placeholder-count="4">
+              <div style="display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:14px;color:#B4B9C4"><span>{{ r.label }}</span><span style="color:#F5F5F5;font-variant-numeric:tabular-nums;text-align:right">{{ r.value }}</span></div>
+            </sc-for>
+            <div style="margin-top:24px;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#7FA6E8">{{ calc.totalLabel }}</div>
+            <div style="font-family:var(--font-display);font-size:48px;letter-spacing:-0.02em;margin-top:8px">{{ calc.total }}</div>
+          </div>
+        </div>
+        <div style="padding:22px 36px;border-top:1px solid rgba(255,255,255,0.08);background:#13161D">
+          <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6B7180">Assumptions</div>
+          <ul style="margin:10px 0 0;padding-left:18px;font-size:13px;color:#9298A5;line-height:1.7">
+            <sc-for list="{{ calc.assumptions }}" as="a" hint-placeholder-count="3"><li>{{ a }}</li></sc-for>
+            <li>Estimate only. Not an official ATO calculation or advice.</li>
+          </ul>
+          <div style="margin-top:12px;font-size:13px">Source: <a href="{{ calc.srcUrl }}" target="_blank" rel="noopener">{{ calc.src }} ↗</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer style="background:#08090C;border-top:1px solid rgba(255,255,255,0.08);padding:40px 0">
+  <div style="max-width:1280px;margin:0 auto;padding:0 32px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:12px;color:#6B7180;line-height:1.6">
+    <span><span style="font-family:var(--font-display);color:#C9CDD6;font-size:15px;margin-right:12px">{{ brand }}</span>General information only — not tax, legal or financial advice.</span>
+    <span style="display:flex;gap:20px"><a href="Knowledge.dc.html" style="color:#9298A5">Knowledge</a><a href="Updates.dc.html" style="color:#9298A5">Updates</a><a href="About.dc.html" style="color:#9298A5">About &amp; contact</a></span>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;TaxSignal&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const AUD = (n, d = 0) => (isFinite(n) ? n : 0).toLocaleString('en-AU', { style: 'currency', currency: 'AUD', minimumFractionDigits: d, maximumFractionDigits: d });
+const RATE2 = { '2025–26': 0.16, '2026–27': 0.15 };
+function incomeTax(ti, yr) {
+  const br = [[18200, 0], [45000, RATE2[yr]], [135000, 0.30], [190000, 0.37], [Infinity, 0.45]];
+  let tax = 0, prev = 0;
+  for (const [cap, r] of br) { if (ti > prev) tax += (Math.min(ti, cap) - prev) * r; prev = cap; }
+  let lito = 0;
+  if (ti <= 37500) lito = 700; else if (ti <= 45000) lito = 700 - 0.05 * (ti - 37500); else if (ti <= 66667) lito = 325 - 0.015 * (ti - 45000);
+  lito = Math.max(0, Math.min(lito, tax));
+  return { tax, lito, medicare: ti * 0.02, net: Math.max(0, tax - lito) + ti * 0.02 };
+}
+// Medicare levy surcharge thresholds: [base, tier 1 top, tier 2 top]
+const MLS = { '2025–26': { s: [101000, 118000, 158000], f: [202000, 236000, 316000] }, '2026–27': { s: [105000, 123000, 164000], f: [210000, 246000, 328000] } };
+function mlsTier(income, yr, family, kids) {
+  const add = family && kids > 1 ? (kids - 1) * 1500 : 0;
+  const t = MLS[yr][family ? 'f' : 's'].map(x => x + add);
+  if (income <= t[0]) return { rate: 0, tier: 'Base tier', t };
+  if (income <= t[1]) return { rate: 0.01, tier: 'Tier 1', t };
+  if (income <= t[2]) return { rate: 0.0125, tier: 'Tier 2', t };
+  return { rate: 0.015, tier: 'Tier 3', t };
+}
+const TOOLS = [
+  ['income', 'Income tax', 'Medicare levy and surcharge'],
+  ['gst', 'GST', 'Add or extract 10%'],
+  ['super', 'Super guarantee', 'Per payday, Payday Super'],
+  ['cgt', 'Capital gains tax', 'Resident individuals'],
+];
+
+class Component extends DCLogic {
+  state = { route: typeof window !== 'undefined' ? window.location.hash.slice(1) : '', year: '2026–27', income: 95000, gstAmt: 1100, gstMode: 'incl', medicare: 1, cover: 0, family: 0, famIncome: 180000, kids: 0, qe: 3000, proceeds: 650000, cost: 420000, held: 1, other: 90000 };
+  componentDidMount() { this.onHash = () => this.setState({ route: window.location.hash.slice(1) }); window.addEventListener('hashchange', this.onHash); }
+  componentWillUnmount() { window.removeEventListener('hashchange', this.onHash); }
+
+  calc(tool) {
+    const s = this.state, n = v => +v || 0, num = k => e => this.setState({ [k]: e.target.value === '' ? '' : Math.max(0, +e.target.value) });
+    const mode = (k, opts) => opts.map(([v, label]) => ({ label, on: s[k] === v, pick: () => this.setState({ [k]: v }), bg: s[k] === v ? '#0C4DA2' : 'transparent', fg: s[k] === v ? '#FFFFFF' : '#C9CDD6' }));
+    const tg = (k, label, opts) => ({ label, opts: mode(k, opts) });
+    if (tool === 'gst') {
+      const a = n(s.gstAmt), excl = s.gstMode === 'excl', gst = excl ? a * 0.1 : a / 11, ex = excl ? a : a - gst;
+      return { title: 'GST', toggles: [tg('gstMode', 'Calculation', [['incl', 'Extract GST'], ['excl', 'Add GST']])],
+        inputs: [{ label: excl ? 'Price excluding GST' : 'Price including GST', value: s.gstAmt, set: num('gstAmt'), prefix: '$' }],
+        rows: [{ label: 'GST-exclusive amount', value: AUD(ex, 2) }, { label: 'GST (10%)', value: AUD(gst, 2) }, { label: 'GST-inclusive amount', value: AUD(ex + gst, 2) }],
+        totalLabel: excl ? 'Price including GST' : 'GST included', total: AUD(excl ? ex + gst : gst, 2),
+        assumptions: ['Standard 10% rate on a taxable supply — not GST-free or input-taxed.', 'GST in a GST-inclusive price is one-eleventh of the price.'],
+        src: 'ATO — GST', srcUrl: 'https://www.ato.gov.au/businesses-and-organisations/gst-excise-and-indirect-taxes/gst' };
+    }
+    if (tool === 'super') {
+      const qe = n(s.qe), sg = qe * 0.12;
+      return { title: 'Super guarantee', inputs: [{ label: 'Qualifying earnings this payday', value: s.qe, set: num('qe'), prefix: '$' }],
+        rows: [{ label: 'Super guarantee rate', value: '12%' }, { label: 'Fund must receive it within', value: '7 business days' }, { label: 'Reported through', value: 'Single Touch Payroll' }],
+        totalLabel: 'Minimum contribution for this payday', total: AUD(sg, 2),
+        assumptions: ['Paydays on or after 1 July 2026 (Payday Super).', 'Qualifying earnings include ordinary time earnings and some other amounts, such as qualifying salary sacrifice.', 'Ignores the maximum contribution base and any higher rate required by an award or agreement.'],
+        src: 'ATO — Payday Super', srcUrl: 'https://www.ato.gov.au/businesses-and-organisations/super-for-employers/payday-super' };
+    }
+    if (tool === 'cgt') {
+      const gain = n(s.proceeds) - n(s.cost), disc = s.held && gain > 0 ? gain * 0.5 : 0, net = Math.max(0, gain - disc);
+      const base = incomeTax(n(s.other), s.year).net, withG = incomeTax(n(s.other) + net, s.year).net;
+      return { title: 'Capital gains tax', hasYear: true, toggles: [tg('held', 'Ownership period', [[1, '12 months +'], [0, 'Under 12 months']])],
+        inputs: [{ label: 'Capital proceeds', value: s.proceeds, set: num('proceeds'), prefix: '$' }, { label: 'Cost base', value: s.cost, set: num('cost'), prefix: '$' }, { label: 'Other taxable income', value: s.other, set: num('other'), prefix: '$' }],
+        rows: [{ label: gain >= 0 ? 'Capital gain' : 'Capital loss', value: AUD(Math.abs(gain)) }, { label: 'CGT discount (50%)', value: s.held ? '− ' + AUD(disc) : 'Not available' }, { label: 'Net capital gain', value: AUD(net) }, { label: 'Tax without the gain', value: AUD(base) }],
+        totalLabel: 'Estimated extra tax from the gain', total: AUD(withG - base),
+        assumptions: [`Australian resident individual, ${s.year} rates, including the 2% Medicare levy.`, 'No capital losses, main residence exemption or small business concessions.', gain < 0 ? 'A capital loss can only offset capital gains — it does not reduce other income.' : 'The net capital gain is added to taxable income and taxed at marginal rates.'],
+        src: 'ATO — Capital gains tax', srcUrl: 'https://www.ato.gov.au/individuals-and-families/investments-and-assets/capital-gains-tax' };
+    }
+    const ti = n(s.income), r = incomeTax(ti, s.year);
+    const med = s.medicare ? ti * 0.02 : 0;
+    const fam = !!s.family, kids = Math.max(0, Math.floor(n(s.kids)));
+    const m = mlsTier(fam ? n(s.famIncome) : ti, s.year, fam, kids);
+    const noMls = !s.medicare || s.cover;
+    const mls = noMls ? 0 : m.rate * ti;
+    const net = Math.max(0, r.tax - r.lito) + med + mls;
+    const inputs = [{ label: 'Taxable income', value: s.income, set: num('income'), prefix: '$' }];
+    if (fam && !noMls) inputs.push({ label: 'Combined family income (for MLS)', value: s.famIncome, set: num('famIncome'), prefix: '$' }, { label: 'Dependent children', value: s.kids, set: num('kids'), prefix: '#' });
+    const toggles = [tg('medicare', 'Medicare levy (2%)', [[1, 'On'], [0, 'Off / exempt']])];
+    if (s.medicare) toggles.push(tg('cover', 'Private hospital cover', [[1, 'Yes'], [0, 'No']]));
+    if (!noMls) toggles.push(tg('family', 'Surcharge status', [[0, 'Single'], [1, 'Family']]));
+    const T = m.t.map(x => '$' + x.toLocaleString('en-AU'));
+    return { title: 'Income tax', hasYear: true, inputs, toggles,
+      rows: [{ label: 'Tax on taxable income', value: AUD(r.tax) }, { label: 'Low income tax offset', value: '− ' + AUD(r.lito) }, { label: 'Medicare levy (2%)', value: s.medicare ? AUD(med) : 'Off' }, { label: noMls ? 'Medicare levy surcharge' : `Medicare levy surcharge (${m.tier}, ${(m.rate * 100).toFixed(2).replace(/\.?0+$/, '')}%)`, value: !s.medicare ? 'Not payable — exempt' : s.cover ? 'Not payable — covered' : AUD(mls) }, { label: 'Average rate', value: ti > 0 ? (net / ti * 100).toFixed(1) + '%' : '0%' }],
+      totalLabel: 'Estimated tax payable', total: AUD(net),
+      assumptions: [
+        `Australian resident for the full ${s.year} income year. The rate on $18,201–$45,000 is ${Math.round(RATE2[s.year] * 100)}%.`,
+        s.medicare ? 'Medicare levy at 2%, with no low-income reduction. Switch it off if you hold a full-year exemption.' : 'Medicare levy excluded — assumes a full-year exemption (for example, certain foreign residents or medical exemptions). A full-year exemption also means no Medicare levy surcharge.',
+        !s.medicare ? 'No Medicare levy surcharge, as you are exempt from the Medicare levy.' : s.cover ? 'Appropriate private hospital cover held for the whole year, so no surcharge.' : `${s.year} surcharge tiers (${fam ? 'family' : 'single'}): above ${T[0]} 1%, above ${T[1]} 1.25%, above ${T[2]} 1.5%${fam ? ' — family thresholds rise $1,500 for each dependent child after the first. The family tier sets the rate, applied to your own income.' : '.'}`,
+        'Income for surcharge purposes is taken as taxable income — in practice it also adds reportable fringe benefits, reportable super contributions and net investment losses.',
+        'Excludes study loan repayments, other offsets and PAYG credits.'],
+      src: noMls ? 'ATO — Tax rates: Australian residents' : 'ATO — Medicare levy surcharge income, thresholds and rates', srcUrl: noMls ? 'https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents' : 'https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy-surcharge/medicare-levy-surcharge-income-thresholds-and-rates' };
+  }
+
+  renderVals() {
+    const s = this.state, tool = TOOLS.some(t => t[0] === s.route) ? s.route : 'income';
+    return {
+      brand: this.props.brandName || 'TaxSignal',
+      tools: TOOLS.map(([k, name, sub]) => ({ name, sub, href: '#' + k, fg: k === tool ? '#FFFFFF' : '#9298A5', bar: k === tool ? '#7FA6E8' : 'transparent', pad: k === tool ? '16px' : '0px' })),
+      calc: { hasYear: false, toggles: [], ...this.calc(tool) },
+      years: Object.keys(RATE2).map(label => ({ label, pick: () => this.setState({ year: label }), bg: s.year === label ? '#F5F5F5' : 'transparent', fg: s.year === label ? '#08090C' : '#C9CDD6' })),
+    };
+  }
+}
+</script>
+</body>
+</html>

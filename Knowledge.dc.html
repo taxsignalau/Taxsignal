@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/legalworks-design-system-fbaf450e-9389-49a8-8ec8-5a87d6620b96/tokens/colors.css">
+<link rel="stylesheet" href="_ds/legalworks-design-system-fbaf450e-9389-49a8-8ec8-5a87d6620b96/tokens/typography.css">
+<link rel="stylesheet" href="_ds/legalworks-design-system-fbaf450e-9389-49a8-8ec8-5a87d6620b96/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/legalworks-design-system-fbaf450e-9389-49a8-8ec8-5a87d6620b96/tokens/base.css">
+<link rel="stylesheet" href="_ds/legalworks-design-system-fbaf450e-9389-49a8-8ec8-5a87d6620b96/styles.css">
+<script src="_ds/legalworks-design-system-fbaf450e-9389-49a8-8ec8-5a87d6620b96/_ds_bundle.js"></script>
+<style>
+html{background:#08090C}
+:root{--text-heading:#F5F5F5;--text-body:#F5F5F5}
+body{margin:0;background:#08090C;color:#F5F5F5;font-family:var(--font-ui),Inter,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{color:#F5F5F5}
+a{color:#7FA6E8;text-decoration:none}
+a:hover{color:#A9C4F0}
+::selection{background:#0C4DA2;color:#fff}
+</style>
+</helmet>
+<div style="background:#08090C;color:#F5F5F5;min-height:100vh">
+
+<header style="position:sticky;top:0;z-index:50;background:rgba(8,9,12,0.94);border-bottom:1px solid rgba(255,255,255,0.07)">
+  <div style="max-width:1280px;margin:0 auto;padding:14px 32px;min-height:64px;box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px">
+    <a href="TaxSignal Landing.dc.html" style="display:flex;align-items:center;gap:12px;color:#F5F5F5">
+      <span style="display:grid;grid-template-columns:repeat(3,4px);align-items:end;gap:3px;height:18px">
+        <span style="width:4px;height:7px;background:#0C4DA2"></span>
+        <span style="width:4px;height:12px;background:#1A5FBB"></span>
+        <span style="width:4px;height:18px;background:#7FA6E8"></span>
+      </span>
+      <span style="font-family:var(--font-display);font-size:19px;letter-spacing:-0.01em">{{ brand }}</span>
+    </a>
+    <nav style="display:flex;flex-wrap:wrap;align-items:center;gap:8px clamp(16px,2.4vw,28px);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600">
+      <a href="Knowledge.dc.html" style="color:#F5F5F5;border-bottom:2px solid #0C4DA2;padding-bottom:3px">Knowledge</a>
+      <a href="Updates.dc.html" style="color:#9298A5" style-hover="color:#FFFFFF">Updates</a>
+      <a href="Calculators.dc.html" style="color:#9298A5" style-hover="color:#FFFFFF">Calculators</a>
+      <a href="About.dc.html" style="color:#9298A5" style-hover="color:#FFFFFF">About</a>
+    </nav>
+  </div>
+</header>
+
+<sc-if value="{{ isHub }}" hint-placeholder-val="{{ true }}">
+  <main data-screen-label="Knowledge hub">
+    <section style="padding:120px 0 80px;border-bottom:1px solid rgba(255,255,255,0.06)">
+      <div style="max-width:1100px;margin:0 auto;padding:0 32px">
+        <x-import component-from-global-scope="LegalWorksDesignSystem_fbaf45.Tag" variant="eyebrow" on-dark="{{ true }}" hint-size="200px,14px">Knowledge</x-import>
+        <h1 style="font-family:var(--font-display);font-weight:400;font-size:clamp(44px,6vw,84px);line-height:1.04;letter-spacing:-0.03em;margin:24px 0 0;max-width:880px">The essentials of Australian tax.</h1>
+        <p style="font-size:18px;line-height:1.7;color:#B4B9C4;margin:28px 0 0;max-width:620px">Each subject sets out the rules, the sections of law behind them and worked examples — with every source linked.</p>
+      </div>
+    </section>
+    <section style="padding:24px 0 120px">
+      <div style="max-width:1100px;margin:0 auto;padding:0 32px">
+        <sc-for list="{{ hubItems }}" as="s" hint-placeholder-count="4">
+          <a href="{{ s.href }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px 48px;padding:44px 0;border-bottom:1px solid rgba(255,255,255,0.08);color:#F5F5F5;transition:background 200ms" style-hover="background:#0D0F14">
+            <span style="display:flex;gap:24px;align-items:baseline">
+              <span style="font-family:var(--font-display);font-size:15px;color:#7FA6E8">{{ s.num }}</span>
+              <span style="display:flex;flex-direction:column;gap:8px"><span style="font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#6B7180">{{ s.group }}</span><span style="font-family:var(--font-display);font-size:clamp(28px,3vw,40px);letter-spacing:-0.02em">{{ s.name }}</span></span>
+            </span>
+            <span style="display:flex;flex-direction:column;gap:14px">
+              <span style="font-size:16px;line-height:1.65;color:#B4B9C4">{{ s.intro }}</span>
+              <span style="display:flex;flex-wrap:wrap;gap:8px 20px;font-size:12px;color:#9298A5;letter-spacing:0.04em"><span>{{ s.exLabel }}</span><span>{{ s.secCount }} key sections</span></span>
+              <span style="font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#7FA6E8">Read the guide →</span>
+            </span>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+  </main>
+</sc-if>
+
+<sc-if value="{{ isTopic }}" hint-placeholder-val="{{ false }}">
+  <main data-screen-label="Knowledge subject">
+    <section style="padding:72px 0 72px;border-bottom:1px solid rgba(255,255,255,0.06)">
+      <div style="max-width:1100px;margin:0 auto;padding:0 32px">
+        <div style="display:flex;gap:10px;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#6B7180">
+          <a href="#" style="color:#9298A5">Knowledge</a><span>/</span><span style="color:#C9CDD6">{{ t.name }}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;margin-top:56px">
+          <span style="font-family:var(--font-display);color:#7FA6E8;font-size:15px">{{ t.num }}</span>
+          <span style="width:32px;height:3px;background:#0C4DA2"></span>
+        </div>
+        <h1 style="font-family:var(--font-display);font-weight:400;font-size:clamp(44px,6vw,84px);line-height:1.04;letter-spacing:-0.03em;margin:24px 0 0">{{ t.name }}</h1>
+        <p style="font-size:19px;line-height:1.7;color:#B4B9C4;margin:28px 0 0;max-width:720px;text-wrap:pretty">{{ t.intro }}</p>
+        <div style="margin-top:56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));border-top:1px solid rgba(255,255,255,0.12)">
+          <sc-for list="{{ t.glance }}" as="g" hint-placeholder-count="4">
+            <div style="padding:22px 24px 22px 0;border-bottom:1px solid rgba(255,255,255,0.06)">
+              <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6B7180">{{ g.k }}</div>
+              <div style="font-family:var(--font-display);font-size:22px;margin-top:10px;line-height:1.3">{{ g.v }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding:96px 0;background:#08090C">
+      <div style="max-width:1100px;margin:0 auto;padding:0 32px;display:flex;flex-wrap:wrap;gap:48px">
+        <div style="flex:1 1 260px">
+          <x-import component-from-global-scope="LegalWorksDesignSystem_fbaf45.Tag" variant="eyebrow" on-dark="{{ true }}" hint-size="160px,14px">How it works</x-import>
+          <p style="font-size:14px;color:#9298A5;line-height:1.65;margin:18px 0 0">Law: <span style="color:#D7DAE0">{{ t.law }}</span></p>
+          <div style="margin-top:36px;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6B7180">Key sections</div>
+          <div style="margin-top:12px;border-top:1px solid rgba(255,255,255,0.1)">
+            <sc-for list="{{ t.sections }}" as="k" hint-placeholder-count="4">
+              <div style="display:flex;flex-direction:column;gap:4px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06)">
+                <span style="font-family:var(--font-display);font-size:14px;color:#7FA6E8">{{ k.ref }}</span>
+                <span style="font-size:13px;line-height:1.5;color:#B4B9C4">{{ k.what }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <ol style="flex:2.4 1 480px;list-style:none;margin:0;padding:0;border-top:1px solid rgba(255,255,255,0.12)">
+          <sc-for list="{{ t.steps }}" as="s" hint-placeholder-count="4">
+            <li style="display:grid;grid-template-columns:48px minmax(0,1fr);gap:16px;padding:24px 0;border-bottom:1px solid rgba(255,255,255,0.08)">
+              <span style="font-family:var(--font-display);color:#7FA6E8;font-size:15px;padding-top:3px">{{ s.n }}</span>
+              <span><span style="display:block;font-size:19px;font-family:var(--font-display)">{{ s.title }}</span><span style="display:block;font-size:16px;line-height:1.7;color:#B4B9C4;margin-top:8px">{{ s.body }}</span></span>
+            </li>
+          </sc-for>
+        </ol>
+      </div>
+    </section>
+
+    <section style="padding:96px 0;background:#101218">
+      <div style="max-width:1100px;margin:0 auto;padding:0 32px">
+        <x-import component-from-global-scope="LegalWorksDesignSystem_fbaf45.Tag" variant="eyebrow" on-dark="{{ true }}" hint-size="200px,14px">Worked examples</x-import>
+        <div style="margin-top:36px;display:flex;flex-direction:column;gap:32px">
+          <sc-for list="{{ t.examples }}" as="e" hint-placeholder-count="2">
+            <article style="background:#171A22;border:1px solid rgba(255,255,255,0.08);display:flex;flex-wrap:wrap">
+              <div style="flex:1 1 340px;padding:40px;border-right:1px solid rgba(255,255,255,0.08)">
+                <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#7FA6E8">{{ e.label }}</div>
+                <h3 style="font-family:var(--font-display);font-weight:400;font-size:28px;letter-spacing:-0.015em;margin:14px 0 0;line-height:1.25">{{ e.title }}</h3>
+                <p style="font-size:16px;line-height:1.7;color:#B4B9C4;margin:18px 0 0;text-wrap:pretty">{{ e.scenario }}</p>
+                <p style="font-size:15px;line-height:1.7;color:#D7DAE0;margin:18px 0 0;padding-top:18px;border-top:1px solid rgba(255,255,255,0.08)">{{ e.outcome }}</p>
+              </div>
+              <div style="flex:1 1 340px;padding:40px;display:flex;flex-direction:column">
+                <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6B7180">Working</div>
+                <div style="margin-top:14px">
+                  <sc-for list="{{ e.rows }}" as="r" hint-placeholder-count="3">
+                    <div style="display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:14px;color:#B4B9C4"><span>{{ r.k }}</span><span style="color:{{ r.c }};font-variant-numeric:tabular-nums;text-align:right;font-family:{{ r.f }}">{{ r.v }}</span></div>
+                  </sc-for>
+                </div>
+                <div style="margin-top:auto;padding-top:24px;font-size:13px;color:#6B7180;line-height:1.6">{{ e.srcPrefix }} <a href="{{ e.url }}" target="_blank" rel="noopener">{{ e.source }} ↗</a><br>{{ e.note }}</div>
+              </div>
+            </article>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding:96px 0;background:#08090C">
+      <div style="max-width:1100px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:56px">
+        <div>
+          <x-import component-from-global-scope="LegalWorksDesignSystem_fbaf45.Tag" variant="eyebrow" on-dark="{{ true }}" hint-size="160px,14px">Common mistakes</x-import>
+          <ul style="list-style:none;margin:24px 0 0;padding:0;border-top:1px solid rgba(255,255,255,0.12)">
+            <sc-for list="{{ t.mistakes }}" as="m" hint-placeholder-count="4">
+              <li style="display:flex;gap:14px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.08);font-size:15px;line-height:1.6;color:#D7DAE0"><span style="color:#6B7180">✕</span><span>{{ m }}</span></li>
+            </sc-for>
+          </ul>
+        </div>
+        <div>
+          <x-import component-from-global-scope="LegalWorksDesignSystem_fbaf45.Tag" variant="eyebrow" on-dark="{{ true }}" hint-size="160px,14px">Key takeaways</x-import>
+          <ul style="list-style:none;margin:24px 0 0;padding:0;border-top:1px solid rgba(255,255,255,0.12)">
+            <sc-for list="{{ t.takeaways }}" as="m" hint-placeholder-count="3">
+              <li style="display:flex;gap:14px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.08);font-size:15px;line-height:1.6;color:#D7DAE0"><span style="width:12px;height:2px;background:#7FA6E8;margin-top:11px;flex:none"></span><span>{{ m }}</span></li>
+            </sc-for>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding:72px 0;background:#101218;border-top:1px solid rgba(255,255,255,0.06)">
+      <div style="max-width:1100px;margin:0 auto;padding:0 32px">
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6B7180">References</div>
+        <div style="margin-top:16px;display:flex;flex-direction:column;gap:10px">
+          <sc-for list="{{ t.sources }}" as="s" hint-placeholder-count="2">
+            <a href="{{ s.url }}" target="_blank" rel="noopener" style="font-size:14px">{{ s.label }} ↗</a>
+          </sc-for>
+        </div>
+        <p style="font-size:12px;color:#6B7180;margin:24px 0 0;line-height:1.6;max-width:720px">Examples marked ATO are summarised from ATO publications; other examples are illustrations written by {{ brand }}. Figures are for the 2025–26 income year unless stated. General information only, not advice. Reviewed November 2026.</p>
+        <div style="margin-top:56px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;border-top:1px solid rgba(255,255,255,0.1);padding-top:28px">
+          <a href="{{ t.prev.href }}" style="color:#C9CDD6;font-size:14px">← {{ t.prev.name }}</a>
+          <a href="{{ t.next.href }}" style="color:#F5F5F5;font-family:var(--font-display);font-size:22px">Next: {{ t.next.name }} →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</sc-if>
+
+<footer style="background:#08090C;border-top:1px solid rgba(255,255,255,0.08);padding:40px 0">
+  <div style="max-width:1280px;margin:0 auto;padding:0 32px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:12px;color:#6B7180;line-height:1.6">
+    <span><span style="font-family:var(--font-display);color:#C9CDD6;font-size:15px;margin-right:12px">{{ brand }}</span>General information only — not tax, legal or financial advice.</span>
+    <span style="display:flex;gap:20px"><a href="Knowledge.dc.html" style="color:#9298A5">Knowledge</a><a href="Updates.dc.html" style="color:#9298A5">Updates</a><a href="Calculators.dc.html" style="color:#9298A5">Calculators</a><a href="About.dc.html" style="color:#9298A5">About &amp; contact</a></span>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;TaxSignal&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const ATO = 'https://www.ato.gov.au';
+const SUBJECTS = [
+  { key: 'individuals', group: 'Individuals', name: 'Individuals & Residency',
+    intro: 'Whether you are an Australian resident for tax purposes decides what Australia taxes. Residents are taxed on worldwide income, get the tax-free threshold and pay the Medicare levy. Non-residents are taxed only on Australian-sourced income, at higher rates from the first dollar.',
+    law: 'Income Tax Assessment Act 1936 s 6(1); Income Tax Rates Act 1986 Schedule 7',
+    glance: [['Tax-free threshold (residents)', '$18,200'], ['Medicare levy', '2% (residents)'], ['Non-resident first rate', '30% from $1'], ['Residency tests', '4 — pass any one']],
+    steps: [
+      ['Start with the resides test', 'The primary test asks whether you live in Australia in the ordinary sense. Look at how long you are here, why you are here, where your family and work are, where your assets sit and the pattern of your day-to-day life. A short visit of under six months usually won’t be enough.'],
+      ['Then the domicile test', 'Mainly for people who have left Australia. If your legal permanent home (domicile) is Australia, you remain a resident unless the Commissioner accepts you have set up a permanent place of abode overseas — based on the length of the stay, your housing and your ties in each country.'],
+      ['Then the 183-day test', 'Mainly for people who arrive during the year. Being in Australia for more than half the income year makes you a resident, unless your usual home is overseas and you don’t intend to live here. A long holiday alone won’t make a visitor a resident.'],
+      ['Then the superannuation test', 'Covers Commonwealth public servants posted overseas (such as diplomats) who belong to the relevant Commonwealth super schemes, along with their spouse and children under 16.'],
+      ['Check temporary resident status', 'A resident who holds a temporary visa, and whose spouse is not an Australian citizen or permanent resident, is a temporary resident. They are generally taxed only on Australian income (plus foreign employment income), are not taxed on most foreign capital gains and don’t pay the Medicare levy.'],
+      ['Apply the right rates', 'Residents pay 0% to $18,200, then 16%, 30%, 37% and 45% in 2025–26, plus the 2% Medicare levy, less offsets such as LITO. Non-residents pay 30% from the first dollar, with no tax-free threshold and no Medicare levy.'],
+      ['Watch for reform', 'The government has consulted on replacing these tests with a simpler “bright line” rule — physically present for 183 days or more means resident — backed by secondary tests. It is a proposal only and is not yet law.'],
+    ],
+    sections: [['s 6(1) ITAA 1936', 'Definition of “resident” — the four residency tests'], ['ss 6-5(2), 6-10(4) ITAA 1997', 'Residents taxed on worldwide income'], ['ss 6-5(3), 6-10(5) ITAA 1997', 'Non-residents taxed on Australian-sourced income'], ['Subdivision 768-R ITAA 1997', 'Temporary residents'], ['Schedule 7 ITRA 1986', 'Individual tax rates'], ['TR 2023/1', 'ATO ruling on the residency tests for individuals']],
+    examples: [
+      { own: 1, title: 'Moving here on a work contract', scenario: 'Mei arrives from Singapore on 1 August 2025 for a two-year contract. She signs a 12-month lease, opens a bank account and her partner joins her in October.', outcome: 'Mei is a resident from arrival under the resides test — her life is now based here. As she holds a temporary visa and her partner is not an Australian resident, she is likely a temporary resident, so her foreign investment income is generally not taxed in Australia.',
+        rows: [['Resides test', 'Met', 1], ['183-day test', 'Also met'], ['Temporary resident?', 'Likely yes'], ['Taxed in Australia on', 'Australian income + foreign employment income']], source: 'ATO — Work out your tax residency', url: ATO + '/individuals-and-families/coming-to-australia-or-going-overseas/your-tax-residency' },
+      { own: 1, title: 'Resident vs non-resident on the same income', scenario: 'Two people each have $85,000 of Australian taxable income in 2025–26. One is a resident, the other a foreign resident.', outcome: 'The foreign resident pays $7,512 more, because there is no tax-free threshold or 16% band — even after the resident pays the Medicare levy. LITO is nil at this income.',
+        rows: [['Resident: $4,288 + 30% × $40,000', '$16,288'], ['Resident: Medicare levy 2%', '$1,700'], ['Resident total', '$17,988', 1], ['Foreign resident: 30% × $85,000', '$25,500', 1]], source: 'ATO — Tax rates: Australian residents', url: ATO + '/tax-rates-and-codes/tax-rates-australian-residents' },
+      { own: 1, title: 'Leaving Australia for good', scenario: 'Tom sells his Sydney flat, moves to London with his family on an indefinite contract and rents a long-term home there.', outcome: 'Tom no longer resides here. His domicile may still be Australia, but he has a permanent place of abode overseas, so he is likely a foreign resident from departure. Becoming a foreign resident also triggers CGT event I1 on some assets.',
+        rows: [['Resides test', 'Not met'], ['Domicile test', 'Not met — permanent abode overseas'], ['Likely status', 'Foreign resident', 1]], source: 'ATO — Leaving Australia', url: ATO + '/individuals-and-families/coming-to-australia-or-going-overseas/leaving-australia' },
+    ],
+    mistakes: ['Assuming citizenship decides residency — it doesn’t.', 'Counting only the 183-day test and ignoring the resides and domicile tests.', 'Forgetting that a non-resident gets no tax-free threshold.', 'Treating the proposed “bright line” test as current law.'],
+    takeaways: ['Pass any one of the four tests and you are a resident.', 'Residents are taxed on worldwide income; non-residents only on Australian income.', 'Temporary residents sit in between — mostly Australian income only.'],
+    sources: [['ATO — Work out your tax residency', '/individuals-and-families/coming-to-australia-or-going-overseas/your-tax-residency'], ['ATO — Tax rates: Australian residents', '/tax-rates-and-codes/tax-rates-australian-residents'], ['ATO — Tax rates: foreign residents', '/tax-rates-and-codes/tax-rates-foreign-residents']] },
+
+  { key: 'deductions', group: 'Individuals', name: 'Work-Related Deductions',
+    intro: 'Employees can deduct costs they incur in earning their salary or wages — but not private, domestic or capital costs, and only if they can prove them. The most common claims are car expenses, working from home and self-education.',
+    law: 'Income Tax Assessment Act 1997 s 8-1 and Divisions 28 and 900',
+    glance: [['Car — cents per km (2026–27)', '91c, up to 5,000 km (max $4,550)'], ['Car — cents per km (2025–26)', '88c, up to 5,000 km (max $4,400)'], ['Working from home — fixed rate (2025–26)', '70c per hour'], ['Standard deduction from 2026–27', 'Up to $1,000']],
+    steps: [
+      ['Apply the general test', 'A cost is deductible if it is incurred in earning your income and is not private, domestic or capital. Travel from home to your usual workplace, ordinary clothing and childcare are private.'],
+      ['Car — cents per kilometre', 'Multiply work kilometres by the set rate, up to 5,000 km per car. The rate is 88 cents for 2025–26 (the return you lodge now) and 91 cents for 2026–27 — an 89-cent base plus a one-off 2-cent uplift for that year only. The rate covers all running costs and depreciation. You don’t need receipts, but you must be able to show how you worked out the kilometres.'],
+      ['Car — logbook', 'Keep a logbook for a continuous 12-week period to set your business-use percentage, record odometer readings, and keep evidence of all car expenses. Claim that percentage of total costs, including fuel, insurance, registration, servicing, interest and depreciation.'],
+      ['Working from home — fixed rate', 'Claim 70 cents per hour worked from home (2025–26). It covers energy, internet, phone and stationery, so those can’t be claimed separately. Keep a record of every hour actually worked. Depreciation on desks, chairs and computers is claimed on top.'],
+      ['Working from home — actual cost', 'Alternatively, work out the actual extra running costs of working from home and the work share of each, with detailed records such as bills and a diary of usage.'],
+      ['Self-education', 'Course fees, books and related travel are deductible where the study has a direct connection to your current job — maintaining or improving the skills you use now. Study to get a new job doesn’t qualify. The old rule that cut the first $250 no longer applies from 1 July 2022.'],
+      ['Substantiate', 'Keep written evidence — invoices or receipts. Reduced rules apply where total work expenses are $300 or less, for laundry up to $150, and for small items under $10 (up to $200 in total).'],
+      ['From 2026–27: standard deduction', 'Residents with labour income can claim a standard deduction of up to $1,000 for work-related expenses instead of itemising.'],
+    ],
+    sections: [['s 8-1 ITAA 1997', 'General deductions — the positive and negative limbs'], ['Division 28 ITAA 1997', 'Car expenses — cents per km (s 28-25) and logbook (s 28-90)'], ['Determination F2026L00785', 'Cents per km rate — 91c for 2026–27'], ['s 25-100 ITAA 1997', 'Travel between workplaces'], ['Division 900 ITAA 1997', 'Substantiation of work, car and travel expenses'], ['TR 93/30 · PCG 2023/1', 'Home office expenses · fixed-rate method'], ['TR 2024/3', 'Self-education expenses']],
+    examples: [
+      { own: 1, title: 'Cents per km vs logbook', scenario: 'Aisha drives her own car between client sites. She travels 6,400 work km in 2025–26. Her total car costs are $13,500, and a 12-week logbook shows 58% work use.', outcome: 'The cents-per-km claim is capped at 5,000 km. The logbook method gives a larger deduction, provided she has kept the logbook, odometer records and receipts. On the same facts in 2026–27, the cents-per-km maximum rises to $4,550 — still below the logbook claim.',
+        rows: [['Cents per km 2025–26: 5,000 km × $0.88', '$4,400'], ['Cents per km 2026–27: 5,000 km × $0.91', '$4,550'], ['Logbook: $13,500 × 58%', '$7,830', 1], ['Better method', 'Logbook']], source: 'ATO — Car expenses', url: ATO + '/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/transport-and-travel-expenses/motor-vehicle-and-car-expenses' },
+      { own: 1, title: 'Working from home — fixed rate', scenario: 'Daniel works from home three days a week and records 1,150 hours for 2025–26. He also bought a $600 desk used only for work.', outcome: 'He claims the fixed rate for running costs and, separately, the decline in value of the desk. He can’t also claim his electricity or internet bills.',
+        rows: [['Fixed rate: 1,150 h × $0.70', '$805', 1], ['Desk', 'Depreciation claimed separately'], ['Electricity, internet, phone', 'Covered by fixed rate']], source: 'ATO — Working from home expenses', url: ATO + '/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/working-from-home-expenses' },
+      { own: 1, title: 'Study linked to your current job', scenario: 'Sam, a graduate accountant, pays $3,100 for a tax unit of a professional program. Lena, a nurse, pays $2,800 for a law subject to change careers.', outcome: 'Sam’s study improves the skills used in his current role, so it is deductible in full. Lena’s study is for a new career, so it is not.',
+        rows: [['Sam — direct link to current job', '$3,100 deductible', 1], ['Lena — new career', 'Not deductible'], ['$250 reduction', 'Removed from 1 July 2022']], source: 'ATO — Self-education expenses', url: ATO + '/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/education-training-and-study-expenses/self-education-expenses' },
+    ],
+    mistakes: ['Claiming home-to-work travel as a car expense.', 'Using cents per km above 5,000 km.', 'Claiming the WFH fixed rate and also electricity or internet bills.', 'Estimating WFH hours instead of keeping a record.', 'Claiming study that leads to a new career.'],
+    takeaways: ['No connection to earning income, no deduction.', 'Cents per km is simple and capped; logbook rewards high work use and good records.', 'Without substantiation, most work claims fail.'],
+    sources: [['ATO — Deductions you can claim', '/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim'], ['ATO — Working from home expenses', '/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/working-from-home-expenses'], ['ATO — Self-education expenses', '/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/education-training-and-study-expenses/self-education-expenses']] },
+
+  { key: 'gst', group: 'Business', name: 'GST',
+    intro: 'Goods and services tax is a 10% tax on most goods, services and other things sold or consumed in Australia. Registered businesses charge it on sales, claim credits for GST in their business purchases, and report the difference on their BAS.',
+    law: 'A New Tax System (Goods and Services Tax) Act 1999',
+    glance: [['Rate', '10% (1/11 of the inclusive price)'], ['Registration threshold', '$75,000 ($150,000 non-profit)'], ['Credits need', 'A valid tax invoice'], ['Time limit to claim', '4 years']],
+    steps: [
+      ['Work out GST turnover', 'Add up your sales — not profit — for the current month and the previous 11 (current turnover) and for the current month and the next 11 (projected turnover). Input taxed sales are excluded. Taxi and ride-share drivers must register regardless of turnover.'],
+      ['Register when required', 'Register once either figure reaches the threshold. Below it, registration is optional but lets you claim credits — useful for businesses making GST-free sales.'],
+      ['Charge GST on taxable supplies', 'A sale is taxable if it is made for payment, in carrying on an enterprise, connected with Australia, by a registered business — unless it is GST-free (such as basic food or health) or input taxed (such as residential rent).'],
+      ['Claim GST credits — CRAFT', 'You can claim a credit if you paid Consideration, are Registered, made an Acquisition, For a creditable purpose (your enterprise), and the supply to you was Taxable. No credit on private purchases or on costs of making input taxed supplies.'],
+      ['Know what’s blocked', 'No credits for costs that aren’t deductible, such as entertainment, penalties and non-compulsory uniforms. The credit on a car is capped at 1/11 of the car limit — $6,334 in 2025–26.'],
+      ['Choose cash or accruals', 'On the accruals (non-cash) basis, GST and credits go in the period you are paid or pay, or the invoice is issued — whichever is first. On the cash basis, they go in when payment is actually made. Businesses with turnover under $10 million can choose cash.'],
+      ['Hold a valid tax invoice first', 'Whichever basis you use, you can’t claim a credit until you hold a valid tax invoice showing details such as the supplier’s ABN and the GST. If it arrives late, claim in the period you receive it — but within four years, or the credit is lost permanently.'],
+      ['Lodge your BAS', 'Report GST on sales less credits — monthly if turnover is $20 million or more, otherwise usually quarterly. If credits exceed GST on sales, the ATO refunds the difference.'],
+    ],
+    sections: [['s 9-5 GST Act', 'Taxable supplies'], ['s 11-5 GST Act', 'Creditable acquisitions (CRAFT)'], ['Division 23 GST Act', 'Registration and thresholds'], ['ss 29-5, 29-10 GST Act', 'Attribution — when GST and credits are reported'], ['s 29-10(3), s 29-70 GST Act', 'Tax invoice needed to claim; what it must show'], ['s 93-5 TAA 1953 Sch 1', 'Four-year time limit for credits'], ['Division 69 GST Act', 'Non-deductible expenses — no credits']],
+    examples: [
+      { title: 'Barry checks his current GST turnover', scenario: 'Barry adds his gross business income for May to his income for the previous 11 months.', outcome: 'His current GST turnover is $31,170 — under $75,000. He must still check his projected turnover each month. If he reaches the threshold, he has 21 days to register.',
+        rows: [['Current GST turnover (May + 11 prior months)', '$31,170'], ['Registration threshold', '$75,000'], ['Required to register now?', 'No — keep checking projected', 1]], source: 'ATO — Registering for GST', url: ATO + '/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/registering-for-gst' },
+      { own: 1, title: 'Same purchase, different quarter', scenario: 'A café buys a $3,300 coffee machine (GST-inclusive). The invoice is dated 20 June and paid on 10 July.', outcome: 'On accruals, the $300 credit belongs to the June quarter because the invoice was issued then. On cash, it belongs to the September quarter, when payment is made. Both need the tax invoice in hand.',
+        rows: [['GST credit: $3,300 ÷ 11', '$300'], ['Accruals basis', 'June quarter', 1], ['Cash basis', 'September quarter', 1]], source: 'ATO — Accounting for GST', url: ATO + '/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/claiming-gst-credits/accounting-for-gst-in-your-business' },
+      { own: 1, title: 'No valid tax invoice, no credit', scenario: 'A builder on the accruals basis pays $8,800 for scaffolding in the March 2026 quarter. The supplier’s invoice leaves out its ABN, and a corrected invoice arrives in May.', outcome: 'The builder can’t claim in March — even on accruals. The $800 credit moves to the June quarter, when a valid invoice is held. If it never arrives, the claim is lost four years after the March BAS due date.',
+        rows: [['GST credit', '$800'], ['March quarter', 'Not claimable'], ['June quarter', 'Claimable', 1]], source: 'ATO — Tax invoices', url: ATO + '/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/tax-invoices' },
+    ],
+    mistakes: ['Measuring the threshold against profit rather than turnover.', 'Claiming credits without a valid tax invoice — the accruals basis doesn’t change this.', 'Leaving unclaimed credits past the four-year limit.', 'Claiming credits on entertainment or private use.', 'Claiming the full GST on an expensive car above the car limit cap.'],
+    takeaways: ['Turnover, not profit, decides registration.', 'GST in an inclusive price is one-eleventh.', 'Hold the tax invoice before you claim — then claim within four years.'],
+    sources: [['ATO — Registering for GST', '/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/registering-for-gst'], ['ATO — Tax invoices', '/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/tax-invoices'], ['ATO — Claiming GST credits', '/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/claiming-gst-credits']] },
+
+  { key: 'franking', group: 'Business', name: 'Dividends & Franking',
+    intro: 'Under imputation, company tax is passed on to shareholders as franking credits. Shareholders include the credit in income and get an offset for it. Companies must frank consistently — over-franking and a franking account deficit both carry extra tax.',
+    law: 'Income Tax Assessment Act 1997 Part 3-6',
+    glance: [['Franking credit (30% company)', 'Dividend × 30/70'], ['Resident individuals', 'Excess offset refunded'], ['Companies', 'Excess offset → tax loss'], ['Non-residents', 'No franking offset']],
+    steps: [
+      ['Shareholder: gross up', 'Include the cash dividend plus the attached franking credit in assessable income.'],
+      ['Shareholder: claim the offset', 'Claim a franking tax offset equal to the credit. Resident individuals get any excess refunded. Companies can’t get a refund but can convert the excess into a tax loss. Non-resident shareholders get no offset, but the franked part of the dividend is free of withholding tax.'],
+      ['Company: maximum credit', 'A dividend can carry franking credits up to: dividend × rate ÷ (1 − rate), using the company’s corporate tax rate for imputation purposes — 30%, or 25% for a base rate entity, based on last year’s turnover.'],
+      ['Company: the benchmark rule', 'The first franked dividend in a franking period sets the benchmark percentage. Later dividends in that period must be franked at the same rate. Private companies have one period a year; public companies usually two.'],
+      ['Over- and under-franking', 'Franking above the benchmark triggers over-franking tax on the excess credits. Franking below it creates an extra franking debit. Either way, the company pays for departing from the benchmark.'],
+      ['Franking account deficit', 'If the franking account is in deficit on 30 June, the company pays franking deficit tax equal to the deficit. It is normally available as an offset against later company tax — but if the deficit exceeds 10% of the year’s franking credits, the offset is cut by 30%.'],
+    ],
+    sections: [['s 44 ITAA 1936', 'Dividends included in assessable income'], ['s 207-20 ITAA 1997', 'Gross-up and franking tax offset'], ['s 67-25 ITAA 1997', 'Refundable franking offsets'], ['s 202-60 ITAA 1997', 'Maximum franking credit'], ['ss 203-25, 203-50 ITAA 1997', 'Benchmark rule; over- and under-franking'], ['ss 205-45, 205-70 ITAA 1997', 'Franking deficit tax and its offset']],
+    examples: [
+      { own: 1, title: 'A retiree on a low income', scenario: 'Joan, a resident, receives a $7,000 fully franked dividend from a company taxed at 30%. It is her only income.', outcome: 'Her taxable income is under the tax-free threshold, so no tax is payable and the whole franking offset is refunded to her.',
+        rows: [['Franking credit: $7,000 × 30/70', '$3,000'], ['Assessable income (grossed up)', '$10,000'], ['Tax on $10,000', '$0'], ['Refund of franking offset', '$3,000', 1]], source: 'ATO — Franking credits refunds', url: ATO + '/individuals-and-families/investments-and-assets/investing-in-shares/refund-of-franking-credits-for-individuals' },
+      { own: 1, title: 'Franking at the base rate', scenario: 'A base rate entity company (25% rate for imputation purposes) pays a $75,000 dividend and wants to frank it fully.', outcome: 'The maximum credit is set by the 25% rate, not 30%. Attaching more would exceed the maximum franking credit.',
+        rows: [['Maximum credit: $75,000 × 25/75', '$25,000', 1], ['At 30% it would have been', '$32,143']], source: 'ATO — Allocating franking credits', url: ATO + '/businesses-and-organisations/corporate-tax-measures-and-assurance/imputation/paying-dividends-and-other-distributions/allocating-franking-credits' },
+      { own: 1, title: 'Excessive over-franking', scenario: 'A private company records $100,000 of franking credits for the year but ends 30 June with its franking account $12,000 in deficit.', outcome: 'It pays $12,000 franking deficit tax. Because the deficit is more than 10% of its credits, only 70% is available as an offset against future company tax.',
+        rows: [['Franking deficit tax', '$12,000'], ['Deficit vs 10% of credits ($10,000)', 'Exceeds'], ['FDT offset: $12,000 × 70%', '$8,400', 1]], source: 'ATO — Franking deficit tax', url: ATO + '/businesses-and-organisations/corporate-tax-measures-and-assurance/imputation/franking-account/franking-deficit-tax' },
+    ],
+    mistakes: ['Leaving the franking credit out of assessable income.', 'Franking at 30% when the company’s rate for imputation purposes is 25%.', 'Changing the franking percentage mid-period and breaching the benchmark.', 'Letting the franking account fall into deficit at year end.'],
+    takeaways: ['Gross up, then offset: the credit is income and a tax offset.', 'Resident individuals get excess credits refunded; companies don’t.', 'Frank consistently and keep the franking account in surplus.'],
+    sources: [['ATO — Imputation', '/businesses-and-organisations/corporate-tax-measures-and-assurance/imputation'], ['ATO — Refund of franking credits for individuals', '/individuals-and-families/investments-and-assets/investing-in-shares/refund-of-franking-credits-for-individuals']] },
+
+  { key: 'super', group: 'Employers', name: 'Superannuation',
+    intro: 'Employers must contribute the super guarantee for eligible employees. From 1 July 2026, Payday Super applies: super is calculated on qualifying earnings and paid each payday, rather than quarterly.',
+    law: 'Superannuation Guarantee (Administration) Act 1992',
+    glance: [['Super guarantee rate', '12%'], ['Calculated on', 'Qualifying earnings'], ['Paid', 'Each payday (from 1 July 2026)'], ['Fund must receive within', '7 business days of payday']],
+    steps: [
+      ['Check eligibility', 'Most employees are eligible, including some contractors who are paid mainly for their labour.'],
+      ['Work out qualifying earnings', 'Qualifying earnings use ordinary time earnings as the base, plus some other amounts such as qualifying salary sacrifice. For most employers the amount of super doesn’t change.'],
+      ['Apply the 12% rate', 'Multiply qualifying earnings for the pay period by 12%. Awards, agreements or contracts may require more.'],
+      ['Pay each payday', 'Pay into the employee’s chosen complying fund using SuperStream, so the fund receives it within 7 business days after payday.'],
+      ['Report through STP', 'Report qualifying earnings and super liability through Single Touch Payroll.'],
+      ['Know the personal limits', 'Concessional contributions are capped at $30,000. People with income plus concessional contributions above $250,000 pay an extra 15% (Division 293), and from 1 July 2026 Division 296 adds tax on earnings for balances above $3 million.'],
+    ],
+    sections: [['SGAA 1992', 'Super guarantee charge and employer obligations'], ['Treasury Laws Amendment (Payday Superannuation) Act 2025', 'Payday Super'], ['s 290-150 ITAA 1997', 'Deductions for personal contributions'], ['Division 293 ITAA 1997', 'Extra tax for high-income earners'], ['PCG 2026/1', 'ATO compliance approach for Payday Super’s first year']],
+    examples: [
+      { title: 'Paying super guarantee on time', scenario: 'On Friday 10 July 2026, Grace pays her employee Alan his weekly wage of $1,000.', outcome: 'Grace pays the $120 contribution to Alan’s fund the same day, well inside the 7-business-day window.',
+        rows: [['Qualifying earnings for the week', '$1,000'], ['Super guarantee rate', '× 12%'], ['Super guarantee', '$120', 1], ['Paid', '10 July 2026 (payday)']], source: 'ATO — Paying super for your employees', url: ATO + '/businesses-and-organisations/super-for-employers/payday-super/payday-super-resources/paying-super-for-your-employees' },
+      { title: 'Super on a fortnightly wage', scenario: 'On 10 July 2026, Greta pays her employee Amir his fortnightly wage of $3,000.', outcome: 'Greta calculates super guarantee of $360 and pays it to Amir’s fund.',
+        rows: [['Qualifying earnings for the fortnight', '$3,000'], ['Super guarantee rate', '× 12%'], ['Super guarantee', '$360', 1]], source: 'ATO — What payments are qualifying earnings', url: ATO + '/businesses-and-organisations/super-for-employers/paying-super-on-payday/what-payments-are-qualifying-earnings' },
+    ],
+    mistakes: ['Continuing to pay quarterly for earnings paid from 1 July 2026.', 'Treating the payment date as compliance — the fund must receive the money in time.', 'Overlooking contractors who are employees for super guarantee purposes.', 'Assuming 12% is always enough when an award or agreement requires more.'],
+    takeaways: ['Super guarantee is 12% of qualifying earnings.', 'Pay every payday; the fund must receive it within 7 business days.', 'Single Touch Payroll is how qualifying earnings and liability are reported.'],
+    sources: [['ATO — Paying super for your employees', '/businesses-and-organisations/super-for-employers/payday-super/payday-super-resources/paying-super-for-your-employees'], ['ATO — What payments are qualifying earnings', '/businesses-and-organisations/super-for-employers/paying-super-on-payday/what-payments-are-qualifying-earnings']] },
+
+  { key: 'fbt', group: 'Employers', name: 'Fringe Benefits Tax',
+    intro: 'FBT is paid by employers on non-cash benefits provided to employees or their associates — a car available for private use is the most common. It is separate from income tax and runs on its own year.',
+    law: 'Fringe Benefits Tax Assessment Act 1986',
+    glance: [['FBT year', '1 April – 31 March'], ['FBT rate', '47%'], ['Car statutory rate', '20% flat'], ['Formula', '(A × B × C) ÷ D − E']],
+    steps: [
+      ['Identify the benefit', 'A car fringe benefit arises when an employer’s car is used, or available for use, privately by an employee — including garaging it at home.'],
+      ['Choose a valuation method', 'Use the statutory formula or the operating cost method (which needs a logbook).'],
+      ['Apply the statutory formula', 'A is the base value of the car, B the 20% statutory rate, C the days available for private use, D the days in the FBT year, and E any employee contribution.'],
+      ['Reduce the base value after 4 years', 'Once the car has been held for 4 years at the start of an FBT year, its base value is reduced by one-third.'],
+      ['Gross up and calculate FBT', 'Multiply the taxable value by the gross-up rate — Type 1 (2.0802) if GST credits can be claimed, Type 2 (1.8868) otherwise — then by 47%.'],
+      ['Claim the deduction', 'The employer can deduct the cost of providing the benefit and the FBT itself. Employee contributions reduce the taxable value but are not deductible to the employee.'],
+    ],
+    sections: [['s 7 FBTAA 1986', 'Car benefits'], ['s 9 FBTAA 1986', 'Statutory formula'], ['s 136 FBTAA 1986', 'Definitions, including employee and fringe benefit'], ['s 23L ITAA 1936', 'Fringe benefits not assessable to the employee'], ['s 51AJ ITAA 1936', 'Employee contributions not deductible']],
+    examples: [
+      { title: 'Car fringe benefit using the statutory formula', scenario: 'An employer agreed on 12 June 2023 to provide an employee with a car. It was delivered on 1 July 2023 and available for private use from that date. Its base value is $32,000, with no employee contribution. The 2024 FBT year had 366 days.', outcome: 'The taxable value is $4,791. The last row shows FBT payable if the employer could claim GST credits on the car — our illustration, not part of the ATO example.',
+        rows: [['A — base value', '$32,000'], ['B — statutory rate', '20%'], ['C ÷ D — days available', '274 ÷ 366'], ['E — employee contribution', '$0'], ['Taxable value', '$4,791', 1], ['FBT at Type 1 gross-up (× 2.0802 × 47%)', '$4,684']], source: 'ATO — FBT return 2024 instructions, item 23', url: ATO + '/forms-and-instructions/fringe-benefits-tax-return-2024-instructions/item-23-fringe-benefit-categories' },
+    ],
+    mistakes: ['Counting the full FBT year when the car was only available for part of it.', 'Forgetting the one-third base value reduction after 4 years.', 'Ignoring employee contributions, which reduce the taxable value.', 'Using the wrong gross-up type for the benefit.'],
+    takeaways: ['FBT runs 1 April to 31 March, separately from income tax.', 'The car statutory formula is (A × B × C) ÷ D − E, at a flat 20%.', 'FBT payable = taxable value × gross-up rate × 47%.'],
+    sources: [['ATO — FBT return 2024 instructions, item 23', '/forms-and-instructions/fringe-benefits-tax-return-2024-instructions/item-23-fringe-benefit-categories'], ['ATO — Fringe benefits tax', '/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax']] },
+
+  { key: 'state-taxes', group: 'Employers', name: 'State Employer Taxes',
+    intro: 'Alongside federal taxes, employers face state and territory obligations: payroll tax above a wages threshold, workers compensation insurance (often called WorkCover), and in some industries a portable long service leave levy. Rules, rates and thresholds differ in every state.',
+    law: 'State and territory Payroll Tax Acts, workers compensation Acts and portable long service leave Acts',
+    glance: [['Payroll tax', 'State tax on wages above a threshold'], ['Workers compensation', 'Compulsory insurance premium'], ['Portable long service', 'Levy in covered industries'], ['Administered by', 'Each state — not the ATO']],
+    steps: [
+      ['Payroll tax — total your wages', 'Payroll tax applies to wages above a state threshold. “Wages” is broad: salary, super contributions, fringe benefits, bonuses and some contractor payments.'],
+      ['Payroll tax — check grouping', 'Related businesses — common ownership, shared employees or tracing through companies and trusts — are grouped and share one threshold, so splitting a business doesn’t avoid the tax.'],
+      ['Payroll tax — apportion across states', 'If you pay wages in more than one state, register in each. The threshold is generally apportioned by the share of Australian wages paid in each state.'],
+      ['Payroll tax — watch contractors', 'Under the contractor provisions, payments to some contractors are treated as wages unless an exemption applies. This is a common audit area.'],
+      ['Workers compensation', 'Employers must hold a workers compensation policy with their state scheme or an approved insurer. Premiums are based on wages and the industry’s claims risk. It is a compulsory insurance cost, not a tax — but it is deductible.'],
+      ['Portable long service leave', 'Several states run portable schemes for industries where workers move between employers — such as building and construction, contract cleaning and community services. Covered employers register and pay a levy or contributions, and workers build up service across employers.'],
+      ['Income tax treatment', 'Payroll tax, workers compensation premiums and portable long service levies are generally deductible to the employer when incurred.'],
+    ],
+    sections: [['Payroll Tax Act (each state)', 'Threshold, rate, grouping and contractor rules'], ['Workers compensation Act (each state)', 'Compulsory employer insurance'], ['Portable LSL Acts (where applicable)', 'Industry levies and worker entitlements'], ['s 8-1 ITAA 1997', 'Deductibility of these costs'], ['s 26-10 ITAA 1997', 'Employee leave deductible only when paid']],
+    examples: [
+      { own: 1, title: 'Two companies, one threshold', scenario: 'Ana owns two companies — a café and a catering business — that share staff. Each pays wages below the payroll tax threshold on its own.', outcome: 'The companies are likely grouped. Combined wages are tested against one threshold, so payroll tax may be payable even though neither company is over it alone.',
+        rows: [['Separate entities', 'Yes'], ['Common control and shared staff', 'Group likely', 1], ['Threshold', 'One, shared by the group']], source: 'Revenue NSW — Payroll tax groups', url: 'https://www.revenue.nsw.gov.au/taxes-duties-levies-royalties/payroll-tax' },
+      { own: 1, title: 'A builder with three obligations', scenario: 'A construction business employs staff in one state and pays contractors.', outcome: 'It needs a workers compensation policy, registration with the state’s portable long service scheme for building workers, and a payroll tax check that includes any contractor payments treated as wages.',
+        rows: [['Workers compensation', 'Required'], ['Portable long service', 'Register and pay levy'], ['Payroll tax', 'Test total wages vs threshold', 1]], source: 'State revenue office and portable LSL authority', url: 'https://www.sro.vic.gov.au/payroll-tax' },
+    ],
+    mistakes: ['Testing each company against the threshold instead of the group.', 'Leaving super and fringe benefits out of taxable wages.', 'Assuming every contractor payment is exempt.', 'Forgetting to register in a second state.', 'Missing industry portable long service obligations.'],
+    takeaways: ['Payroll tax is a state tax with state-specific thresholds and rates.', 'Grouping and contractor rules widen what counts.', 'Workers compensation is compulsory for employers; portable LSL depends on industry.'],
+    sources: [['Revenue NSW — Payroll tax', 'https://www.revenue.nsw.gov.au/taxes-duties-levies-royalties/payroll-tax'], ['State Revenue Office Victoria — Payroll tax', 'https://www.sro.vic.gov.au/payroll-tax'], ['Queensland Revenue Office — Payroll tax', 'https://qro.qld.gov.au/payroll-tax/']] },
+
+  { key: 'international', group: 'International', name: 'International Tax',
+    intro: 'Australian residents are taxed on their worldwide income. Where foreign tax has already been paid on income that is also taxed here, the foreign income tax offset (FITO) prevents the same income being taxed twice. Non-residents are taxed only on Australian-sourced income.',
+    law: 'Income Tax Assessment Act 1997, Division 770',
+    glance: [['Residents taxed on', 'Worldwide income'], ['Relief', 'Foreign income tax offset'], ['Claim without a limit calculation', 'Up to $1,000'], ['Unused offset', 'Lost — no refund or carry-forward']],
+    steps: [
+      ['Confirm residency', 'Residents include foreign income in their Australian return. See Individuals & Residency for the four tests.'],
+      ['Include the gross foreign amount', 'Include foreign income in Australian dollars, before foreign tax was withheld.'],
+      ['Identify foreign income tax paid', 'The offset is only for foreign income tax actually paid — or treated as paid — on income that is assessable in Australia.'],
+      ['Claim up to $1,000 directly', 'If total foreign income tax paid is $1,000 or less, you can claim it without working out the offset limit.'],
+      ['Otherwise, calculate the offset limit', 'Above $1,000, the offset is limited to the Australian tax on the foreign income. The offset is applied before refundable offsets such as franking credits.'],
+      ['Non-residents', 'Non-residents are taxed only on Australian-sourced income. Australian interest, royalties and unfranked dividends paid to them are subject to final withholding tax rather than included in a return.'],
+    ],
+    sections: [['ss 6-5(2), 6-5(3) ITAA 1997', 'Worldwide vs Australian-sourced income'], ['Division 770 ITAA 1997', 'Foreign income tax offset'], ['s 63-10 ITAA 1997', 'Order of applying tax offsets'], ['s 128B ITAA 1936', 'Withholding tax for non-residents'], ['Division 855 ITAA 1997', 'Non-residents and taxable Australian property']],
+    examples: [
+      { title: 'Tax withheld overseas', scenario: 'Tim receives $1,000 of foreign income. $100 of foreign income tax is withheld and paid by someone else under the foreign law.', outcome: 'Tim is taken to have paid the foreign tax. He includes $1,000 in assessable income and claims a $100 offset.',
+        rows: [['Foreign income included (gross)', '$1,000'], ['Foreign tax withheld', '$100'], ['Foreign income tax offset', '$100', 1]], source: 'ATO — Guide to foreign income tax offset rules 2024: When a FITO applies', url: ATO + '/forms-and-instructions/foreign-income-tax-offset-rules-guide-2024/when-a-fito-applies' },
+      { title: 'When the offset limit applies', scenario: 'Anna has foreign employment, rental, dividend and interest income, and has paid $3,400 of foreign income tax — over $1,000, so she works out her offset limit.', outcome: 'Her offset is limited to $2,769.60. The remaining $630.40 of foreign tax is not refundable and cannot be carried forward.',
+        rows: [['Tax on taxable income of $31,130', '$3,079.30'], ['Tax with foreign amounts excluded ($19,830)', '− $309.70'], ['Offset limit', '$2,769.60'], ['Foreign income tax paid', '$3,400'], ['Foreign income tax offset', '$2,769.60', 1]], source: 'ATO — Guide to foreign income tax offset rules 2024: Calculate your FITO or offset limit', url: ATO + '/forms-and-instructions/foreign-income-tax-offset-rules-guide-2024/calculate-your-fito-or-offset-limit', note: 'Figures as published in the ATO guide, which includes the Medicare levy.' },
+    ],
+    mistakes: ['Claiming an offset for foreign tax on income that isn’t assessable in Australia.', 'Including foreign income net of tax instead of the gross amount.', 'Claiming more than the offset limit when foreign tax paid is over $1,000.', 'Expecting excess foreign tax to be refunded or carried forward.'],
+    takeaways: ['Residents declare worldwide income, gross of foreign tax.', 'FITO of $1,000 or less can be claimed without a limit calculation.', 'Above that, the offset is capped at the Australian tax on the foreign income.'],
+    sources: [['ATO — When a FITO applies', '/forms-and-instructions/foreign-income-tax-offset-rules-guide-2024/when-a-fito-applies'], ['ATO — Calculate your FITO or offset limit', '/forms-and-instructions/foreign-income-tax-offset-rules-guide-2024/calculate-your-fito-or-offset-limit']] },
+];
+
+class Component extends DCLogic {
+  state = { route: typeof window !== 'undefined' ? window.location.hash.slice(1) : '', w: typeof window !== 'undefined' ? window.innerWidth : 1280 };
+  componentDidMount() {
+    this.onHash = () => { this.setState({ route: window.location.hash.slice(1) }); window.scrollTo(0, 0); };
+    this.onResize = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('hashchange', this.onHash);
+    window.addEventListener('resize', this.onResize);
+  }
+  componentWillUnmount() { window.removeEventListener('hashchange', this.onHash); window.removeEventListener('resize', this.onResize); }
+
+  renderVals() {
+    const brand = this.props.brandName || 'TaxSignal';
+    const idx = SUBJECTS.findIndex(s => s.key === this.state.route);
+    const s = SUBJECTS[idx];
+    const num = i => String(i + 1).padStart(2, '0');
+    const t = s ? {
+      name: s.name, intro: s.intro, law: s.law, num: num(idx),
+      glance: s.glance.map(([k, v]) => ({ k, v })),
+      steps: s.steps.map(([title, body], i) => ({ n: num(i), title, body })),
+      sections: s.sections.map(([ref, what]) => ({ ref, what })),
+      examples: s.examples.map((e, i) => ({ ...e, label: e.own ? `Example ${i + 1} · ${brand} illustration` : `Example ${i + 1} · ATO`, srcPrefix: e.own ? 'Rule source:' : 'Source:', note: e.note || '',
+        rows: e.rows.map(([k, v, hi]) => ({ k, v, c: hi ? '#7FA6E8' : '#F5F5F5', f: hi ? 'var(--font-display)' : 'inherit' })) })),
+      mistakes: s.mistakes, takeaways: s.takeaways,
+      sources: s.sources.map(([label, path]) => ({ label, url: path.startsWith('http') ? path : ATO + path })),
+      prev: idx > 0 ? { name: SUBJECTS[idx - 1].name, href: '#' + SUBJECTS[idx - 1].key } : { name: 'All subjects', href: '#' },
+      next: { name: SUBJECTS[(idx + 1) % SUBJECTS.length].name, href: '#' + SUBJECTS[(idx + 1) % SUBJECTS.length].key },
+    } : null;
+    return {
+      brand,
+      isHub: !s, isTopic: !!s, t: t || { glance: [], steps: [], sections: [], examples: [], mistakes: [], takeaways: [], sources: [], prev: {}, next: {} },
+      hubItems: SUBJECTS.map((x, i) => ({ name: x.name, group: x.group, secCount: x.sections.length, intro: x.intro, law: x.law, num: num(i), href: '#' + x.key, exLabel: x.examples.length === 1 ? "1 worked example" : x.examples.length + " worked examples" })),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/legalworks-design-system-fbaf450e-9389-49a8-8ec8-5a87d6620b96/tokens/colors.css">
+<link rel="stylesheet" href="_ds/legalworks-design-system-fbaf450e-9389-49a8-8ec8-5a87d6620b96/tokens/typography.css">
+<link rel="stylesheet" href="_ds/legalworks-design-system-fbaf450e-9389-49a8-8ec8-5a87d6620b96/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/legalworks-design-system-fbaf450e-9389-49a8-8ec8-5a87d6620b96/tokens/base.css">
+<link rel="stylesheet" href="_ds/legalworks-design-system-fbaf450e-9389-49a8-8ec8-5a87d6620b96/styles.css">
+<script src="_ds/legalworks-design-system-fbaf450e-9389-49a8-8ec8-5a87d6620b96/_ds_bundle.js"></script>
+<style>
+html{background:#08090C}
+:root{--text-heading:#F5F5F5;--text-body:#F5F5F5}
+body{margin:0;background:#08090C;color:#F5F5F5;font-family:var(--font-ui),Inter,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{color:#F5F5F5}
+a{color:#7FA6E8;text-decoration:none}
+a:hover{color:#A9C4F0}
+::selection{background:#0C4DA2;color:#fff}
+</style>
+</helmet>
+<div style="background:#08090C;color:#F5F5F5;min-height:100vh">
+
+<header style="position:sticky;top:0;z-index:50;background:rgba(8,9,12,0.94);border-bottom:1px solid rgba(255,255,255,0.07)">
+  <div style="max-width:1280px;margin:0 auto;padding:14px 32px;min-height:64px;box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px">
+    <a href="TaxSignal Landing.dc.html" style="display:flex;align-items:center;gap:12px;color:#F5F5F5">
+      <span style="display:grid;grid-template-columns:repeat(3,4px);align-items:end;gap:3px;height:18px"><span style="width:4px;height:7px;background:#0C4DA2"></span><span style="width:4px;height:12px;background:#1A5FBB"></span><span style="width:4px;height:18px;background:#7FA6E8"></span></span>
+      <span style="font-family:var(--font-display);font-size:19px;letter-spacing:-0.01em">{{ brand }}</span>
+    </a>
+    <nav style="display:flex;flex-wrap:wrap;align-items:center;gap:8px clamp(16px,2.4vw,28px);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600">
+      <a href="Knowledge.dc.html" style="color:#9298A5" style-hover="color:#FFFFFF">Knowledge</a>
+      <a href="Updates.dc.html" style="color:#F5F5F5;border-bottom:2px solid #0C4DA2;padding-bottom:3px">Updates</a>
+      <a href="Calculators.dc.html" style="color:#9298A5" style-hover="color:#FFFFFF">Calculators</a>
+      <a href="About.dc.html" style="color:#9298A5" style-hover="color:#FFFFFF">About</a>
+    </nav>
+  </div>
+</header>
+
+<sc-if value="{{ isList }}" hint-placeholder-val="{{ true }}">
+  <main data-screen-label="Updates list">
+    <section style="padding:112px 0 64px">
+      <div style="max-width:1100px;margin:0 auto;padding:0 32px">
+        <x-import component-from-global-scope="LegalWorksDesignSystem_fbaf45.Tag" variant="eyebrow" on-dark="{{ true }}" hint-size="200px,14px">Latest Updates</x-import>
+        <h1 style="font-family:var(--font-display);font-weight:400;font-size:clamp(44px,6vw,84px);line-height:1.04;letter-spacing:-0.03em;margin:24px 0 0;max-width:900px">Stay ahead of every tax change.</h1>
+        <p style="font-size:18px;line-height:1.7;color:#B4B9C4;margin:28px 0 0;max-width:640px">Each change explained in plain English, placed on the legislative pathway, and linked to the original source.</p>
+        <div style="margin-top:56px;border-top:1px solid rgba(255,255,255,0.1);border-bottom:1px solid rgba(255,255,255,0.1);padding:20px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:12px 8px">
+          <sc-for list="{{ statuses }}" as="st" hint-placeholder-count="8">
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <span style="height:3px;background:{{ st.color }}"></span>
+              <span style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:{{ st.text }}">{{ st.num }} · {{ st.name }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <p style="font-size:13px;color:#6B7180;margin:14px 0 0">A proposal is never shown as law. Every update carries its status, effective date and source.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:48px">
+          <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
+            <button onClick="{{ f.pick }}" style="background:{{ f.bg }};color:{{ f.fg }};border:1px solid {{ f.border }};padding:9px 16px;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer">{{ f.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+    <section style="padding:0 0 120px">
+      <div style="max-width:1100px;margin:0 auto;padding:0 32px;border-top:1px solid rgba(255,255,255,0.1)">
+        <sc-for list="{{ list }}" as="u" hint-placeholder-count="4">
+          <a href="{{ u.href }}" style="display:flex;flex-wrap:wrap;gap:20px 48px;padding:40px 0;border-bottom:1px solid rgba(255,255,255,0.08);color:#F5F5F5;transition:background 200ms" style-hover="background:#0D0F14">
+            <span style="flex:1 1 220px;display:flex;flex-direction:column;gap:12px">
+              <span style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#7FA6E8">{{ u.category }}</span>
+              <span style="display:flex;gap:4px"><sc-for list="{{ u.ticks }}" as="k" hint-placeholder-count="7"><span style="flex:1;height:3px;background:{{ k.c }}"></span></sc-for></span>
+              <span style="font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:{{ u.statusColor }}">{{ u.status }}</span>
+              <span style="font-size:13px;color:#9298A5;line-height:1.6">Effective {{ u.effective }}<br>{{ u.taxYear }}</span>
+            </span>
+            <span style="flex:3 1 420px;min-width:0;display:flex;flex-direction:column;gap:12px">
+              <span style="font-family:var(--font-display);font-size:clamp(22px,2.2vw,30px);line-height:1.25;letter-spacing:-0.015em">{{ u.title }}</span>
+              <span style="font-size:16px;line-height:1.7;color:#B4B9C4;max-width:680px">{{ u.summary }}</span>
+              <span style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px;margin-top:6px">
+                <span style="color:#6B7180">Source: <span style="color:#9298A5">{{ u.sourceShort }}</span> · Verified {{ u.verified }}</span>
+                <span style="font-weight:600;letter-spacing:0.06em;color:#7FA6E8">Read the explainer →</span>
+              </span>
+            </span>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+  </main>
+</sc-if>
+
+<sc-if value="{{ isPost }}" hint-placeholder-val="{{ false }}">
+  <main data-screen-label="Update article">
+    <article>
+      <section style="padding:72px 0 64px;border-bottom:1px solid rgba(255,255,255,0.06)">
+        <div style="max-width:880px;margin:0 auto;padding:0 32px">
+          <div style="display:flex;gap:10px;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#6B7180">
+            <a href="#" style="color:#9298A5">Updates</a><span>/</span><span style="color:#C9CDD6">{{ p.category }}</span>
+          </div>
+          <h1 style="font-family:var(--font-display);font-weight:400;font-size:clamp(36px,4.8vw,64px);line-height:1.08;letter-spacing:-0.025em;margin:48px 0 0;text-wrap:balance">{{ p.title }}</h1>
+          <p style="font-size:19px;line-height:1.7;color:#B4B9C4;margin:24px 0 0;text-wrap:pretty">{{ p.summary }}</p>
+          <div style="margin-top:44px;padding:24px 0;border-top:1px solid rgba(255,255,255,0.12);border-bottom:1px solid rgba(255,255,255,0.12)">
+            <div style="display:flex;gap:4px"><sc-for list="{{ p.track }}" as="k" hint-placeholder-count="7"><span style="flex:1;display:flex;flex-direction:column;gap:8px"><span style="height:3px;background:{{ k.c }}"></span><span style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:{{ k.t }}">{{ k.name }}</span></span></sc-for></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr))">
+            <sc-for list="{{ p.facts }}" as="f" hint-placeholder-count="4">
+              <div style="padding:20px 20px 20px 0;border-bottom:1px solid rgba(255,255,255,0.06)">
+                <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6B7180">{{ f.k }}</div>
+                <div style="font-size:15px;margin-top:8px;color:#F5F5F5;line-height:1.45">{{ f.v }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <sc-if value="{{ p.pending }}" hint-placeholder-val="{{ false }}">
+            <p style="margin:24px 0 0;padding:14px 16px;border:1px solid rgba(232,194,127,0.45);font-size:14px;line-height:1.6;color:#E8C27F">{{ p.pendingNote }}</p>
+          </sc-if>
+        </div>
+      </section>
+      <section style="padding:72px 0 40px">
+        <div style="max-width:880px;margin:0 auto;padding:0 32px;display:flex;flex-direction:column;gap:48px">
+          <sc-for list="{{ p.blocks }}" as="b" hint-placeholder-count="4">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px 40px">
+              <h2 style="font-family:var(--font-display);font-weight:400;font-size:22px;line-height:1.3;margin:0;color:#F5F5F5"><span style="display:block;font-family:var(--font-ui);font-size:12px;color:#7FA6E8;letter-spacing:0.1em;margin-bottom:8px">{{ b.n }}</span>{{ b.q }}</h2>
+              <div style="grid-column:span 2;min-width:0;display:flex;flex-direction:column;gap:12px">
+                <sc-for list="{{ b.paras }}" as="t" hint-placeholder-count="1"><p style="font-size:17px;line-height:1.75;color:#C9CDD6;margin:0;text-wrap:pretty">{{ t }}</p></sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+      <section style="padding:40px 0 96px">
+        <div style="max-width:880px;margin:0 auto;padding:0 32px">
+          <div style="background:#101218;border:1px solid rgba(255,255,255,0.08);padding:32px 36px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:32px">
+            <div>
+              <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6B7180">Legislation &amp; guidance</div>
+              <ul style="list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:10px">
+                <sc-for list="{{ p.law }}" as="l" hint-placeholder-count="2"><li style="font-size:14px;line-height:1.55;color:#D7DAE0">{{ l }}</li></sc-for>
+              </ul>
+            </div>
+            <div>
+              <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6B7180">Original sources</div>
+              <ul style="list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:10px">
+                <sc-for list="{{ p.sources }}" as="s" hint-placeholder-count="2"><li><a href="{{ s.url }}" target="_blank" rel="noopener" style="font-size:14px;line-height:1.55">{{ s.label }} ↗</a></li></sc-for>
+              </ul>
+            </div>
+          </div>
+          <p style="font-size:12px;color:#6B7180;margin:20px 0 0;line-height:1.6">Published {{ p.published }} · Last verified {{ p.verified }}. General information only — not tax, legal or financial advice.</p>
+          <div style="margin-top:48px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;border-top:1px solid rgba(255,255,255,0.1);padding-top:28px">
+            <a href="#" style="color:#C9CDD6;font-size:14px">← All updates</a>
+            <a href="{{ p.next.href }}" style="color:#F5F5F5;font-family:var(--font-display);font-size:20px">Next: {{ p.next.title }} →</a>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+</sc-if>
+
+<footer style="background:#08090C;border-top:1px solid rgba(255,255,255,0.08);padding:40px 0">
+  <div style="max-width:1280px;margin:0 auto;padding:0 32px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:12px;color:#6B7180;line-height:1.6">
+    <span><span style="font-family:var(--font-display);color:#C9CDD6;font-size:15px;margin-right:12px">{{ brand }}</span>General information only — not tax, legal or financial advice.</span>
+    <span style="display:flex;gap:20px"><a href="Knowledge.dc.html" style="color:#9298A5">Knowledge</a><a href="Calculators.dc.html" style="color:#9298A5">Calculators</a><a href="About.dc.html" style="color:#9298A5">About &amp; contact</a></span>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;TaxSignal&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const STATUSES = ['Proposed', 'Announced', 'Exposure draft', 'Bill introduced', 'Passed', 'Royal Assent', 'Commenced', 'Superseded'];
+const STATUS_TEXT = ['#9298A5', '#B4B9C4', '#C9CDD6', '#A9C4F0', '#7FA6E8', '#7FA6E8', '#F5F5F5', '#6B7180'];
+
+// Each entry mirrors one Markdown file's front matter + body in the production site.
+const POSTS = [
+  { slug: 'payday-super', category: 'Superannuation', status: 6, title: 'Payday Super has started: super is now due every payday',
+    summary: 'Since 1 July 2026, employers must pay super guarantee contributions each payday, and the money must reach the employee’s fund within 7 business days.',
+    effective: '1 July 2026', taxYear: '2026–27 onwards', published: '19 Nov 2026', verified: '19 Nov 2026', sourceShort: 'ATO; Federal Register of Legislation',
+    happened: ['The Payday Super legislation received Royal Assent on 6 November 2025 and commenced on 1 July 2026.'],
+    changed: ['Super guarantee is no longer paid quarterly. It is now calculated on each payday as 12% of “qualifying earnings” — ordinary time earnings plus some other amounts such as qualifying salary sacrifice.', 'Contributions must be received by the employee’s fund within 7 business days after payday. The ATO’s Small Business Superannuation Clearing House has been retired.'],
+    who: ['All employers of eligible workers, payroll providers and super funds. There is no small-business exemption.'],
+    when: ['Paydays on or after 1 July 2026. Earnings paid up to 30 June 2026 stay under the old quarterly rules.'],
+    know: ['Employers now report both qualifying earnings and super liability through Single Touch Payroll.', 'The ATO’s first-year compliance approach is set out in PCG 2026/1, which applies from 1 July 2026 to 30 June 2027.'],
+    law: ['Treasury Laws Amendment (Payday Superannuation) Act 2025', 'Superannuation Guarantee Charge Amendment Act 2025', 'ATO Practical Compliance Guideline PCG 2026/1'],
+    sources: [['ATO — Payday Super', 'https://www.ato.gov.au/businesses-and-organisations/super-for-employers/payday-super'], ['Federal Register of Legislation', 'https://www.legislation.gov.au']] },
+  { slug: 'division-296', category: 'Superannuation', status: 4, pending: true, title: 'Division 296: extra tax on earnings for super balances above $3 million',
+    summary: 'Parliament passed the Division 296 bills on 10 March 2026. An additional tax applies to realised earnings attributable to total super balances above $3 million, with a higher rate above $10 million.',
+    effective: '1 July 2026', taxYear: '2026–27 onwards', published: '19 Nov 2026', verified: '19 Nov 2026', sourceShort: 'Treasury; Parliament of Australia',
+    happened: ['The Treasury Laws Amendment (Building a Stronger and Fairer Super System) Bill 2026 and the related Imposition Bill passed the Senate on 10 March 2026, after amendments during debate.'],
+    changed: ['Individuals pay an additional 15% on earnings attributable to the part of their total super balance above $3 million, and an additional 25% on the part above $10 million — 30% and 40% once the fund’s 15% tax is included.', 'Unlike the 2023 proposal, the tax applies to realised earnings only, and both thresholds are indexed.'],
+    who: ['Individuals whose total superannuation balance exceeds $3 million, across all fund types including SMSFs.'],
+    when: ['From the 2026–27 income year. For 2026–27 only, liability depends on the total super balance at 30 June 2027. The ATO is expected to issue first assessments in 2027–28.'],
+    know: ['The tax is assessed to the individual, not the fund.', 'Trustees may elect to reset the cost base of fund assets to market value at 30 June 2026 for Division 296 purposes.'],
+    law: ['Treasury Laws Amendment (Building a Stronger and Fairer Super System) Bill 2026', 'Superannuation (Building a Stronger and Fairer Super System) Imposition Bill 2026', 'New Division 296, Income Tax Assessment Act 1997'],
+    sources: [['Treasury', 'https://treasury.gov.au'], ['Parliament of Australia — Bills', 'https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation']] },
+  { slug: 'rate-cut-15', category: 'Personal Income Tax', status: 6, title: 'The 16% tax rate is now 15%, falling to 14% next year',
+    summary: 'From 1 July 2026, income between $18,201 and $45,000 is taxed at 15%. The rate falls to 14% from 1 July 2027.',
+    effective: '1 July 2026 (15%) · 1 July 2027 (14%)', taxYear: '2026–27 and 2027–28', published: '19 Nov 2026', verified: '19 Nov 2026', sourceShort: 'ATO; Federal Register of Legislation',
+    happened: ['Legislation passed in 2025 reduces the lowest marginal rate in two steps.'],
+    changed: ['The rate on taxable income from $18,201 to $45,000 fell from 16% to 15% on 1 July 2026, and will fall to 14% on 1 July 2027. Other rates and thresholds are unchanged.'],
+    who: ['Australian resident individuals with taxable income above $18,200.'],
+    when: ['The 2026–27 income year for the 15% rate; 2027–28 for the 14% rate. PAYG withholding tables were updated from 1 July 2026.'],
+    know: ['The maximum saving is $268 a year in 2026–27 and $536 a year from 2027–28, reached at $45,000 of taxable income.'],
+    law: ['Treasury Laws Amendment (More Cost of Living Relief) Act 2025', 'Income Tax Rates Act 1986'],
+    sources: [['ATO — Tax rates: Australian residents', 'https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents'], ['Federal Register of Legislation', 'https://www.legislation.gov.au']] },
+  { slug: 'sg-12', category: 'Superannuation', status: 6, title: 'Super guarantee rate reached 12%',
+    summary: 'The super guarantee rate rose to 12% on 1 July 2025 — the final legislated step in the schedule of increases.',
+    effective: '1 July 2025', taxYear: '2025–26 onwards', published: '19 Nov 2026', verified: '19 Nov 2026', sourceShort: 'ATO',
+    happened: ['The scheduled increase from 11.5% to 12% took effect on 1 July 2025.'],
+    changed: ['Employers must contribute at least 12% of an eligible employee’s earnings. Since 1 July 2026 that is calculated on qualifying earnings under Payday Super.'],
+    who: ['All employers and eligible employees.'],
+    when: ['Payments of earnings from 1 July 2025. No further increases are legislated.'],
+    know: ['Employment contracts that specify a total remuneration package may change take-home pay when the rate changes — check the contract terms.'],
+    law: ['Superannuation Guarantee (Administration) Act 1992'],
+    sources: [['ATO — Super guarantee', 'https://www.ato.gov.au/businesses-and-organisations/super-for-employers']] },
+];
+
+class Component extends DCLogic {
+  state = { route: typeof window !== 'undefined' ? window.location.hash.slice(1) : '', filter: 'All' };
+  componentDidMount() { this.onHash = () => { this.setState({ route: window.location.hash.slice(1) }); window.scrollTo(0, 0); }; window.addEventListener('hashchange', this.onHash); }
+  componentWillUnmount() { window.removeEventListener('hashchange', this.onHash); }
+
+  renderVals() {
+    const s = this.state;
+    const idx = POSTS.findIndex(x => x.slug === s.route), post = POSTS[idx];
+    const cats = ['All', ...new Set(POSTS.map(x => x.category))];
+    const ticks = st => STATUSES.slice(0, 7).map((_, i) => ({ c: i <= st ? (st === 6 ? '#7FA6E8' : '#1A5FBB') : 'rgba(255,255,255,0.1)' }));
+    const p = post ? {
+      ...post, status: STATUSES[post.status],
+      track: STATUSES.slice(0, 7).map((name, i) => ({ name, c: i <= post.status ? (post.status === 6 ? '#7FA6E8' : '#1A5FBB') : 'rgba(255,255,255,0.1)', t: i === post.status ? '#F5F5F5' : i < post.status ? '#9298A5' : '#4A4F5B' })),
+      facts: [{ k: 'Status', v: STATUSES[post.status] }, { k: 'Effective', v: post.effective }, { k: 'Tax year', v: post.taxYear }, { k: 'Last verified', v: post.verified }],
+      pendingNote: 'Editorial note: Royal Assent and the final Act name are to be confirmed against the Federal Register of Legislation before this update is marked “Commenced”.',
+      blocks: [['What happened?', post.happened], ['What has changed?', post.changed], ['Who is affected?', post.who], ['When does it apply?', post.when], ['What should accountants and businesses know?', post.know]].map(([q, paras], i) => ({ q, paras, n: String(i + 1).padStart(2, '0') })),
+      sources: post.sources.map(([label, url]) => ({ label, url })),
+      next: { title: POSTS[(idx + 1) % POSTS.length].title, href: '#' + POSTS[(idx + 1) % POSTS.length].slug },
+    } : { track: [], facts: [], blocks: [], law: [], sources: [], next: {} };
+    return {
+      brand: this.props.brandName || 'TaxSignal',
+      isList: !post, isPost: !!post, p,
+      statuses: STATUSES.map((name, i) => ({ name, num: String(i + 1).padStart(2, '0'), color: i === 7 ? '#3A3F4B' : `rgba(127,166,232,${0.25 + i * 0.11})`, text: STATUS_TEXT[i] })),
+      filters: cats.map(label => { const on = s.filter === label; return { label, pick: () => this.setState({ filter: label }), bg: on ? '#F5F5F5' : 'transparent', fg: on ? '#08090C' : '#C9CDD6', border: on ? '#F5F5F5' : 'rgba(255,255,255,0.16)' }; }),
+      list: POSTS.filter(x => s.filter === 'All' || x.category === s.filter).map(x => ({ ...x, href: '#' + x.slug, status: STATUSES[x.status], statusColor: STATUS_TEXT[x.status], ticks: ticks(x.status) })),
+    };
+  }
+}
+</script>
+</body>
+</html>

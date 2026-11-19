@@ -1,0 +1,94 @@
+/* ============================================================
+   LegalWorks — base element styling & shared utilities.
+   Light global resets that express the brand's defaults.
+   ============================================================ */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--text-body);
+  background: var(--surface-page);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--text-heading);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--tracking-tight);
+  font-weight: var(--fw-bold);
+  margin: 0;
+}
+
+p { margin: 0; }
+
+a { color: var(--accent); text-decoration: none; }
+
+/* --- Shared utility classes --- */
+.lw-container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+/* Uppercase eyebrow / section label */
+.lw-label {
+  font-family: var(--font-ui);
+  font-size: var(--fs-label);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-accent);
+}
+
+/* Royal-blue accent rule */
+.lw-rule-accent {
+  border: 0;
+  height: var(--rule-accent);
+  width: 56px;
+  background: var(--accent);
+  margin: 0;
+}
+
+/* Hairline divider */
+.lw-rule {
+  border: 0;
+  border-top: var(--rule-hair) solid var(--border-rule);
+}
+
+/* Editorial serif pull-quote */
+.lw-quote {
+  font-family: var(--font-display);
+  font-size: var(--fs-quote);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-heading);
+  font-weight: var(--fw-bold);
+}
+
+/* Dark-overlay treatment for all photography */
+.lw-photo {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface-dark);
+}
+.lw-photo > img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.lw-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--img-overlay);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
