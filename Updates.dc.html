@@ -27,7 +27,7 @@ a:hover{color:#A9C4F0}
 <div style="background:#08090C;color:#F5F5F5;min-height:100vh">
 
 <header style="position:sticky;top:0;z-index:50;background:rgba(8,9,12,0.94);border-bottom:1px solid rgba(255,255,255,0.07)">
-  <div style="max-width:1280px;margin:0 auto;padding:14px 32px;min-height:64px;box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px">
+  <div style="max-width:1280px;margin:0 auto;padding:14px clamp(18px,5vw,32px);min-height:64px;box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px">
     <a href="TaxSignal Landing.dc.html" style="display:flex;align-items:center;gap:12px;color:#F5F5F5">
       <span style="display:grid;grid-template-columns:repeat(3,4px);align-items:end;gap:3px;height:18px"><span style="width:4px;height:7px;background:#0C4DA2"></span><span style="width:4px;height:12px;background:#1A5FBB"></span><span style="width:4px;height:18px;background:#7FA6E8"></span></span>
       <span style="font-family:var(--font-display);font-size:19px;letter-spacing:-0.01em">{{ brand }}</span>
@@ -44,9 +44,9 @@ a:hover{color:#A9C4F0}
 <sc-if value="{{ isList }}" hint-placeholder-val="{{ true }}">
   <main data-screen-label="Updates list">
     <section style="padding:112px 0 64px">
-      <div style="max-width:1100px;margin:0 auto;padding:0 32px">
+      <div style="max-width:1100px;margin:0 auto;padding:0 clamp(18px,5vw,32px)">
         <x-import component-from-global-scope="LegalWorksDesignSystem_fbaf45.Tag" variant="eyebrow" on-dark="{{ true }}" hint-size="200px,14px">Latest Updates</x-import>
-        <h1 style="font-family:var(--font-display);font-weight:400;font-size:clamp(44px,6vw,84px);line-height:1.04;letter-spacing:-0.03em;margin:24px 0 0;max-width:900px">Stay ahead of every tax change.</h1>
+        <h1 style="font-family:var(--font-display);font-weight:400;font-size:clamp(34px,6vw,84px);line-height:1.04;letter-spacing:-0.03em;margin:24px 0 0;max-width:900px">Stay ahead of every tax change.</h1>
         <p style="font-size:18px;line-height:1.7;color:#B4B9C4;margin:28px 0 0;max-width:640px">Each change explained in plain English, placed on the legislative pathway, and linked to the original source.</p>
         <div style="margin-top:56px;border-top:1px solid rgba(255,255,255,0.1);border-bottom:1px solid rgba(255,255,255,0.1);padding:20px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:12px 8px">
           <sc-for list="{{ statuses }}" as="st" hint-placeholder-count="8">
@@ -65,7 +65,7 @@ a:hover{color:#A9C4F0}
       </div>
     </section>
     <section style="padding:0 0 120px">
-      <div style="max-width:1100px;margin:0 auto;padding:0 32px;border-top:1px solid rgba(255,255,255,0.1)">
+      <div style="max-width:1100px;margin:0 auto;padding:0 clamp(18px,5vw,32px);border-top:1px solid rgba(255,255,255,0.1)">
         <sc-for list="{{ list }}" as="u" hint-placeholder-count="4">
           <a href="{{ u.href }}" style="display:flex;flex-wrap:wrap;gap:20px 48px;padding:40px 0;border-bottom:1px solid rgba(255,255,255,0.08);color:#F5F5F5;transition:background 200ms" style-hover="background:#0D0F14">
             <span style="flex:1 1 220px;display:flex;flex-direction:column;gap:12px">
@@ -74,7 +74,7 @@ a:hover{color:#A9C4F0}
               <span style="font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:{{ u.statusColor }}">{{ u.status }}</span>
               <span style="font-size:13px;color:#9298A5;line-height:1.6">Effective {{ u.effective }}<br>{{ u.taxYear }}</span>
             </span>
-            <span style="flex:3 1 420px;min-width:0;display:flex;flex-direction:column;gap:12px">
+            <span style="flex:3 1 min(100%,420px);min-width:0;display:flex;flex-direction:column;gap:12px">
               <span style="font-family:var(--font-display);font-size:clamp(22px,2.2vw,30px);line-height:1.25;letter-spacing:-0.015em">{{ u.title }}</span>
               <span style="font-size:16px;line-height:1.7;color:#B4B9C4;max-width:680px">{{ u.summary }}</span>
               <span style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px;margin-top:6px">
@@ -93,14 +93,14 @@ a:hover{color:#A9C4F0}
   <main data-screen-label="Update article">
     <article>
       <section style="padding:72px 0 64px;border-bottom:1px solid rgba(255,255,255,0.06)">
-        <div style="max-width:880px;margin:0 auto;padding:0 32px">
+        <div style="max-width:880px;margin:0 auto;padding:0 clamp(18px,5vw,32px)">
           <div style="display:flex;gap:10px;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#6B7180">
             <a href="#" style="color:#9298A5">Updates</a><span>/</span><span style="color:#C9CDD6">{{ p.category }}</span>
           </div>
-          <h1 style="font-family:var(--font-display);font-weight:400;font-size:clamp(36px,4.8vw,64px);line-height:1.08;letter-spacing:-0.025em;margin:48px 0 0;text-wrap:balance">{{ p.title }}</h1>
+          <h1 style="font-family:var(--font-display);font-weight:400;font-size:clamp(30px,4.8vw,64px);line-height:1.08;letter-spacing:-0.025em;margin:48px 0 0;text-wrap:balance">{{ p.title }}</h1>
           <p style="font-size:19px;line-height:1.7;color:#B4B9C4;margin:24px 0 0;text-wrap:pretty">{{ p.summary }}</p>
           <div style="margin-top:44px;padding:24px 0;border-top:1px solid rgba(255,255,255,0.12);border-bottom:1px solid rgba(255,255,255,0.12)">
-            <div style="display:flex;gap:4px"><sc-for list="{{ p.track }}" as="k" hint-placeholder-count="7"><span style="flex:1;display:flex;flex-direction:column;gap:8px"><span style="height:3px;background:{{ k.c }}"></span><span style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:{{ k.t }}">{{ k.name }}</span></span></sc-for></div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(78px,1fr));gap:12px 4px"><sc-for list="{{ p.track }}" as="k" hint-placeholder-count="7"><span style="display:flex;flex-direction:column;gap:8px"><span style="height:3px;background:{{ k.c }}"></span><span style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:{{ k.t }}">{{ k.name }}</span></span></sc-for></div>
           </div>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr))">
             <sc-for list="{{ p.facts }}" as="f" hint-placeholder-count="4">
@@ -116,11 +116,11 @@ a:hover{color:#A9C4F0}
         </div>
       </section>
       <section style="padding:72px 0 40px">
-        <div style="max-width:880px;margin:0 auto;padding:0 32px;display:flex;flex-direction:column;gap:48px">
+        <div style="max-width:880px;margin:0 auto;padding:0 clamp(18px,5vw,32px);display:flex;flex-direction:column;gap:48px">
           <sc-for list="{{ p.blocks }}" as="b" hint-placeholder-count="4">
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px 40px">
-              <h2 style="font-family:var(--font-display);font-weight:400;font-size:22px;line-height:1.3;margin:0;color:#F5F5F5"><span style="display:block;font-family:var(--font-ui);font-size:12px;color:#7FA6E8;letter-spacing:0.1em;margin-bottom:8px">{{ b.n }}</span>{{ b.q }}</h2>
-              <div style="grid-column:span 2;min-width:0;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;flex-wrap:wrap;gap:12px 40px">
+              <h2 style="flex:1 1 200px;font-family:var(--font-display);font-weight:400;font-size:22px;line-height:1.3;margin:0;color:#F5F5F5"><span style="display:block;font-family:var(--font-ui);font-size:12px;color:#7FA6E8;letter-spacing:0.1em;margin-bottom:8px">{{ b.n }}</span>{{ b.q }}</h2>
+              <div style="flex:2 1 min(100%,400px);min-width:0;display:flex;flex-direction:column;gap:12px">
                 <sc-for list="{{ b.paras }}" as="t" hint-placeholder-count="1"><p style="font-size:17px;line-height:1.75;color:#C9CDD6;margin:0;text-wrap:pretty">{{ t }}</p></sc-for>
               </div>
             </div>
@@ -128,8 +128,8 @@ a:hover{color:#A9C4F0}
         </div>
       </section>
       <section style="padding:40px 0 96px">
-        <div style="max-width:880px;margin:0 auto;padding:0 32px">
-          <div style="background:#101218;border:1px solid rgba(255,255,255,0.08);padding:32px 36px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:32px">
+        <div style="max-width:880px;margin:0 auto;padding:0 clamp(18px,5vw,32px)">
+          <div style="background:#101218;border:1px solid rgba(255,255,255,0.08);padding:28px clamp(18px,4vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:32px">
             <div>
               <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6B7180">Legislation &amp; guidance</div>
               <ul style="list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:10px">
@@ -155,9 +155,9 @@ a:hover{color:#A9C4F0}
 </sc-if>
 
 <footer style="background:#08090C;border-top:1px solid rgba(255,255,255,0.08);padding:40px 0">
-  <div style="max-width:1280px;margin:0 auto;padding:0 32px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:12px;color:#6B7180;line-height:1.6">
+  <div style="max-width:1280px;margin:0 auto;padding:0 clamp(18px,5vw,32px);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:12px;color:#6B7180;line-height:1.6">
     <span><span style="font-family:var(--font-display);color:#C9CDD6;font-size:15px;margin-right:12px">{{ brand }}</span>General information only — not tax, legal or financial advice.</span>
-    <span style="display:flex;gap:20px"><a href="Knowledge.dc.html" style="color:#9298A5">Knowledge</a><a href="Calculators.dc.html" style="color:#9298A5">Calculators</a><a href="About.dc.html" style="color:#9298A5">About &amp; contact</a></span>
+    <span style="display:flex;flex-wrap:wrap;gap:8px 20px"><a href="Knowledge.dc.html" style="color:#9298A5">Knowledge</a><a href="Calculators.dc.html" style="color:#9298A5">Calculators</a><a href="About.dc.html" style="color:#9298A5">About &amp; contact</a></span>
   </div>
 </footer>
 </div>

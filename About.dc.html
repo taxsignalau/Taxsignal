@@ -27,7 +27,7 @@ a:hover{color:#A9C4F0}
 <div style="background:#08090C;color:#F5F5F5;min-height:100vh">
 
 <header style="position:sticky;top:0;z-index:50;background:rgba(8,9,12,0.94);border-bottom:1px solid rgba(255,255,255,0.07)">
-  <div style="max-width:1280px;margin:0 auto;padding:14px 32px;min-height:64px;box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px">
+  <div style="max-width:1280px;margin:0 auto;padding:14px clamp(18px,5vw,32px);min-height:64px;box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px">
     <a href="TaxSignal Landing.dc.html" style="display:flex;align-items:center;gap:12px;color:#F5F5F5">
       <span style="display:grid;grid-template-columns:repeat(3,4px);align-items:end;gap:3px;height:18px"><span style="width:4px;height:7px;background:#0C4DA2"></span><span style="width:4px;height:12px;background:#1A5FBB"></span><span style="width:4px;height:18px;background:#7FA6E8"></span></span>
       <span style="font-family:var(--font-display);font-size:19px;letter-spacing:-0.01em">{{ brand }}</span>
@@ -43,15 +43,15 @@ a:hover{color:#A9C4F0}
 
 <main data-screen-label="About">
   <section style="padding:112px 0 96px;border-bottom:1px solid rgba(255,255,255,0.06)">
-    <div style="max-width:1100px;margin:0 auto;padding:0 32px">
+    <div style="max-width:1100px;margin:0 auto;padding:0 clamp(18px,5vw,32px)">
       <x-import component-from-global-scope="LegalWorksDesignSystem_fbaf45.Tag" variant="eyebrow" on-dark="{{ true }}" hint-size="200px,14px">About</x-import>
-      <h1 style="font-family:var(--font-display);font-weight:400;font-size:clamp(44px,6vw,84px);line-height:1.04;letter-spacing:-0.03em;margin:24px 0 0;max-width:900px">Tax law is public. Understanding it should be too.</h1>
+      <h1 style="font-family:var(--font-display);font-weight:400;font-size:clamp(34px,6vw,84px);line-height:1.04;letter-spacing:-0.03em;margin:24px 0 0;max-width:900px">Tax law is public. Understanding it should be too.</h1>
       <p style="font-size:19px;line-height:1.7;color:#B4B9C4;margin:32px 0 0;max-width:680px;text-wrap:pretty">{{ brand }} explains Australian tax in plain English — for taxpayers, business owners, students and practitioners. Every explanation is built on the legislation and the ATO’s own guidance, and every source is linked.</p>
     </div>
   </section>
 
   <section style="padding:96px 0;background:#101218">
-    <div style="max-width:1100px;margin:0 auto;padding:0 32px">
+    <div style="max-width:1100px;margin:0 auto;padding:0 clamp(18px,5vw,32px)">
       <x-import component-from-global-scope="LegalWorksDesignSystem_fbaf45.Tag" variant="eyebrow" on-dark="{{ true }}" hint-size="200px,14px">Editorial standards</x-import>
       <h2 style="font-family:var(--font-display);font-weight:400;font-size:clamp(30px,3.6vw,48px);line-height:1.1;letter-spacing:-0.02em;margin:20px 0 0;max-width:720px">How we keep it accurate.</h2>
       <ol style="list-style:none;margin:48px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:0 48px;border-top:1px solid rgba(255,255,255,0.12)">
@@ -66,7 +66,7 @@ a:hover{color:#A9C4F0}
   </section>
 
   <section style="padding:96px 0">
-    <div style="max-width:1100px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:56px">
+    <div style="max-width:1100px;margin:0 auto;padding:0 clamp(18px,5vw,32px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:56px">
       <div>
         <x-import component-from-global-scope="LegalWorksDesignSystem_fbaf45.Tag" variant="eyebrow" on-dark="{{ true }}" hint-size="200px,14px">Who’s behind it</x-import>
         <p style="font-family:var(--font-display);font-size:26px;line-height:1.4;margin:20px 0 0;color:#F5F5F5">{{ founderName }}</p>
@@ -80,7 +80,7 @@ a:hover{color:#A9C4F0}
   </section>
 
   <section id="contact" data-screen-label="Contact" style="padding:96px 0 120px;background:#101218;border-top:1px solid rgba(255,255,255,0.06)">
-    <div style="max-width:1100px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:56px;align-items:end">
+    <div style="max-width:1100px;margin:0 auto;padding:0 clamp(18px,5vw,32px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:56px;align-items:end">
       <div>
         <x-import component-from-global-scope="LegalWorksDesignSystem_fbaf45.Tag" variant="eyebrow" on-dark="{{ true }}" hint-size="200px,14px">Contact</x-import>
         <h2 style="font-family:var(--font-display);font-weight:400;font-size:clamp(30px,3.6vw,48px);line-height:1.1;letter-spacing:-0.02em;margin:20px 0 0">Spotted an error? Want a topic covered?</h2>
@@ -99,21 +99,21 @@ a:hover{color:#A9C4F0}
 </main>
 
 <footer style="background:#08090C;border-top:1px solid rgba(255,255,255,0.08);padding:40px 0">
-  <div style="max-width:1280px;margin:0 auto;padding:0 32px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:12px;color:#6B7180;line-height:1.6">
+  <div style="max-width:1280px;margin:0 auto;padding:0 clamp(18px,5vw,32px);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:12px;color:#6B7180;line-height:1.6">
     <span><span style="font-family:var(--font-display);color:#C9CDD6;font-size:15px;margin-right:12px">{{ brand }}</span>General information only — not tax, legal or financial advice.</span>
-    <span style="display:flex;gap:20px"><a href="Knowledge.dc.html" style="color:#9298A5">Knowledge</a><a href="Updates.dc.html" style="color:#9298A5">Updates</a><a href="Calculators.dc.html" style="color:#9298A5">Calculators</a></span>
+    <span style="display:flex;flex-wrap:wrap;gap:8px 20px"><a href="Knowledge.dc.html" style="color:#9298A5">Knowledge</a><a href="Updates.dc.html" style="color:#9298A5">Updates</a><a href="Calculators.dc.html" style="color:#9298A5">Calculators</a></span>
   </div>
 </footer>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;TaxSignal&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;contactEmail&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;hello@taxsignal.com.au&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;founderName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;[Your name, credentials]&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;founderBio&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;TaxSignal&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;contactEmail&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;contact@taxsignal.au&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;founderName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;founderBio&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   renderVals() {
-    const p = this.props, email = p.contactEmail || 'hello@taxsignal.com.au';
+    const p = this.props, email = p.contactEmail || 'contact@taxsignal.au';
     return {
       brand: p.brandName || 'TaxSignal',
-      founderName: p.founderName || '[Your name, credentials]',
-      founderBio: p.founderBio || '[One or two sentences on your background — e.g. qualifications, years in practice, and why you started TaxSignal.]',
+      founderName: p.founderName || 'Built quietly. Sourced loudly.',
+      founderBio: p.founderBio || 'Written in Australia by tax professionals who prefer to stay in the background and let the work speak. Every explanation links to the legislation and ATO guidance it relies on — so you never have to take our word for it.',
       standards: [
         ['Primary sources first', 'Explanations are built on the legislation, ATO rulings and guidance, Treasury material and the Federal Register of Legislation.'],
         ['Status is always shown', 'Every update sits on the pathway from proposed to commenced. A proposal is never described as law.'],
@@ -122,8 +122,8 @@ class Component extends DCLogic {
         ['Reviewed before publishing', 'AI may help draft summaries, but nothing is published until it has been checked against the source by a person.'],
       ].map(([t, d], i) => ({ t, d, n: String(i + 1).padStart(2, '0') })),
       contacts: [
-        { k: 'Corrections & feedback', v: email, href: `mailto:${email}?subject=Correction` },
-        { k: 'Suggest a topic', v: 'Request an explainer', href: `mailto:${email}?subject=Topic%20suggestion` },
+        { k: 'Corrections & feedback — email us', v: email, href: `mailto:${email}?subject=Correction` },
+        { k: 'Request an explainer — email us', v: email, href: `mailto:${email}?subject=Explainer%20request&body=Topic%20I%E2%80%99d%20like%20explained%3A%20` },
       ],
     };
   }

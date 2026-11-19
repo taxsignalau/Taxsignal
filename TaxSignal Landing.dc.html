@@ -29,7 +29,7 @@ a:hover{color:#A9C4F0}
 <div style="background:#08090C;color:#F5F5F5;min-height:100vh;overflow-x:clip">
 
 <header style="position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,6,8,0.82);border-bottom:1px solid rgba(255,255,255,0.06)">
-  <div style="max-width:1280px;margin:0 auto;padding:14px 32px;min-height:64px;box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px">
+  <div style="max-width:1280px;margin:0 auto;padding:14px clamp(18px,5vw,32px);min-height:64px;box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px">
     <a href="TaxSignal Landing.dc.html" style="display:flex;align-items:center;gap:12px;color:#F5F5F5">
       <span style="display:grid;grid-template-columns:repeat(3,4px);align-items:end;gap:3px;height:18px">
         <span style="width:4px;height:7px;background:#0C4DA2"></span>
@@ -127,19 +127,19 @@ a:hover{color:#A9C4F0}
 
     <div data-ts="shade" aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(5,6,8,0.92) 0%,rgba(5,6,8,0.6) 34%,rgba(5,6,8,0) 58%);opacity:0"></div>
     <div data-ts="copy" style="position:absolute;inset:0;display:flex;align-items:center;padding:64px 6vw 0;box-sizing:border-box;pointer-events:none">
-      <div data-ts="copyInner" style="max-width:min(540px,44vw)">
+      <div data-ts="copyInner" style="max-width:max(min(540px,44vw),min(100%,420px))">
         <div data-cp="0" style="display:flex;align-items:center;gap:12px;opacity:0">
           <span style="display:grid;grid-template-columns:repeat(3,5px);align-items:end;gap:4px;height:24px">
             <span style="width:5px;height:9px;background:#0C4DA2"></span><span style="width:5px;height:16px;background:#1A5FBB"></span><span style="width:5px;height:24px;background:#7FA6E8"></span>
           </span>
           <span style="font-family:var(--font-display);font-size:24px;color:#F5F5F5">{{ brand }}</span>
         </div>
-        <h1 style="font-family:var(--font-display);font-weight:400;font-size:clamp(40px,5.2vw,80px);line-height:1.04;letter-spacing:-0.03em;margin:32px 0 0">
+        <h1 style="font-family:var(--font-display);font-weight:400;font-size:clamp(28px,min(5.2vw,8.5vh),80px);line-height:1.04;letter-spacing:-0.03em;margin:clamp(14px,3.5vh,32px) 0 0">
           <span data-cp="1" style="display:block;color:#7A808C;opacity:0">Complex legislation.</span>
           <span data-cp="2" style="display:block;color:#F5F5F5;opacity:0">Clear explanations.</span>
         </h1>
-        <p data-cp="3" style="font-size:clamp(16px,1.3vw,19px);line-height:1.65;color:#B4B9C4;margin:28px 0 0;max-width:460px;opacity:0;text-wrap:pretty">Understand Australian tax through intelligent explanations, practical examples and the latest regulatory developments.</p>
-        <div data-cp="4" data-ts="ctas" style="display:flex;flex-wrap:wrap;gap:14px;margin-top:36px;opacity:0">
+        <p data-cp="3" style="font-size:clamp(15px,1.3vw,19px);line-height:1.6;color:#B4B9C4;margin:clamp(12px,3vh,28px) 0 0;max-width:460px;opacity:0;text-wrap:pretty">Understand Australian tax through intelligent explanations, practical examples and the latest regulatory developments.</p>
+        <div data-cp="4" data-ts="ctas" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(16px,3.5vh,36px);opacity:0">
           <x-import component-from-global-scope="LegalWorksDesignSystem_fbaf45.Button" variant="primary" size="lg" href="Knowledge.dc.html" hint-size="250px,50px">Explore Tax Knowledge</x-import>
           <x-import component-from-global-scope="LegalWorksDesignSystem_fbaf45.Button" variant="outline" size="lg" on-dark="{{ true }}" href="Updates.dc.html" hint-size="270px,50px">Latest Tax Developments</x-import>
         </div>
@@ -155,11 +155,11 @@ a:hover{color:#A9C4F0}
 </section>
 
 <section id="about" data-screen-label="02 About" style="background:#08090C;padding:140px 0 120px">
-  <div style="max-width:1100px;margin:0 auto;padding:0 32px">
+  <div style="max-width:1100px;margin:0 auto;padding:0 clamp(18px,5vw,32px)">
     <div data-reveal="1">
       <x-import component-from-global-scope="LegalWorksDesignSystem_fbaf45.Tag" variant="eyebrow" on-dark="{{ true }}" hint-size="200px,14px">What this is</x-import>
     </div>
-    <p data-reveal="2" style="font-family:var(--font-display);font-size:clamp(28px,3.6vw,48px);line-height:1.3;letter-spacing:-0.02em;margin:28px 0 0;color:#F5F5F5;text-wrap:pretty">A public library for Australian tax. <span style="color:#9298A5">Plain-English explanations built on the legislation and the ATO’s own guidance — for taxpayers, business owners, students and practitioners.</span></p>
+    <p data-reveal="2" style="font-family:var(--font-display);font-size:clamp(24px,3.6vw,48px);line-height:1.3;letter-spacing:-0.02em;margin:28px 0 0;color:#F5F5F5;text-wrap:pretty">A public library for Australian tax. <span style="color:#9298A5">Plain-English explanations built on the legislation and the ATO’s own guidance — for taxpayers, business owners, students and practitioners.</span></p>
     <div data-reveal="3" style="margin-top:80px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));border-top:1px solid rgba(255,255,255,0.12)">
       <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="3">
         <div style="padding:28px 32px 28px 0;display:flex;flex-direction:column;gap:12px">
@@ -175,11 +175,11 @@ a:hover{color:#A9C4F0}
 </section>
 
 <section data-screen-label="03 Essentials" style="background:#101218;padding:120px 0">
-  <div style="max-width:1100px;margin:0 auto;padding:0 32px">
+  <div style="max-width:1100px;margin:0 auto;padding:0 clamp(18px,5vw,32px)">
     <div data-reveal="1" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px">
       <div>
         <x-import component-from-global-scope="LegalWorksDesignSystem_fbaf45.Tag" variant="eyebrow" on-dark="{{ true }}" hint-size="200px,14px">Start with the essentials</x-import>
-        <h2 style="font-family:var(--font-display);font-weight:400;font-size:clamp(34px,4.2vw,56px);line-height:1.1;letter-spacing:-0.025em;margin:20px 0 0;color:#F5F5F5">Eight subjects, explained properly.</h2>
+        <h2 style="font-family:var(--font-display);font-weight:400;font-size:clamp(28px,4.2vw,56px);line-height:1.1;letter-spacing:-0.025em;margin:20px 0 0;color:#F5F5F5">Eight subjects, explained properly.</h2>
       </div>
       <p style="font-size:14px;color:#9298A5;margin:0;max-width:300px;line-height:1.6">Each sets out the key sections of law, with worked examples and sources linked.</p>
     </div>
@@ -200,9 +200,9 @@ a:hover{color:#A9C4F0}
 
 <section data-screen-label="04 CTA" style="position:relative;background:#08090C;padding:150px 0;overflow:hidden">
   <div aria-hidden="true" style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:64px 64px"></div>
-  <div data-reveal="1" style="position:relative;max-width:960px;margin:0 auto;padding:0 32px;text-align:center">
+  <div data-reveal="1" style="position:relative;max-width:960px;margin:0 auto;padding:0 clamp(18px,5vw,32px);text-align:center">
     <span style="width:32px;height:3px;background:#0C4DA2;display:block;margin:0 auto"></span>
-    <h2 style="font-family:var(--font-display);font-weight:400;font-size:clamp(38px,5.6vw,80px);line-height:1.05;letter-spacing:-0.03em;margin:32px 0 0;color:#F5F5F5;text-wrap:balance">Tax Knowledge Is a Competitive Advantage.</h2>
+    <h2 style="font-family:var(--font-display);font-weight:400;font-size:clamp(30px,5.6vw,80px);line-height:1.05;letter-spacing:-0.03em;margin:32px 0 0;color:#F5F5F5;text-wrap:balance">Tax Knowledge Is a Competitive Advantage.</h2>
     <p style="font-size:18px;color:#B4B9C4;margin:26px 0 0">Stay informed. Understand the rules. Make better decisions.</p>
     <div style="margin-top:40px;display:flex;justify-content:center">
       <x-import component-from-global-scope="LegalWorksDesignSystem_fbaf45.Button" variant="primary" size="lg" href="Knowledge.dc.html" hint-size="280px,50px">Explore the Knowledge Hub</x-import>
@@ -211,9 +211,9 @@ a:hover{color:#A9C4F0}
 </section>
 
 <footer style="background:#08090C;border-top:1px solid rgba(255,255,255,0.08);padding:40px 0">
-  <div style="max-width:1280px;margin:0 auto;padding:0 32px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:12px;color:#6B7180;line-height:1.6">
+  <div style="max-width:1280px;margin:0 auto;padding:0 clamp(18px,5vw,32px);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:12px;color:#6B7180;line-height:1.6">
     <span><span style="font-family:var(--font-display);color:#C9CDD6;font-size:15px;margin-right:12px">{{ brand }}</span>General information only — not tax, legal or financial advice.</span>
-    <span style="display:flex;gap:20px"><a href="Knowledge.dc.html" style="color:#9298A5">Knowledge</a><a href="Updates.dc.html" style="color:#9298A5">Updates</a><a href="Calculators.dc.html" style="color:#9298A5">Calculators</a><a href="About.dc.html" style="color:#9298A5">About &amp; contact</a></span>
+    <span style="display:flex;flex-wrap:wrap;gap:8px 20px"><a href="Knowledge.dc.html" style="color:#9298A5">Knowledge</a><a href="Updates.dc.html" style="color:#9298A5">Updates</a><a href="Calculators.dc.html" style="color:#9298A5">Calculators</a><a href="About.dc.html" style="color:#9298A5">About &amp; contact</a></span>
   </div>
 </footer>
 </div>
@@ -303,7 +303,7 @@ class Component extends DCLogic {
 
   frame(t) {
     if (!this.els || !this.els.hero.isConnected) { this.els = this.cache(); if (!this.els) return; }
-    const E = this.els, W = window.innerWidth, H = window.innerHeight, mobile = W < 900;
+    const E = this.els, W = window.innerWidth, H = window.innerHeight, mobile = W < 900 || H < 640;
     const r = E.hero.getBoundingClientRect();
     if (r.bottom < -50) return;
     const target = this.reduced ? 1 : clamp(-r.top / Math.max(1, E.hero.offsetHeight - H));
@@ -371,10 +371,12 @@ class Component extends DCLogic {
 
     const cs = seg(0.84, 0.9);
     E.shade.style.opacity = mobile ? 0 : cs;
-    E.copy.style.alignItems = mobile ? 'flex-end' : 'center';
-    E.copy.style.paddingBottom = mobile ? '8vh' : '0';
+    const compact = mobile || H < 640;
+    E.copy.style.alignItems = compact ? 'flex-end' : 'center';
+    E.copy.style.paddingBottom = compact ? 'max(20px,5vh)' : '0';
     E.copy.style.background = mobile ? `linear-gradient(0deg,rgba(5,6,8,${0.95 * cs}) 30%,rgba(5,6,8,0) 75%)` : 'none';
-    E.copyInner.style.maxWidth = mobile ? '100%' : 'min(540px,44vw)';
+    E.copyInner.style.maxWidth = mobile ? 'min(100%,620px)' : 'min(540px,44vw)';
+    if (E.cp[0]) E.cp[0].style.display = H < 640 ? 'none' : 'flex';
     E.cp.forEach((el, i) => { const v = seg(0.85 + i * 0.022, 0.91 + i * 0.022); el.style.opacity = v; el.style.transform = `translateY(${(1 - v) * 18}px)`; });
     E.ctas.style.pointerEvents = seg(0.93, 0.97) > 0.5 ? 'auto' : 'none';
 
