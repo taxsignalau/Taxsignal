@@ -57,7 +57,7 @@ a:hover{color:#A9C4F0}
 
 <header style="position:fixed;top:0;left:0;right:0;z-index:50;background:#050608;border-bottom:1px solid rgba(255,255,255,0.06)">
   <div style="max-width:1280px;margin:0 auto;padding:14px clamp(18px,5vw,32px);min-height:64px;box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px">
-    <a href="TaxSignal Landing.dc.html" style="display:flex;align-items:center;gap:12px;color:#F5F5F5">
+    <a href="/" style="display:flex;align-items:center;gap:12px;color:#F5F5F5">
       <span style="display:grid;grid-template-columns:repeat(3,4px);align-items:end;gap:3px;height:18px">
         <span style="width:4px;height:7px;background:#0C4DA2"></span>
         <span style="width:4px;height:12px;background:#1A5FBB"></span>
@@ -66,10 +66,10 @@ a:hover{color:#A9C4F0}
       <span style="font-family:var(--font-display);font-size:19px;letter-spacing:-0.01em">{{ brand }}</span>
     </a>
     <nav style="display:flex;flex-wrap:wrap;align-items:center;row-gap:6px;column-gap:clamp(10px,2.4vw,28px);font-size:clamp(10.5px,2.8vw,12px);letter-spacing:clamp(0.03em,0.4vw,0.08em);text-transform:uppercase;font-weight:600;max-width:100%;overflow-x:auto;white-space:nowrap;scrollbar-width:none">
-      <a href="Knowledge.dc.html" style="color:#9298A5" style-hover="color:#FFFFFF">Knowledge</a>
-      <a href="Updates.dc.html" style="color:#9298A5" style-hover="color:#FFFFFF">Updates</a>
-      <a href="Calculators.dc.html" style="color:#9298A5" style-hover="color:#FFFFFF">Calculators</a>
-      <a href="About.dc.html" style="color:#9298A5" style-hover="color:#FFFFFF">About</a>
+      <a href="/knowledge" style="color:#9298A5" style-hover="color:#FFFFFF">Knowledge</a>
+      <a href="/updates" style="color:#9298A5" style-hover="color:#FFFFFF">Updates</a>
+      <a href="/calculators" style="color:#9298A5" style-hover="color:#FFFFFF">Calculators</a>
+      <a href="/about" style="color:#9298A5" style-hover="color:#FFFFFF">About</a>
     </nav>
   </div>
 </header>
@@ -167,8 +167,8 @@ a:hover{color:#A9C4F0}
         </h1>
         <p data-cp="3" style="font-size:clamp(15px,1.3vw,19px);line-height:1.6;color:#B4B9C4;margin:clamp(12px,3vh,28px) 0 0;max-width:460px;opacity:0;text-wrap:pretty">Understand Australian tax through intelligent explanations, practical examples and the latest regulatory developments.</p>
         <div data-cp="4" data-ts="ctas" style="display:flex;flex-wrap:wrap;max-width:100%;gap:12px;margin-top:clamp(16px,3.5vh,36px);opacity:0">
-          <x-import component-from-global-scope="LegalWorksDesignSystem_fbaf45.Button" variant="primary" size="lg" href="Knowledge.dc.html" hint-size="230px,50px">Explore Knowledge</x-import>
-          <x-import component-from-global-scope="LegalWorksDesignSystem_fbaf45.Button" variant="outline" size="lg" on-dark="{{ true }}" href="Updates.dc.html" hint-size="200px,50px">Latest Updates</x-import>
+          <x-import component-from-global-scope="LegalWorksDesignSystem_fbaf45.Button" variant="primary" size="lg" href="/knowledge" hint-size="230px,50px">Explore Knowledge</x-import>
+          <x-import component-from-global-scope="LegalWorksDesignSystem_fbaf45.Button" variant="outline" size="lg" on-dark="{{ true }}" href="/updates" hint-size="200px,50px">Latest Updates</x-import>
         </div>
       </div>
     </div>
@@ -232,7 +232,7 @@ a:hover{color:#A9C4F0}
     <h2 style="font-family:var(--font-display);font-weight:400;font-size:clamp(30px,5.6vw,80px);line-height:1.05;letter-spacing:-0.03em;margin:32px 0 0;color:#F5F5F5;text-wrap:balance">Tax Knowledge Is a Competitive Advantage.</h2>
     <p style="font-size:18px;color:#B4B9C4;margin:26px 0 0">Stay informed. Understand the rules. Make better decisions.</p>
     <div style="margin-top:40px;display:flex;justify-content:center">
-      <x-import component-from-global-scope="LegalWorksDesignSystem_fbaf45.Button" variant="primary" size="lg" href="Knowledge.dc.html" hint-size="240px,50px">Explore Knowledge</x-import>
+      <x-import component-from-global-scope="LegalWorksDesignSystem_fbaf45.Button" variant="primary" size="lg" href="/knowledge" hint-size="240px,50px">Explore Knowledge</x-import>
     </div>
   </div>
 </section>
@@ -240,7 +240,7 @@ a:hover{color:#A9C4F0}
 <footer style="background:#08090C;border-top:1px solid rgba(255,255,255,0.08);padding:40px 0">
   <div style="max-width:1280px;margin:0 auto;padding:0 clamp(18px,5vw,32px);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:12px;color:#6B7180;line-height:1.6">
     <span><span style="font-family:var(--font-display);color:#C9CDD6;font-size:15px;margin-right:12px">{{ brand }}</span>General information only — not tax, legal or financial advice.</span>
-    <span style="display:flex;flex-wrap:wrap;gap:8px 20px"><a href="Knowledge.dc.html" style="color:#9298A5">Knowledge</a><a href="Updates.dc.html" style="color:#9298A5">Updates</a><a href="Calculators.dc.html" style="color:#9298A5">Calculators</a><a href="About.dc.html" style="color:#9298A5">About &amp; contact</a><a href="privacy.html" style="color:#9298A5">Privacy &amp; cookies</a></span>
+    <span style="display:flex;flex-wrap:wrap;gap:8px 20px"><a href="/knowledge" style="color:#9298A5">Knowledge</a><a href="/updates" style="color:#9298A5">Updates</a><a href="/calculators" style="color:#9298A5">Calculators</a><a href="/about" style="color:#9298A5">About &amp; contact</a><a href="/privacy" style="color:#9298A5">Privacy &amp; cookies</a></span>
   </div>
 </footer>
 </div>
@@ -447,7 +447,7 @@ class Component extends DCLogic {
         ['fbt', 'Fringe Benefits Tax', 'The FBT year, taxable value and the car statutory formula.'],
         ['state-taxes', 'State Employer Taxes', 'Payroll tax, workers compensation and portable long service.'],
         ['international', 'International Tax', 'Foreign income and the foreign income tax offset.'],
-      ].map(([k, name, line], i) => ({ name, line, num: String(i + 1).padStart(2, '0'), href: `Knowledge.dc.html#${k}` })),
+      ].map(([k, name, line], i) => ({ name, line, num: String(i + 1).padStart(2, '0'), href: `/knowledge#${k}` })),
     };
   }
 }
