@@ -1,0 +1,29 @@
+name: Prerender pages
+# Refreshes the instant-load copy of each page whenever the site changes (including syncs from Claude Design).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: prerender
+  cancel-in-progress: true
+jobs:
+  prerender:
+    if: "!contains(github.event.head_commit.message, '[prerender]')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm i --no-save playwright@1.49.1 && npx playwright install --with-deps chromium
+      - run: node tools/prerender.mjs
+      - name: Commit refreshed pages
+        run: |
+          if git diff --quiet; then echo "No changes"; exit 0; fi
+          git config user.name "taxsignal-bot"
+          git config user.email "taxsignal-bot@users.noreply.github.com"
+          git commit -am "chore: refresh prerendered pages [prerender]"
+          git push

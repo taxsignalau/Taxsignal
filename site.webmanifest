@@ -4,8 +4,8 @@
   "description": "Australian tax, explained \u2014 guides and free calculators.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#08090C",
-  "theme_color": "#08090C",
+  "background_color": "#0B1612",
+  "theme_color": "#0B1612",
   "icons": [
     {
       "src": "/icon-192.png",

@@ -41,6 +41,11 @@
       "source": "/privacy.html",
       "destination": "/privacy",
       "permanent": true
+    },
+    {
+      "source": "/KeyDates.dc.html",
+      "destination": "/key-dates",
+      "permanent": true
     }
   ],
   "rewrites": [
@@ -63,6 +68,10 @@
     {
       "source": "/privacy",
       "destination": "/privacy.html"
+    },
+    {
+      "source": "/key-dates",
+      "destination": "/KeyDates.dc.html"
     },
     {
       "source": "/paygw-calculator",
@@ -129,6 +138,15 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=604800"
+        }
+      ]
+    },
+    {
+      "source": "/vendor/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000"
         }
       ]
     }
