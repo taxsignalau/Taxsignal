@@ -35,6 +35,10 @@ const server = http.createServer((req, res) => {
 });
 await new Promise(r => server.listen(0, r));
 const base = `http://127.0.0.1:${server.address().port}`;
+// The snapshot must never contain this temporary local address (it changes every run and is
+// meaningless to visitors), so any page that prints its own URL gets the live site's address instead.
+const SITE = 'https://taxsignal.com.au';
+const toLive = s => s.split(base).join(SITE).split(encodeURIComponent(base)).join(encodeURIComponent(SITE));
 
 const browser = await chromium.launch();
 const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: 'no-preference' });
@@ -59,7 +63,7 @@ for (const [file, route] of PAGES) {
     return root.innerHTML;
   });
   const i = src.indexOf(START) + START.length, j = src.indexOf(END);
-  src = src.slice(0, i) + html.replace(/\n{2,}/g, '\n') + src.slice(j);
+  src = src.slice(0, i) + toLive(html).replace(/\n{2,}/g, '\n') + src.slice(j);
   fs.writeFileSync(fp, src);
   console.log('prerendered', file, (html.length / 1024).toFixed(0) + ' KB');
 }
