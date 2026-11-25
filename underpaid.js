@@ -215,7 +215,8 @@
           var note = c.to ? ' (to ' + shortRange(c.to) + ')' : (S.meta && c.from > S.meta.effective ? ' (from ' + shortRange(c.from) + ')' : '');
           return '<option value="' + c.id + '">' + esc(tidyName(c.name) + note) + '</option>';
         }).join('');
-        return p ? '<optgroup label="' + esc(tidyName(p)) + '">' + opts + '</optgroup>' : opts;
+        var pl = /^\d+(\.\d+)?$/.test(p) ? p + '% of the adult rate' : tidyName(p);
+        return p ? '<optgroup label="' + esc(pl) + '">' + opts + '</optgroup>' : opts;
       }).join('');
       sel.disabled = false;
       if (!list.some(function (c) { return c.id === String(S.cls); })) S.cls = list[0].id;
