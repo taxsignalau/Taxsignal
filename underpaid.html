@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Am I Being Underpaid? Award Pay Checker for Every Modern Award | TaxSignal</title>
+<meta name="description" content="Check your pay against the minimum rates in every Australian modern award. Enter your shifts, pick the penalty rate, and see if you may be owed money. Free, no login, rates from the Fair Work Commission.">
+<link rel="canonical" href="https://taxsignal.com.au/am-i-being-underpaid">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0B1612">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TaxSignal">
+<meta property="og:title" content="Am I Being Underpaid? Award pay checker">
+<meta property="og:description" content="Check your shifts against the minimum rates in every Australian modern award. Free, no login.">
+<meta property="og:url" content="https://taxsignal.com.au/am-i-being-underpaid">
+<meta property="og:image" content="https://taxsignal.com.au/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico?v=3" sizes="any">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="manifest" href="/site.webmanifest?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&family=Schibsted+Grotesk:wght@400..800&display=swap">
+<link rel="stylesheet" href="/site.css">
+<link rel="preload" href="/data/awards/index.json" as="fetch" crossorigin>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"Am I Being Underpaid? Award pay checker","url":"https://taxsignal.com.au/am-i-being-underpaid","applicationCategory":"FinanceApplication","operatingSystem":"Any","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"AUD"},"publisher":{"@type":"Organization","name":"TaxSignal","url":"https://taxsignal.com.au"}},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://taxsignal.com.au/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://taxsignal.com.au/tools"},{"@type":"ListItem","position":3,"name":"Am I being underpaid?","item":"https://taxsignal.com.au/am-i-being-underpaid"}]},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do I know which award covers me?","acceptedAnswer":{"@type":"Answer","text":"Your award depends on your employer's industry and the work you do. Search for your job or industry in the checker. If you are unsure, the Fair Work Ombudsman's Find my award tool at services.fairwork.gov.au/find-my-award walks you through it. Some workers are covered by an enterprise agreement instead of an award."}},
+{"@type":"Question","name":"What are penalty rates?","acceptedAnswer":{"@type":"Answer","text":"Penalty rates are higher hourly rates an award sets for work at certain times, such as weekends, public holidays, late nights and early mornings. Each award sets its own rates and times, so a Sunday rate in fast food is different from a Sunday rate in retail or hospitality."}},
+{"@type":"Question","name":"What is casual loading?","acceptedAnswer":{"@type":"Answer","text":"Casual employees don't get paid leave, so most awards pay them a loading on top of the base hourly rate, usually 25%. The casual rates in this checker already include the loading set by your award."}},
+{"@type":"Question","name":"Is this checker's result legal advice?","acceptedAnswer":{"@type":"Answer","text":"No. It is an estimate based on the minimum rates in the Fair Work Commission's Modern Awards Pay Database. It does not cover enterprise agreements, allowances, overtime rules that depend on your roster, or individual arrangements. For a dispute, contact the Fair Work Ombudsman."}},
+{"@type":"Question","name":"What should I do if I think I'm underpaid?","acceptedAnswer":{"@type":"Answer","text":"Check your payslips and timesheets, then raise it with your employer in writing and ask them to explain the rate. If it isn't fixed, the Fair Work Ombudsman can help for free. Generally you can recover unpaid wages from up to six years ago."}}
+]}
+]}
+</script>
+<style>
+/* Page layout: a vertical pay audit ledger, then a printed-style statement. */
+.up{--paper:#EFE8D8;--paper-ink:#0B1612;--paper-2:#5A6159;--paper-rule:rgba(11,22,18,.16)}
+.up-hero{padding-block:clamp(36px,5vw,64px) clamp(28px,4vw,44px);display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:end}
+.up-hero h1{font-size:clamp(42px,7vw,96px);line-height:.96;margin:22px 0 0;text-wrap:balance}
+.up-hero .lead{font-size:clamp(17px,1.6vw,20px);line-height:1.6;color:var(--ivory-2);margin:24px 0 0;max-width:620px}
+.up-stamp{border-top:1px solid var(--brass);padding-top:18px;display:grid;gap:14px}
+.up-stamp .lab{font-size:13px;font-weight:600;color:var(--brass-2)}
+.up-stamp p{margin:0;font-size:15px;line-height:1.6;color:var(--ivory-2)}
+.up-stamp .eff{font-size:clamp(34px,4vw,52px);line-height:1;color:var(--ivory)}
+.up-stamp .row3{display:flex;gap:28px;flex-wrap:wrap}
+.up-stamp .row3 div{display:flex;flex-direction:column;gap:4px}
+.up-stamp .row3 b{font-size:30px;line-height:1}
+.up-stamp .row3 span{font-size:13px;color:var(--ivory-3)}
+
+.ad{display:flex;align-items:center;justify-content:center;box-sizing:border-box;border:1px dashed rgba(238,231,215,.10);color:rgba(238,231,215,.28);font-size:11px;letter-spacing:.08em;text-transform:uppercase;overflow:hidden;margin-inline:auto}
+.ad::before{content:"Advertisement"}
+.ad:not(:empty)::before{content:none}
+.ad-top{min-height:100px;max-width:970px;width:100%}
+.ad-mid,.ad-below{min-height:280px;max-width:970px;width:100%}
+@media (min-width:768px){.ad-top{min-height:90px}.ad-mid,.ad-below{min-height:250px}}
+.ad-wrap{padding-block:8px clamp(28px,4vw,44px)}
+
+.ledger{border-top:1px solid var(--rule-2)}
+.step{display:grid;grid-template-columns:200px minmax(0,1fr);gap:clamp(20px,4vw,56px);padding:clamp(28px,4vw,44px) 0;border-bottom:1px solid var(--rule)}
+.step-h{display:flex;flex-direction:column;gap:10px}
+.step-n{font-size:15px;color:var(--brass);font-weight:600}
+.step-h h2{font-size:clamp(24px,2.4vw,32px);line-height:1.1;margin:0}
+.step-h p{margin:0;font-size:14px;line-height:1.55;color:var(--ivory-3)}
+.step-b{display:flex;flex-direction:column;gap:18px;min-width:0}
+
+.f{display:flex;flex-direction:column;gap:8px;min-width:0}
+.f>label,.f>.l{font-size:13px;font-weight:600;color:var(--ivory-2)}
+.in,.sel{background:var(--ink-2);border:1px solid var(--rule-2);color:var(--ivory);font-size:16px;padding:13px 14px;border-radius:0;width:100%;box-sizing:border-box;min-height:48px;transition:border-color .2s}
+.in:focus,.sel:focus{border-color:var(--brass-2);outline:none}
+.sel{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23C9A866' stroke-width='1.6'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:38px}
+.sel option,.sel optgroup{background:#0F1D17;color:#EEE7D7}
+.in.big{font-size:clamp(20px,2.2vw,26px);padding:16px 18px;min-height:62px}
+.money{position:relative}.money .in{padding-left:30px}
+.money::before{content:"$";position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--ivory-3);font-size:16px}
+.money.big::before{font-size:24px;left:18px}.money.big .in{padding-left:40px}
+.hint{font-size:13px;line-height:1.5;color:var(--ivory-3);margin:0}
+
+.search-res{display:flex;flex-direction:column;border-top:1px solid var(--rule)}
+.search-res button{display:flex;justify-content:space-between;align-items:baseline;gap:20px;text-align:left;background:none;border:0;border-bottom:1px solid var(--rule);color:var(--ivory);padding:14px 2px;font-size:16px;cursor:pointer}
+.search-res button:hover,.search-res button:focus-visible{color:var(--brass-2)}
+.search-res button span{font-size:12px;color:var(--ivory-3);white-space:nowrap}
+.picked{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;background:var(--ink-3);border:1px solid var(--brass-3);padding:16px 18px}
+.picked b{font-size:18px;font-weight:600}
+.picked small{display:block;font-size:12px;color:var(--ivory-3);margin-top:4px}
+.linkbtn{background:none;border:0;padding:0;color:var(--brass-2);font-size:14px;font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.seg{display:flex;flex-wrap:wrap;border:1px solid var(--rule-2);width:max-content;max-width:100%}
+.seg button{background:none;border:0;color:var(--ivory-2);font-size:15px;font-weight:600;padding:12px 18px;cursor:pointer;min-height:46px}
+.seg button+button{border-left:1px solid var(--rule-2)}
+.seg button[aria-pressed="true"]{background:var(--brass);color:var(--ink)}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.notice{border:1px solid rgba(208,138,98,.5);color:#E9B497;padding:12px 14px;font-size:14px;line-height:1.55}
+
+.shifts{display:flex;flex-direction:column;gap:14px}
+.shift{border:1px solid var(--rule-2);background:var(--ink-2);padding:16px;display:grid;gap:14px}
+.shift-top{display:grid;grid-template-columns:1.3fr 1fr 1fr .8fr auto;gap:12px;align-items:end}
+.shift-top .in,.shift .sel{min-height:46px;padding:11px 12px;font-size:15px}
+.shift .f>label{font-size:12px}
+.x{background:none;border:1px solid var(--rule-2);color:var(--ivory-3);width:46px;height:46px;cursor:pointer;font-size:20px;line-height:1}
+.x:hover{color:var(--rust);border-color:var(--rust)}
+.shift-meta{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font-size:13px;color:var(--ivory-3)}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:4px 9px;border:1px solid currentColor}
+.chip.ph{color:#E9B497}.chip.sg{color:var(--sage)}
+.mchips{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.shift-meta .amt{margin-left:auto;font-size:20px;color:var(--ivory)}
+.split{display:grid;grid-template-columns:140px minmax(0,1fr);gap:12px;align-items:end;border-top:1px dashed var(--rule-2);padding-top:12px}
+.custom{display:grid;grid-template-columns:200px;gap:8px}
+.adds{display:flex;flex-wrap:wrap;gap:12px}
+
+.stmt{background:var(--paper);color:var(--paper-ink);margin:clamp(28px,4vw,48px) 0;box-shadow:0 30px 80px -40px rgba(0,0,0,.8)}
+.stmt-in{padding:clamp(22px,4vw,52px)}
+.stmt h2,.stmt h3{color:var(--paper-ink)}
+.stmt-head{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-bottom:2px solid var(--paper-ink);padding-bottom:16px}
+.stmt-head .t{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.stmt-head .who{font-size:14px;color:var(--paper-2);line-height:1.5;max-width:640px}
+.verdict{padding:clamp(22px,3vw,34px) 0 8px}
+.verdict .k{font-size:15px;font-weight:600;color:var(--paper-2)}
+.verdict .v{font-size:clamp(52px,9vw,112px);line-height:.92;margin-top:8px;letter-spacing:-.03em}
+.verdict .v.owed{color:#8A3B16}
+.verdict .v.ok{color:#22543A}
+.verdict p{margin:12px 0 0;font-size:16px;line-height:1.55;color:#2A332D;max-width:640px}
+.tot{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--paper-rule);border-bottom:1px solid var(--paper-rule);margin-top:22px}
+.tot div{padding:16px 14px 16px 0;display:flex;flex-direction:column;gap:6px}
+.tot div+div{padding-left:16px;border-left:1px solid var(--paper-rule)}
+.tot span{font-size:12px;font-weight:600;color:var(--paper-2)}
+.tot b{font-size:clamp(24px,3vw,34px);line-height:1}
+.tbl-wrap{overflow-x:auto;margin-top:26px}
+.tbl{width:100%;border-collapse:collapse;font-size:14px;min-width:680px}
+.tbl th{text-align:left;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--paper-2);padding:10px 10px 10px 0;border-bottom:1px solid var(--paper-ink)}
+.tbl td{padding:12px 10px 12px 0;border-bottom:1px solid var(--paper-rule);vertical-align:top}
+.tbl td.n,.tbl th.n{text-align:right}
+.tbl td small{display:block;color:var(--paper-2);font-size:12px;margin-top:2px}
+.tbl tfoot td{font-weight:700;border-bottom:0;border-top:2px solid var(--paper-ink)}
+.stmt-act{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.stmt-act button{font-size:15px;font-weight:600;padding:13px 20px;cursor:pointer;border:1px solid var(--paper-ink)}
+.stmt-act .dark{background:var(--paper-ink);color:var(--paper)}
+.stmt-act .lite{background:transparent;color:var(--paper-ink)}
+.stmt-note{margin:20px 0 0;font-size:13px;line-height:1.6;color:var(--paper-2)}
+.stmt-note a{color:#6B4F17;text-decoration:underline}
+.stmt-empty{font-size:16px;color:var(--paper-2);padding:28px 0 6px}
+
+.explain{padding-block:clamp(44px,6vw,88px);border-top:1px solid var(--rule)}
+.explain h2{font-size:clamp(30px,3.6vw,48px);line-height:1.04;margin:16px 0 0;max-width:760px}
+.ex-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,4vw,56px);margin-top:40px}
+.ex-cols h3{font-size:21px;margin:0 0 12px}
+.ex-cols p{margin:0 0 12px;font-size:16px;line-height:1.7;color:var(--ivory-2)}
+.faq{padding-block:clamp(40px,5vw,72px) clamp(56px,7vw,96px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:clamp(24px,5vw,72px)}
+.faq h2{font-size:clamp(28px,3.2vw,42px);line-height:1.05;margin:16px 0 0}
+.faq details{border-top:1px solid var(--rule)}
+.faq details:last-child{border-bottom:1px solid var(--rule)}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;padding:20px 0;font-size:18px;font-weight:600}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--brass);font-size:22px;line-height:1}
+.faq details[open] summary::after{content:"\2212"}
+.faq details p{margin:0 0 22px;font-size:16px;line-height:1.7;color:var(--ivory-2);max-width:720px}
+
+@media (max-width:900px){
+  .up-hero,.faq{grid-template-columns:1fr}
+  .step{grid-template-columns:1fr;gap:18px}
+  .ex-cols{grid-template-columns:1fr}
+  .tot{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tot div:nth-child(3){padding-left:0;border-left:0}
+  .tot div:nth-child(n+3){border-top:1px solid var(--paper-rule)}
+}
+@media (max-width:640px){
+  .shift-top{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .shift-top .f:first-child{grid-column:1/-1}
+  .shift-top .x{grid-column:2;justify-self:end}
+  .grid2{grid-template-columns:1fr}
+  .split{grid-template-columns:1fr}
+  .custom{grid-template-columns:1fr}
+  .tbl{min-width:0;font-size:13px}
+  .tbl th:nth-child(4),.tbl td:nth-child(4){display:none}
+  .tbl td:nth-child(3) small{display:none}
+  .tbl th,.tbl td{padding-right:8px}
+  .tbl td:first-child{white-space:nowrap}
+}
+@media print{
+  .up-hero .up-stamp,.ad,.ledger,.explain,.faq,.ad-wrap,.stmt-act{display:none!important}
+  .stmt{box-shadow:none;margin:0}
+}
+</style>
+<script src="/news.js" defer></script>
+<script src="/consent.js" defer></script>
+<script src="/underpaid.js" defer></script>
+</head>
+<body class="up">
+<header class="mast">
+  <div class="wrap mast-row">
+    <a class="logo" href="/"><i aria-hidden="true"><span style="height:7px;background:#8E7543"></span><span style="height:12px;background:#C9A866"></span><span style="height:18px;background:#E0C891"></span></i><b>TaxSignal</b></a>
+    <nav class="nav" aria-label="Main"><a href="/knowledge">Knowledge</a><a href="/updates">Updates</a><a href="/calculators">Calculators</a><a href="/tools" class="on" aria-current="page">Tools</a><a href="/key-dates">Key dates</a><a href="/about">About</a></nav>
+    <span class="mast-date fig hide-sm" data-static-date></span>
+  </div>
+  <div class="ts-ticker" role="region" aria-label="Latest tax changes">
+    <span class="ts-ticker-label">Latest<span>&nbsp;changes</span></span>
+    <div class="ts-ticker-view"><div class="ts-track" data-static-ticker></div></div>
+  </div>
+</header>
+
+<main>
+  <section class="wrap up-hero">
+    <div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/tools">Tools</a><span aria-hidden="true">/</span><span>Am I being underpaid?</span></nav>
+      <h1>Am I being underpaid?</h1>
+      <p class="lead">Check your shifts against the minimum rates in your modern award. Pick your award, add your shifts, and compare the award minimum with what your payslip says. No login, and nothing you enter leaves your device.</p>
+    </div>
+    <aside class="up-stamp" aria-label="Data source">
+      <span class="lab">Rate data</span>
+      <span class="eff fig" id="stampEff">1 July 2026</span>
+      <p id="stampTxt">Rates from the Fair Work Commission Modern Awards Pay Database, effective 1 July 2026. Includes later changes operative from 1 August, 1 October and 1 December 2026.</p>
+      <div class="row3"><div><b class="fig" id="stampN">155</b><span>modern awards</span></div><div><b class="fig">12%</b><span>super guarantee</span></div></div>
+    </aside>
+  </section>
+
+  <div class="wrap ad-wrap"><div class="ad ad-top" id="ad-top" aria-hidden="true"></div></div>
+
+  <section class="wrap" aria-label="Pay checker">
+    <noscript><p class="notice">The checker needs JavaScript. You can still read the guide below.</p></noscript>
+    <div class="ledger" id="app">
+      <div class="step">
+        <div class="step-h"><span class="step-n fig">Step 1</span><h2>Your award</h2><p>Search by industry or job title.</p></div>
+        <div class="step-b">
+          <div id="awardPick">
+            <div class="f">
+              <label for="q">Search all modern awards</label>
+              <input class="in big" id="q" type="search" autocomplete="off" placeholder="Try fast food, nurse, cleaner, retail" aria-controls="res">
+            </div>
+            <div class="search-res" id="res" role="list"></div>
+          </div>
+          <div class="picked" id="picked" hidden><div><b id="pickedName"></b><small id="pickedCode"></small></div><button type="button" class="linkbtn" id="change">Change award</button></div>
+          <p class="hint">Not sure which award? <a href="https://services.fairwork.gov.au/find-my-award" target="_blank" rel="noopener">Use the Fair Work Ombudsman's award finder</a>.</p>
+        </div>
+      </div>
+
+      <div class="step" id="stepYou">
+        <div class="step-h"><span class="step-n fig">Step 2</span><h2>About you</h2><p>Your employment type and classification set the base rate.</p></div>
+        <div class="step-b">
+          <div class="f"><span class="l">Employment type</span><div class="seg" id="emp" role="group" aria-label="Employment type"><button type="button" data-v="casual" aria-pressed="true">Casual</button><button type="button" data-v="pt" aria-pressed="false">Part-time</button><button type="button" data-v="ft" aria-pressed="false">Full-time</button></div></div>
+          <div class="f" id="catWrap" hidden><span class="l">Rate category</span><div class="seg" id="cat" role="group" aria-label="Rate category"></div><p class="hint">Junior rates apply to employees under 21 in awards that have them.</p></div>
+          <div class="f"><label for="cls">Classification</label><select class="sel" id="cls" disabled><option>Choose an award first</option></select><p class="hint" id="clsHint">Your classification is usually on your contract or payslip. Ask your employer if it isn't.</p></div>
+          <p class="notice" id="noPen" hidden></p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-h"><span class="step-n fig">Step 3</span><h2>Your shifts</h2><p>Add each shift from one week or fortnight. We suggest a rate from the day and time. Check it against your award, as time windows differ.</p></div>
+        <div class="step-b">
+          <div class="shifts" id="shifts"></div>
+          <div class="adds"><button type="button" class="btn" id="addShift">Add a shift <i>+</i></button><button type="button" class="btn ghost" id="addNext">Copy to next day</button></div>
+          <p class="hint">Victorian public holidays are flagged automatically. Interstate? Pick the public holiday rate yourself. Overtime depends on your roster, so choose an overtime rate only for hours your award treats as overtime.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-h"><span class="step-n fig">Step 4</span><h2>Your payslip</h2><p>Use the gross amount for these shifts, before tax and super.</p></div>
+        <div class="step-b">
+          <div class="f"><label for="paid">What you were paid for these shifts</label><div class="money big"><input class="in big fig" id="paid" inputmode="decimal" placeholder="0.00" autocomplete="off"></div></div>
+          <p class="hint">Exclude allowances, reimbursements and super. If your payslip covers more shifts than you entered here, add the missing shifts first.</p>
+        </div>
+      </div>
+    </div>
+
+    <section class="stmt" id="stmt" aria-live="polite">
+      <div class="stmt-in">
+        <div class="stmt-head"><span class="t">Pay check statement</span><span class="who" id="who">Choose your award to start.</span></div>
+        <div id="stmtBody"><p class="stmt-empty">Your result appears here once you've picked an award and added a shift.</p></div>
+        <div class="stmt-act"><button type="button" class="dark" id="copy">Copy result</button><button type="button" class="lite" id="pdf">Download PDF summary</button></div>
+        <p class="stmt-note">This is an estimate of award minimums only. It doesn't cover enterprise agreements, allowances or every award rule. For a dispute, check with the Fair Work Ombudsman at <a href="https://fairwork.gov.au/workplace-problems/common-workplace-problems/my-pay-doesnt-seem-right" target="_blank" rel="noopener">fairwork.gov.au</a>. <span id="srcLine">Rates from the Fair Work Commission Modern Awards Pay Database, effective 1 July 2026.</span></p>
+      </div>
+    </section>
+  </section>
+
+  <div class="wrap ad-wrap"><div class="ad ad-below" id="ad-below" aria-hidden="true"></div></div>
+
+  <section class="wrap explain">
+    <p class="kick">The guide</p>
+    <h2>Penalty rates, casual loading, and what to do if the numbers don't match.</h2>
+    <div class="ex-cols">
+      <div>
+        <h3>Penalty rates</h3>
+        <p>Awards pay more for work at times most people are off: weekends, public holidays, late nights and early mornings. Each award sets its own rates and its own time windows. A Sunday in fast food is not paid the same as a Sunday in retail or hospitality.</p>
+        <p>That's why this checker lists the rates straight from your award, and lets you choose which one applies to each shift.</p>
+      </div>
+      <div>
+        <h3>Casual loading</h3>
+        <p>Casual employees don't get paid leave, so most awards add a loading to the base hourly rate, usually 25%. Casual penalty rates in most awards already include it.</p>
+        <p>The casual rates in this checker come from the award data and already include the loading your award sets.</p>
+      </div>
+      <div>
+        <h3>If you think you're underpaid</h3>
+        <p>Keep your payslips, rosters and any record of the hours you worked. Ask your employer, in writing, which award and classification they pay you under and how your pay was worked out.</p>
+        <p>If it isn't fixed, the <a href="https://fairwork.gov.au/workplace-problems/common-workplace-problems/my-pay-doesnt-seem-right" target="_blank" rel="noopener">Fair Work Ombudsman</a> can help for free. You can generally claim unpaid wages for up to six years.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap ad-wrap"><div class="ad ad-mid" id="ad-mid" aria-hidden="true"></div></div>
+
+  <section class="wrap faq">
+    <div><p class="kick">Questions</p><h2>Common questions about award pay.</h2></div>
+    <div>
+      <details><summary>How do I know which award covers me?</summary><p>Your award depends on your employer's industry and the work you do. Search for your job or industry in the checker. If you're unsure, the Fair Work Ombudsman's <a href="https://services.fairwork.gov.au/find-my-award" target="_blank" rel="noopener">Find my award</a> tool walks you through it. Some workers are covered by an enterprise agreement instead of an award.</p></details>
+      <details><summary>What are penalty rates?</summary><p>Penalty rates are higher hourly rates an award sets for work at certain times, such as weekends, public holidays, late nights and early mornings. Each award sets its own rates and times, so a Sunday rate in fast food is different from a Sunday rate in retail or hospitality.</p></details>
+      <details><summary>What is casual loading?</summary><p>Casual employees don't get paid leave, so most awards pay them a loading on top of the base hourly rate, usually 25%. The casual rates in this checker already include the loading set by your award.</p></details>
+      <details><summary>Is this checker's result legal advice?</summary><p>No. It's an estimate based on the minimum rates in the Fair Work Commission's Modern Awards Pay Database. It doesn't cover enterprise agreements, allowances, overtime rules that depend on your roster, or individual arrangements. For a dispute, contact the Fair Work Ombudsman.</p></details>
+      <details><summary>What should I do if I think I'm underpaid?</summary><p>Check your payslips and timesheets, then raise it with your employer in writing and ask them to explain the rate. If it isn't fixed, the Fair Work Ombudsman can help for free. Generally you can recover unpaid wages from up to six years ago.</p></details>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="logo" href="/"><i aria-hidden="true" style="grid-template-columns:repeat(3,5px);gap:4px;height:24px"><span style="height:9px;background:#8E7543"></span><span style="height:16px;background:#C9A866"></span><span style="height:24px;background:#E0C891"></span></i><b style="font-size:26px">TaxSignal</b></a>
+        <p style="font-size:15px;color:var(--ivory-2);margin:18px 0 0;line-height:1.6">Cutting through the tax noise. Plain-English explanations of Australian tax, built on the legislation and ATO guidance.</p>
+      </div>
+      <div class="foot-col"><strong>Knowledge</strong><a href="/knowledge#gst">GST</a><a href="/knowledge#fbt">Fringe benefits tax</a><a href="/knowledge#super">Superannuation</a><a href="/knowledge">All subjects</a></div>
+      <div class="foot-col"><strong>Calculators &amp; tools</strong><a href="/paygw-calculator">PAYG withholding</a><a href="/gst-calculator">GST</a><a href="/am-i-being-underpaid">Pay checker</a><a href="/invoice-maker">Invoice maker</a><a href="/calculators">All calculators</a></div>
+      <div class="foot-col"><strong>TaxSignal</strong><a href="/updates">Updates</a><a href="/key-dates">Key dates</a><a href="/about">About &amp; standards</a><a href="mailto:hello@taxsignal.com.au">Contact</a><a href="/privacy">Privacy &amp; cookies</a></div>
+    </div>
+    <div class="foot-base"><span>© 2026 TaxSignal. General information only, not tax, legal or financial advice. Not affiliated with the Australian Taxation Office or the Fair Work Ombudsman.</span><span>Independent Australian publisher · Melbourne, Australia · <span class="fig" style="font-size:14px">Edition 2026–27</span></span></div>
+  </div>
+</footer>
+</body>
+</html>

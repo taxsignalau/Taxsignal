@@ -2,8 +2,8 @@
    Edit this one file to change the moving headlines on every page.
    s = status label, t = headline, d = date, href = where it links. Newest / most important first. */
 window.TS_NEWS = [
+  { s: 'Passed Senate', t: 'Trust tax: the Senate passes the 30% minimum tax with testamentary trust amendments. It goes back to the House next', d: '25 Nov 2026', href: '/updates#discretionary-trusts' },
   { s: 'In effect', t: 'Payday Super has started, super guarantee must now reach the fund within 7 business days of each payday', d: '1 Jul 2026', href: '/updates#payday-super' },
-  { s: 'Before the Senate', t: 'Discretionary trusts: a 30% minimum tax on trust net income passed the House on 29 October', d: 'Proposed from 1 Jul 2028', href: '/updates#discretionary-trusts' },
   { s: 'ATO', t: 'ATO says super mismatch letters sent to more than 150,000 employers “do not create a debt”', d: '16 Nov 2026', href: '/updates#payday-super' },
   { s: 'Law', t: 'Capital gains: the 50% CGT discount is replaced by cost base indexation and a 30% minimum tax on gains', d: 'From 1 Jul 2027', href: '/updates#cgt-negative-gearing' },
   { s: 'Law', t: 'Negative gearing limited to new builds, properties held before 7:30pm, 12 May 2026 are grandfathered', d: 'From 1 Jul 2027', href: '/updates#cgt-negative-gearing' },

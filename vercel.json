@@ -46,9 +46,46 @@
       "source": "/KeyDates.dc.html",
       "destination": "/key-dates",
       "permanent": true
+    },
+    {
+      "source": "/underpaid.html",
+      "destination": "/am-i-being-underpaid",
+      "permanent": true
+    },
+    {
+      "source": "/underpaid",
+      "destination": "/am-i-being-underpaid",
+      "permanent": true
+    },
+    {
+      "source": "/tools.html",
+      "destination": "/tools",
+      "permanent": true
+    },
+    {
+      "source": "/invoice.html",
+      "destination": "/invoice-maker",
+      "permanent": true
+    },
+    {
+      "source": "/invoice",
+      "destination": "/invoice-maker",
+      "permanent": true
     }
   ],
   "rewrites": [
+    {
+      "source": "/tools",
+      "destination": "/tools.html"
+    },
+    {
+      "source": "/invoice-maker",
+      "destination": "/invoice.html"
+    },
+    {
+      "source": "/am-i-being-underpaid",
+      "destination": "/underpaid.html"
+    },
     {
       "source": "/calculators",
       "destination": "/Calculators.dc.html"
@@ -147,6 +184,15 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=2592000"
+        }
+      ]
+    },
+    {
+      "source": "/data/awards/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
         }
       ]
     }
