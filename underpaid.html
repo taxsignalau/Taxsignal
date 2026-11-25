@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Am I Being Underpaid? Award Pay Checker for Every Modern Award | TaxSignal</title>
-<meta name="description" content="Check your pay against the minimum rates in every Australian modern award. Enter your shifts, pick the penalty rate, and see if you may be owed money. Free, no login, rates from the Fair Work Commission.">
+<meta name="description" content="See your minimum hourly, Saturday, Sunday and public holiday rates under any Australian modern award, then check your shifts and payslip. Free, no login, rates from the Fair Work Commission.">
 <link rel="canonical" href="https://taxsignal.com.au/am-i-being-underpaid">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#0B1612">
@@ -100,6 +100,26 @@
 .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 .notice{border:1px solid rgba(208,138,98,.5);color:#E9B497;padding:12px 14px;font-size:14px;line-height:1.55}
 
+.rc{border:1px solid var(--brass-3);background:var(--ink-3);padding:clamp(16px,2.4vw,24px);display:grid;gap:18px}
+.rc-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.rc-head h3{margin:0 0 6px;font-size:20px}
+.rc-date{width:180px}
+.rc-date .in{min-height:44px;padding:10px 12px;font-size:15px}
+.rc-grp{font-size:12px;font-weight:700;color:var(--brass-2);padding:14px 0 6px;border-bottom:1px solid var(--rule-2)}
+.rc-grp:first-child{padding-top:0}
+.rc-row{display:grid;grid-template-columns:minmax(0,1fr) 64px 110px;gap:12px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--rule);font-size:15px}
+.rc-row .p{color:var(--ivory-3);text-align:right;font-size:14px}
+.rc-row .v{text-align:right;font-size:20px;color:var(--ivory)}
+.rc-row.key .v{color:var(--brass-2)}
+.rc-more{background:none;border:0;padding:10px 0 0;color:var(--brass-2);font-weight:600;font-size:14px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.rc-check{display:grid;grid-template-columns:200px minmax(0,1fr);gap:14px;align-items:end}
+.rc-res{margin:0;font-size:16px;line-height:1.55;min-height:1.55em}
+.rc-res b{font-weight:700}
+.rc-res.bad{color:#E9B497}.rc-res.good{color:var(--sage)}
+@media (max-width:640px){.rc-check{grid-template-columns:minmax(0,1fr)}.rc-date{width:100%}
+  .rc-row{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"l l" "p v";gap:2px 12px;font-size:14px}
+  .rc-row span:first-child{grid-area:l}.rc-row .p{grid-area:p;text-align:left}.rc-row .v{grid-area:v;font-size:18px}}
+@media (max-width:380px){.shift-top .in{font-size:14px;padding:10px 6px}.shift{padding:12px}.shift-top{gap:8px}.shift-top input[type=time]::-webkit-calendar-picker-indicator{margin:0;padding:0;width:14px}}
 .shifts{display:flex;flex-direction:column;gap:14px}
 .shift{border:1px solid var(--rule-2);background:var(--ink-2);padding:16px;display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
 .shift-top{display:grid;grid-template-columns:1.3fr 1fr 1fr .8fr auto;gap:12px;align-items:end}
@@ -211,7 +231,7 @@
     <div>
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/tools">Tools</a><span aria-hidden="true">/</span><span>Am I being underpaid?</span></nav>
       <h1>Am I being underpaid?</h1>
-      <p class="lead">Check your shifts against the minimum rates in your modern award. Pick your award, add your shifts, and compare the award minimum with what your payslip says. No login, and nothing you enter leaves your device.</p>
+      <p class="lead">See the minimum hourly rate for every day and time under your modern award, then check your shifts against your payslip. No login, and nothing you enter leaves your device.</p>
     </div>
     <aside class="up-stamp" aria-label="Data source">
       <span class="lab">Rate data</span>
@@ -241,12 +261,24 @@
       </div>
 
       <div class="step" id="stepYou">
-        <div class="step-h"><span class="step-n fig">Step 2</span><h2>About you</h2><p>Your employment type and classification set the base rate.</p></div>
+        <div class="step-h"><span class="step-n fig">Step 2</span><h2>About you</h2><p>Your employment type and classification set your rates. Your full rate card appears below.</p></div>
         <div class="step-b">
           <div class="f"><span class="l">Employment type</span><div class="seg" id="emp" role="group" aria-label="Employment type"><button type="button" data-v="casual" aria-pressed="true">Casual</button><button type="button" data-v="pt" aria-pressed="false">Part-time</button><button type="button" data-v="ft" aria-pressed="false">Full-time</button></div></div>
           <div class="f" id="catWrap" hidden><span class="l">Rate category</span><div class="seg" id="cat" role="group" aria-label="Rate category"></div><p class="hint">Junior rates apply to employees under 21 in awards that have them.</p></div>
           <div class="f"><label for="cls">Classification</label><select class="sel" id="cls" disabled><option>Choose an award first</option></select><p class="hint" id="clsHint">Your classification is usually on your contract or payslip. Ask your employer if it isn't.</p></div>
           <p class="notice" id="noPen" hidden></p>
+          <div class="rc" id="rc" hidden>
+            <div class="rc-head">
+              <div><h3>Your minimum hourly rates</h3><p class="hint" id="rcSub">From your award, for the employment type and classification above.</p></div>
+              <div class="f rc-date"><label for="rcDate">Rates as at</label><input class="in" type="date" id="rcDate"></div>
+            </div>
+            <div class="rc-tbl" id="rcTbl"></div>
+            <div class="rc-check">
+              <div class="f"><label for="rcMine">Hourly rate on your payslip</label><div class="money"><input class="in fig" id="rcMine" inputmode="decimal" placeholder="0.00" autocomplete="off"></div></div>
+              <div class="f"><label for="rcType">Compare it with</label><select class="sel" id="rcType"></select></div>
+            </div>
+            <p class="rc-res" id="rcRes" aria-live="polite"></p>
+          </div>
         </div>
       </div>
 

@@ -157,6 +157,47 @@
     return m.key;
   }
 
+
+  /* ---------- Rate card: every minimum hourly rate for this person ---------- */
+  var rcOpen = false;
+  function renderRates() {
+    var box = $('rc');
+    if (!S.doc || S.cls == null) { box.hidden = true; return; }
+    var dt = $('rcDate'); if (!dt.value) dt.value = iso(new Date());
+    var opts = options(dt.value);
+    box.hidden = false;
+    if (!opts.length) {
+      $('rcTbl').innerHTML = '<p class="hint">' + (S.doc.rows.length || S.doc.base.length ? 'The pay database has no rates for this classification on this date. Try another date or classification.' : 'The pay database has no hourly rates for this award. Check the award itself for your rates.') + '</p>';
+      $('rcType').innerHTML = ''; rcResult(); return;
+    }
+    var main = opts.filter(function (o) { return !isOT(o) && !o.shift; }), rest = opts.filter(function (o) { return isOT(o) || o.shift; });
+    var KEY = /^ordinary|saturday|sunday|public holiday/i;
+    function rows(list) {
+      var html = '', g = null;
+      list.forEach(function (o) {
+        if (o.group !== g) { g = o.group; html += '<div class="rc-grp">' + esc(g) + '</div>'; }
+        html += '<div class="rc-row' + (KEY.test(o.label) ? ' key' : '') + '"><span>' + esc(o.label) + '</span><span class="p fig">' + (o.pct != null ? o.pct + '%' : '') + '</span><span class="v fig">' + money(o.val) + '</span></div>';
+      });
+      return html;
+    }
+    $('rcTbl').innerHTML = rows(main.length ? main : opts) +
+      (main.length && rest.length ? (rcOpen ? rows(rest) + '<button type="button" class="rc-more" id="rcLess">Hide overtime and shiftwork rates</button>' : '<button type="button" class="rc-more" id="rcMore">Show overtime and shiftwork rates (' + rest.length + ')</button>') : '');
+    var sel = $('rcType'), cur = sel.value;
+    sel.innerHTML = opts.map(function (o) { return '<option value="' + o.key + '">' + esc(o.label) + ' · ' + money(o.val) + '</option>'; }).join('');
+    if (opts.some(function (o) { return o.key === cur; })) sel.value = cur;
+    else { var ord = opts.find(function (o) { return /^ordinary/i.test(o.label) && !isOT(o); }); if (ord) sel.value = ord.key; }
+    $('rcSub').textContent = (S.emp === 'casual' ? 'Casual rates include the casual loading. ' : '') + 'Per hour, before tax, from the Fair Work Commission pay database.';
+    rcResult();
+  }
+  function rcResult() {
+    var el = $('rcRes'), mine = num($('rcMine').value), o = options($('rcDate').value || iso(new Date())).find(function (x) { return x.key === $('rcType').value; });
+    el.className = 'rc-res';
+    if (mine == null || !o) { el.textContent = o ? 'Enter the hourly rate from your payslip to compare it.' : ''; return; }
+    var d = r2(o.val - mine);
+    if (d > 0.004) { el.className = 'rc-res bad'; el.innerHTML = 'That\'s <b>' + money(d) + ' an hour below</b> the minimum of ' + money(o.val) + ' (' + esc(o.label) + '). Over 10 hours that adds up to ' + money(r2(d * 10)) + '.'; }
+    else { el.className = 'rc-res good'; el.innerHTML = 'That\'s <b>at or above</b> the minimum of ' + money(o.val) + ' (' + esc(o.label) + ').'; }
+  }
+
   /* ---------- Rendering: step 2 ---------- */
   function renderYou() {
     var cats = categories();
@@ -187,6 +228,7 @@
         ? 'The pay database has no hourly rates for this award, only weekly or annual salaries. Use "Other rate from my award" on each shift and enter the hourly rate from the award.'
         : 'The pay database has no penalty rates for this award, only minimum hourly rates. ' + (S.emp === 'casual' ? 'It also has no casual rates for it, so use "Other rate from my award" and enter the casual rate from the award. ' : '') + 'For weekend, public holiday or evening work, enter the rate from the award with "Other rate from my award".';
     } else note.hidden = true;
+    renderRates();
   }
   function shortRange(s) { var d = pd(s); return d.getDate() + ' ' + MON[d.getMonth()] + ' ' + d.getFullYear(); }
 
@@ -363,7 +405,11 @@
     $('change').addEventListener('click', function () { $('awardPick').hidden = false; $('picked').hidden = true; q.focus(); q.select(); });
     $('emp').addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; S.emp = b.dataset.v; if (S.doc) { renderYou(); S.shifts.forEach(function (s) { s.manual = false; }); renderShifts(); } else renderYou0(); });
     $('cat').addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; S.cat = b.dataset.v; S.cls = null; renderYou(); S.shifts.forEach(function (s) { s.manual = false; }); renderShifts(); });
-    $('cls').addEventListener('change', function () { S.cls = this.value; S.shifts.forEach(function (s) { s.manual = false; }); renderShifts(); });
+    $('cls').addEventListener('change', function () { S.cls = this.value; S.shifts.forEach(function (s) { s.manual = false; }); renderShifts(); renderRates(); });
+    $('rcDate').addEventListener('change', renderRates);
+    $('rcMine').addEventListener('input', rcResult);
+    $('rcType').addEventListener('change', rcResult);
+    $('rc').addEventListener('click', function (e) { if (e.target.id === 'rcMore') { rcOpen = true; renderRates(); } else if (e.target.id === 'rcLess') { rcOpen = false; renderRates(); } });
     $('addShift').addEventListener('click', function () { addShift(); var l = $('shifts').lastElementChild; if (l) l.querySelector('input').focus(); });
     $('addNext').addEventListener('click', addNext);
     $('paid').addEventListener('input', renderResult);
