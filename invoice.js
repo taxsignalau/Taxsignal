@@ -297,7 +297,7 @@
       b.addEventListener('click', function () {
         $('ivApp').dataset.view = b.dataset.view;
         Array.prototype.forEach.call(document.querySelectorAll('.iv-switch button'), function (x) { x.setAttribute('aria-pressed', String(x === b)); });
-        var top = $('ivApp').getBoundingClientRect().top + scrollY - 170; if (scrollY > top) scrollTo({ top: top });
+        var sw = document.querySelector('.iv-switch'), mast = document.querySelector('.mast'); var top = sw.getBoundingClientRect().top + scrollY - (mast ? mast.offsetHeight : 0) - 12; if (scrollY > top) scrollTo({ top: top });
       });
     });
   }

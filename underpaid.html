@@ -52,8 +52,13 @@
 .up-stamp .row3 b{font-size:30px;line-height:1}
 .up-stamp .row3 span{font-size:13px;color:var(--ivory-3)}
 
-.ad{display:flex;align-items:center;justify-content:center;box-sizing:border-box;border:1px dashed rgba(238,231,215,.10);color:rgba(238,231,215,.28);font-size:11px;letter-spacing:.08em;text-transform:uppercase;overflow:hidden;margin-inline:auto}
-.ad::before{content:"Advertisement"}
+.ad{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;box-sizing:border-box;border:1px dashed rgba(201,168,102,.35);color:var(--ivory-3);text-align:center;padding:24px 20px;overflow:hidden;margin-inline:auto;text-decoration:none}
+.ad::before{content:"Advertise your business";font-size:18px;font-weight:600;color:var(--brass-2)}
+.ad-house{min-height:150px;max-width:970px;width:100%;transition:border-color .2s,background-color .2s}
+.ad-house:hover,.ad-house:focus-visible{border-color:var(--brass);background-color:rgba(201,168,102,.05)}
+.ad-house b{font-size:clamp(18px,2vw,22px);font-weight:600;letter-spacing:-.01em;color:var(--brass-2)}
+.ad-house span{font-size:14px;line-height:1.55;color:var(--ivory-3);max-width:460px}
+.ad-house u{color:var(--ivory-2);text-underline-offset:3px}
 .ad:not(:empty)::before{content:none}
 .ad-top{min-height:100px;max-width:970px;width:100%}
 .ad-mid,.ad-below{min-height:280px;max-width:970px;width:100%}
@@ -96,7 +101,7 @@
 .notice{border:1px solid rgba(208,138,98,.5);color:#E9B497;padding:12px 14px;font-size:14px;line-height:1.55}
 
 .shifts{display:flex;flex-direction:column;gap:14px}
-.shift{border:1px solid var(--rule-2);background:var(--ink-2);padding:16px;display:grid;gap:14px}
+.shift{border:1px solid var(--rule-2);background:var(--ink-2);padding:16px;display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
 .shift-top{display:grid;grid-template-columns:1.3fr 1fr 1fr .8fr auto;gap:12px;align-items:end}
 .shift-top .in,.shift .sel{min-height:46px;padding:11px 12px;font-size:15px}
 .shift .f>label{font-size:12px}
@@ -159,9 +164,9 @@
 .faq details p{margin:0 0 22px;font-size:16px;line-height:1.7;color:var(--ivory-2);max-width:720px}
 
 @media (max-width:900px){
-  .up-hero,.faq{grid-template-columns:1fr}
-  .step{grid-template-columns:1fr;gap:18px}
-  .ex-cols{grid-template-columns:1fr}
+  .up-hero,.faq{grid-template-columns:minmax(0,1fr)}
+  .step{grid-template-columns:minmax(0,1fr);gap:18px}
+  .ex-cols{grid-template-columns:minmax(0,1fr)}
   .tot{grid-template-columns:repeat(2,minmax(0,1fr))}
   .tot div:nth-child(3){padding-left:0;border-left:0}
   .tot div:nth-child(n+3){border-top:1px solid var(--paper-rule)}
@@ -170,9 +175,9 @@
   .shift-top{grid-template-columns:repeat(2,minmax(0,1fr))}
   .shift-top .f:first-child{grid-column:1/-1}
   .shift-top .x{grid-column:2;justify-self:end}
-  .grid2{grid-template-columns:1fr}
-  .split{grid-template-columns:1fr}
-  .custom{grid-template-columns:1fr}
+  .grid2{grid-template-columns:minmax(0,1fr)}
+  .split{grid-template-columns:minmax(0,1fr)}
+  .custom{grid-template-columns:minmax(0,1fr)}
   .tbl{min-width:0;font-size:13px}
   .tbl th:nth-child(4),.tbl td:nth-child(4){display:none}
   .tbl td:nth-child(3) small{display:none}
@@ -216,7 +221,6 @@
     </aside>
   </section>
 
-  <div class="wrap ad-wrap"><div class="ad ad-top" id="ad-top" aria-hidden="true"></div></div>
 
   <section class="wrap" aria-label="Pay checker">
     <noscript><p class="notice">The checker needs JavaScript. You can still read the guide below.</p></noscript>
@@ -274,7 +278,7 @@
     </section>
   </section>
 
-  <div class="wrap ad-wrap"><div class="ad ad-below" id="ad-below" aria-hidden="true"></div></div>
+  <div class="wrap ad-wrap"><a class="ad ad-house" id="ad-below" href="mailto:hello@taxsignal.com.au?subject=Advertising%20on%20TaxSignal"><b>Advertise your business</b><span>Put your business in front of Australians using TaxSignal’s free tools. Email <u>hello@taxsignal.com.au</u></span></a></div>
 
   <section class="wrap explain">
     <p class="kick">The guide</p>
@@ -298,7 +302,6 @@
     </div>
   </section>
 
-  <div class="wrap ad-wrap"><div class="ad ad-mid" id="ad-mid" aria-hidden="true"></div></div>
 
   <section class="wrap faq">
     <div><p class="kick">Questions</p><h2>Common questions about award pay.</h2></div>

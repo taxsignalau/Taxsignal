@@ -26,7 +26,7 @@ input,select,button,textarea{font-family:inherit}
 .wrap{max-width:1240px;margin:0 auto;padding:0 clamp(16px,5vw,40px);box-sizing:border-box}
 
 /* Masthead */
-.mast{position:sticky;top:0;z-index:50;background:rgba(11,22,18,0.97);backdrop-filter:blur(8px)}
+.mast{position:sticky;top:0;z-index:50;background:#0B1612}
 .mast.fixed{position:fixed;left:0;right:0}
 .mast-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 28px;min-height:60px;padding-top:10px;padding-bottom:10px}
 .logo{display:flex;align-items:center;gap:11px;color:var(--ivory)!important}
@@ -164,3 +164,11 @@ body:has(#dc-root .mast) #ts-pre{display:none}
 @media (max-width:900px){.cx-app{grid-template-columns:1fr}.cx-in{border-right:0;border-bottom:1px solid var(--rule)}}
 @media (max-width:520px){.cx-kpis{grid-template-columns:1fr}.cx-kpi+.cx-kpi{padding-left:0;border-left:0;border-top:1px solid var(--rule)}.cx-tab{padding:12px 14px}}
 @media print{.cx-app{grid-template-columns:1fr 1fr}.cx-range,.cx-tabs{display:none!important}.cx-out{background:none!important}}
+
+/* Date and time fields on phones. iOS Safari gives them a wide built-in minimum width, which pushed
+   them past the edge of their card, and centres their text. Keep them inside their column. */
+input[type=date],input[type=time]{min-width:0;max-width:100%;color-scheme:dark}
+@supports (-webkit-touch-callout:none){
+  input[type=date],input[type=time]{-webkit-appearance:none;appearance:none;display:block}
+  input[type=date]::-webkit-date-and-time-value,input[type=time]::-webkit-date-and-time-value{text-align:left;margin:0}
+}

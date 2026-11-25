@@ -1,6 +1,11 @@
 /* TaxSignal invoice maker. Editor on the left, live A4 paper on the right. */
-.ad{display:flex;align-items:center;justify-content:center;box-sizing:border-box;border:1px dashed rgba(238,231,215,.10);color:rgba(238,231,215,.28);font-size:11px;letter-spacing:.08em;text-transform:uppercase;overflow:hidden;margin-inline:auto}
-.ad::before{content:"Advertisement"}
+.ad{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;box-sizing:border-box;border:1px dashed rgba(201,168,102,.35);color:var(--ivory-3);text-align:center;padding:24px 20px;overflow:hidden;margin-inline:auto;text-decoration:none}
+.ad::before{content:"Advertise your business";font-size:18px;font-weight:600;color:var(--brass-2)}
+.ad-house{min-height:150px;max-width:970px;width:100%;transition:border-color .2s,background-color .2s}
+.ad-house:hover,.ad-house:focus-visible{border-color:var(--brass);background-color:rgba(201,168,102,.05)}
+.ad-house b{font-size:clamp(18px,2vw,22px);font-weight:600;letter-spacing:-.01em;color:var(--brass-2)}
+.ad-house span{font-size:14px;line-height:1.55;color:var(--ivory-3);max-width:460px}
+.ad-house u{color:var(--ivory-2);text-underline-offset:3px}
 .ad:not(:empty)::before{content:none}
 .ad-top{min-height:100px;max-width:970px;width:100%}
 .ad-mid,.ad-below{min-height:280px;max-width:970px;width:100%}
@@ -101,22 +106,22 @@ textarea.in{resize:vertical;min-height:72px;line-height:1.5;font-family:inherit}
 .check p{margin:6px 0 0;font-size:13px;color:var(--ivory-3);line-height:1.5}
 .iv-switch,.iv-bar{display:none}
 @media (max-width:980px){
-  .iv-hero{grid-template-columns:1fr}
-  .iv-app{grid-template-columns:1fr}
+  .iv-hero{grid-template-columns:minmax(0,1fr)}
+  .iv-app{grid-template-columns:minmax(0,1fr)}
   .iv-side{position:static}
-  .iv-switch{display:flex;position:sticky;top:104px;z-index:20;background:var(--ink);border:1px solid var(--rule-2);margin-bottom:16px}
+  .iv-switch{display:flex;background:var(--ink);border:1px solid var(--rule-2);margin-bottom:16px}
   .iv-switch button{flex:1;background:none;border:0;color:var(--ivory-2);font-weight:600;font-size:15px;padding:12px;min-height:46px;cursor:pointer}
   .iv-switch button[aria-pressed="true"]{background:var(--brass);color:var(--ink)}
   .iv-app[data-view="edit"] .iv-side{display:none}
   .iv-app[data-view="preview"] .iv-ed{display:none}
   .iv-app{border-top:0;padding-top:0}
   .paper{font-size:clamp(5.4px,2.05vw,11px)}
-  .iv-bar{display:flex;position:sticky;bottom:0;z-index:30;justify-content:space-between;align-items:center;gap:12px;background:rgba(11,22,18,.97);border-top:1px solid var(--rule-2);margin:16px calc(-1*clamp(16px,5vw,40px)) 0;padding:10px clamp(16px,5vw,40px) calc(10px + env(safe-area-inset-bottom,0px))}
+  .iv-bar{display:flex;position:sticky;bottom:0;z-index:30;justify-content:space-between;align-items:center;gap:12px;background:#0B1612;border-top:1px solid var(--rule-2);margin:16px calc(-1*clamp(16px,5vw,40px)) 0;padding:10px clamp(16px,5vw,40px) calc(10px + env(safe-area-inset-bottom,0px))}
   .iv-bar .fig{font-size:24px}
   .iv-bar .btn{padding:12px 18px}
 }
 @media (max-width:640px){
-  .g2,.g3{grid-template-columns:1fr}
+  .g2,.g3{grid-template-columns:minmax(0,1fr)}
   .item-head{display:none}
   .item{grid-template-columns:repeat(3,minmax(0,1fr)) 44px}
   .item .desc{grid-column:1/-1}
